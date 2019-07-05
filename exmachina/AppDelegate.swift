@@ -7,16 +7,147 @@
 //
 
 import UIKit
+import Firebase
+import GoogleSignIn
+import UserNotifications
+import FBSDKLoginKit
+import FBSDKCoreKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate, LoginButtonDelegate, UNUserNotificationCenterDelegate {
+    
+    var uid: String = ""
+    var name: String = ""
+    var username: String = ""
+    var email: String = ""
+    var profileImageUrl: String = ""
+    var provider: String = ""
+    var dateDeCreation: String = ""
 
     var window: UIWindow?
+    
+    func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
+        if let error = error {
+            print("Facebook failed to log in ", error)
+            return
+        }else{
+            print("Facebook successfully logged in with facebook")
+        }
+        
+        let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
+        
+        Auth.auth().signIn(with: credential, completion: {(user, error) in
+            if let error = error {
+                print("Impossible de creer un utilisateur avec Facebook (AppDelegate)", error)
+                return
+            }else{
+                print("Succes de l'ajout d'un utilisateur firebase avec facebook (AppDelegate)")
+                self.saveUserIntoFirebaseDatabase()
+            }
+        })
+        
+        Auth.auth().signIn(with: credential) { (user, error) in
+            if let error = error {
+                print("Facebook authentication with Firebase error: ", error)
+                return
+            }
+            print("User signed in!")
+        }
+        
+    }
+    
+    func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
+        
+        return
+    }
 
-
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let error = error {
+            print("Google failed to log in", error)
+            return
+        }else{
+            print("Successfully signed in to google", user!)
+        }
+        guard let authentication = user.authentication else { return }
+        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
+                                                       accessToken: authentication.accessToken)
+        
+        Auth.auth().signIn(with: credential, completion: {(user, error) in
+            
+            if let error = error {
+                
+                print("Echec lors de la creation de l'utilisateur avec le google sign-in (AppDelegate)", error)
+                return
+            } else {
+                self.saveUserIntoFirebaseDatabase()
+            }
+            
+            UserDefaults().set(true, forKey: "userSignedIn")
+            UserDefaults().synchronize()
+            
+            guard let user = user?.user.uid else { return }
+            print("L'utilisateur s'est bien connecte avec en etant un utilisateur Google (AppDelegate)", user)
+            
+        })
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+        // Perform any operations when the user disconnects from app here.
+        // ...
+        
+    }
+    
+    ///Implemente la methode qui permet de gerer le lien que les services de google vont envoyés
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        return GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplication, annotation: annotation)
+    }
+    
+    @available(iOS 9.0, *)
+    func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any])
+        -> Bool {
+            GIDSignIn.sharedInstance().handle(url, sourceApplication:options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: [:])
+            let handledFacebook = ApplicationDelegate.shared.application(application, open: url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: options[UIApplication.OpenURLOptionsKey.annotation])
+            
+            return handledFacebook
+    }
+    
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        FirebaseApp.configure()
+        
+        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
+        GIDSignIn.sharedInstance().delegate = self
+        
+        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        if Auth.auth().currentUser != nil {
+            window = UIWindow(frame: UIScreen.main.bounds)
+            window?.makeKeyAndVisible()
+            let mainViewController = MainTabBarController()
+            window?.rootViewController = mainViewController
+        } else {
+            window = UIWindow(frame: UIScreen.main.bounds)
+            window?.makeKeyAndVisible()
+            let onBoarding = OnboardingViewController()
+            window?.rootViewController = onBoarding
+            print("Hello onboarding")
+        }
+        
         return true
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+        print(token)
+        
+        print(deviceToken.description)
+        if let uuid = UIDevice.current.identifierForVendor?.uuidString {
+            print(uuid)
+        }
+        UserDefaults.standard.setValue(token, forKey: "ApplicationIdentifier")
+        UserDefaults.standard.synchronize()
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -40,7 +171,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
+    
+    fileprivate func saveUserIntoFirebaseDatabase() {
+        
+        uid = Auth.auth().currentUser!.uid
+        name = (Auth.auth().currentUser?.displayName)!
+        email = (Auth.auth().currentUser?.email)!
+        profileImageUrl = (Auth.auth().currentUser?.photoURL!.absoluteString)!
+        provider = Auth.auth().currentUser?.providerData[0].providerID ?? "provider"
+        let dateToday = DateFormatter()
+        dateToday.locale = Locale(identifier: "fr_FR")
+        dateToday.setLocalizedDateFormatFromTemplate("MMM yyyy")
+        dateDeCreation = dateToday.string(from: Date())
+        let ref = Database.database().reference()
+        
+        ref.child("users").child(uid).observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
+            
+            if snapshot.exists() == false {
+                ref.child("users").child(self.uid).setValue(["uid": self.uid, "name": self.name, "email": self.email, "profileImageUrl": self.profileImageUrl, "provider": self.provider, "dateDeCreation": self.dateDeCreation, "faculte": "Sélectionner la faculté", "filiere": "Sélectionner la filière", "semestre": "Sélectionner le semestre"])
+            }
+        }, withCancel: nil)
+    }
 
 }
 
