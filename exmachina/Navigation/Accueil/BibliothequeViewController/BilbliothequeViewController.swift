@@ -31,13 +31,14 @@ class BibliothequeViewController: UIViewController, MFMailComposeViewControllerD
     
     let responsable: BtnPleinLarge = {
         let cours = BtnPleinLarge()
+        cours.addTarget(self, action: #selector(buttonToResponsable(_:)), for: .touchUpInside)
         cours.translatesAutoresizingMaskIntoConstraints = false
         cours.titleLabel?.numberOfLines = 0
-        let str = NSMutableAttributedString(string: "Responsable\n7 jours ouvrables")
+        let str = NSMutableAttributedString(string: "Responsable\nSonia BARNACHI")
         str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir-Heavy", size: 20)!, range: NSMakeRange(0, 11))
-        str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir", size: 14)!, range: NSMakeRange(12, 17))
+        str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir", size: 14)!, range: NSMakeRange(12, 14))
         str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(0, 11))
-        str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(12, 17))
+        str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(12, 14))
         str.setLineSpacing(8)
         cours.setAttributedTitle(str, for: .normal)
         cours.backgroundColor = #colorLiteral(red: 0.7333333333, green: 0.3058823529, blue: 0.09019607843, alpha: 1)
@@ -62,11 +63,11 @@ class BibliothequeViewController: UIViewController, MFMailComposeViewControllerD
         cours.addTarget(self, action: #selector(buttonToAttestionDeScolarite(_:)), for: .touchUpInside)
         cours.translatesAutoresizingMaskIntoConstraints = false
         cours.titleLabel?.numberOfLines = 0
-        let str = NSMutableAttributedString(string: "Attestation de scolarité\n7 jours ouvrables")
-        str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir-Heavy", size: 20)!, range: NSMakeRange(0, 24))
-        str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir", size: 14)!, range: NSMakeRange(25, 17))
-        str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(0, 24))
-        str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(25, 17))
+        let str = NSMutableAttributedString(string: "Réserver une salle\n7 jours ouvrables")
+        str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir-Heavy", size: 20)!, range: NSMakeRange(0, 18))
+        str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir", size: 14)!, range: NSMakeRange(19, 17))
+        str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(0, 18))
+        str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(19, 17))
         str.setLineSpacing(8)
         cours.setAttributedTitle(str, for: .normal)
         cours.backgroundColor = #colorLiteral(red: 0.7882352941, green: 0.4431372549, blue: 0.2705882353, alpha: 1)
@@ -110,7 +111,7 @@ class BibliothequeViewController: UIViewController, MFMailComposeViewControllerD
         blt.descriptionText = "Numéro de carte d'identité"
         blt.actionButtonTitle = "Suivant"
         blt.appearance.actionButtonColor = #colorLiteral(red: 0.8352941176, green: 0.7568627451, blue: 0, alpha: 1)
-        let bltItem: BLTNItem = self.dateAttestationDeScolarite()
+        let bltItem: BLTNItem = self.heurettestationDeScolarite()
         blt.next = bltItem
         blt.actionHandler = { (item: BLTNActionItem) in
             if blt.textField.text != "" {
@@ -130,38 +131,18 @@ class BibliothequeViewController: UIViewController, MFMailComposeViewControllerD
         return blt
     }
     
-    fileprivate func dateAttestationDeScolarite() -> DatePickerBLTNItem {
-        let blt = DatePickerBLTNItem(title: "Date de naissance")
-        blt.descriptionText = "Veuillez saisir la date de naissance"
+    fileprivate func heurettestationDeScolarite() -> TimePickerBLTNItem {
+        let blt = TimePickerBLTNItem(title: "Date et Heure")
+        blt.descriptionText = "Veuillez saisir la date et l'heure"
         blt.actionButtonTitle = "Suivant"
         blt.appearance.actionButtonColor = #colorLiteral(red: 0.8352941176, green: 0.7568627451, blue: 0, alpha: 1)
-        let bltItem: BLTNItem = self.numberAttestationDeScolarite()
-        blt.next = bltItem
+        blt.datePicker.datePickerMode = .dateAndTime
         blt.actionHandler = { (item: BLTNActionItem) in
             let timeFormatter = DateFormatter()
             timeFormatter.dateStyle = DateFormatter.Style.medium
-            timeFormatter.dateFormat = "dd-MM-yyyy"
+            timeFormatter.dateFormat = "dd-MM-yyyy HH:mm"
             print("----- Selected:  \(timeFormatter.string(from: blt.datePicker.date)) -------")
             self.demande.dateDeNaissance = "\(timeFormatter.string(from: blt.datePicker.date))"
-            item.manager?.displayNextItem()
-        }
-        blt.alternativeButtonTitle = "Précedent"
-        blt.appearance.alternativeButtonTitleColor = UIColor(red:0.78, green:0.78, blue:0.78, alpha:1.0)
-        blt.alternativeHandler = { (item: BLTNActionItem) in
-            item.manager?.popItem()
-        }
-        return blt
-    }
-    
-    fileprivate func numberAttestationDeScolarite() -> NumberPickerBLTNItem {
-        let blt = NumberPickerBLTNItem(title: "Quantité")
-        blt.descriptionText = "Nombre d'exemplaire"
-        blt.actionButtonTitle = "Envoyer"
-        blt.appearance.actionButtonColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
-        
-        blt.actionHandler = { (item: BLTNActionItem) in
-            self.demande.nombreExemplaire = "\(blt.selected)"
-            
             item.manager?.dismissBulletin(animated: true)
             self.sendEmail()
         }
@@ -235,9 +216,9 @@ class BibliothequeViewController: UIViewController, MFMailComposeViewControllerD
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
-            mail.setToRecipients(["piecesing@uic.ac.ma"])
-            mail.setSubject("Demande d'Attestion de Scolarité")
-            mail.setMessageBody("<p>Bonjour Monsieur/Madame,</p>Je souhaiterai demander une attestation de scolarité, voici mes informations personnelles :<p><b>Nom au complet:</b> \(self.demande.nomAuComplet)</p><p><b>CIN:</b> \(self.demande.cin)</p><p><b>Date de naissance:</b> \(self.demande.dateDeNaissance)</p><p><b>Nombre d'exemplaire:</b> \(self.demande.nombreExemplaire)</p><p>Bien à vous,</p>", isHTML: true)
+            mail.setToRecipients(["sonia.barinchi@uic.ac.ma"])
+            mail.setSubject("Réservation de Salle")
+            mail.setMessageBody("<p>Bonjour Monsieur/Madame,</p>Je souhaiterai réserver une salle, voici mes informations personnelles et l'horaire:<p><b>Nom au complet:</b> \(self.demande.nomAuComplet)</p><p><b>CIN:</b> \(self.demande.cin)</p><p><b>Date et heure:</b> \(self.demande.dateDeNaissance)</p><p>Bien à vous,</p>", isHTML: true)
             
             self.present(mail, animated: true)
         } else {
@@ -253,4 +234,52 @@ class BibliothequeViewController: UIViewController, MFMailComposeViewControllerD
         self.bulletinAttestationDeScolarite.backgroundViewStyle = .blurredDark
         self.bulletinAttestationDeScolarite.showBulletin(above: self)
     }
+    
+    @objc func buttonToResponsable(_ sender: BtnPleinLarge) {
+        let alert = UIAlertController(title: "Sonia BARNACHI", message: nil, preferredStyle: .actionSheet)
+        
+        let annulerAction = UIAlertAction(title: "Annuler", style: .cancel) { action -> Void in
+            
+        }
+        
+        let appeler = UIAlertAction(title: "Contacter par téléphone", style: .default) { action -> Void in
+            if let url = URL(string: "tel://0529023728"),
+                UIApplication.shared.canOpenURL(url) {
+                if #available(iOS 10, *) {
+                    UIApplication.shared.open(url, options: [:], completionHandler:nil)
+                } else {
+                    UIApplication.shared.openURL(url)
+                }
+            } else {
+                // add error message here
+            }
+        }
+        
+        let email = UIAlertAction(title: "Contacter par email", style: .default) { action -> Void in
+            if MFMailComposeViewController.canSendMail() {
+                let mail = MFMailComposeViewController()
+                mail.mailComposeDelegate = self
+                mail.setToRecipients(["sonia.barinchi@uic.ac.ma"])
+                
+                self.present(mail, animated: true)
+            } else {
+                // show failure alert
+            }
+        }
+        
+        
+        
+        alert.addAction(annulerAction)
+        alert.addAction(appeler)
+        alert.addAction(email)
+        
+        //Begin: Uniquement pour les iPads (UIAlertController n'existe pas sur iPad)
+        if let popoverPresentationController = alert.popoverPresentationController {
+            popoverPresentationController.sourceView = self.view
+            popoverPresentationController.sourceRect = CGRect(x: UIScreen.main.bounds.size.width / 2, y: UIScreen.main.bounds.size.height / 2.5, width: 1, height: 1)
+        }
+        //End: Uniquement pour les iPads
+        present(alert, animated: true, completion: nil)
+    }
+    
 }

@@ -83,7 +83,7 @@ class ScolariteViewController: UIViewController {
         cours.addTarget(self, action: #selector(buttonToFss(_:)), for: .touchUpInside)
         cours.translatesAutoresizingMaskIntoConstraints = false
         cours.titleLabel?.numberOfLines = 0
-        let str = NSMutableAttributedString(string: "FSS\nFaculté des Sciences de la santé")
+        let str = NSMutableAttributedString(string: "FSS\nFaculté des Sciences de la Santé")
         str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir-Heavy", size: 20)!, range: NSMakeRange(0, 3))
         str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir", size: 14)!, range: NSMakeRange(4, 32))
         str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(0, 3))

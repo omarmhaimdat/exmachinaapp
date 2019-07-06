@@ -30,6 +30,7 @@
 		6C51408322CFC50C0065E086 /* BlogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C51408222CFC50C0065E086 /* BlogViewController.swift */; };
 		6C51408622CFC5540065E086 /* InfoUtileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C51408522CFC5540065E086 /* InfoUtileViewController.swift */; };
 		6C51408922CFC5730065E086 /* TransportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C51408822CFC5730065E086 /* TransportViewController.swift */; };
+		6C51408B22CFFD740065E086 /* TimePickerBulletinPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C51408A22CFFD740065E086 /* TimePickerBulletinPage.swift */; };
 		6CA356CC22A9A49F00ECD409 /* ChoisirFiliereViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA356CB22A9A49F00ECD409 /* ChoisirFiliereViewController.swift */; };
 		6CA356D222A9A9E100ECD409 /* BtnVide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA356D122A9A9E100ECD409 /* BtnVide.swift */; };
 		6CA356D422A9AABA00ECD409 /* BtnVideLarge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA356D322A9AABA00ECD409 /* BtnVideLarge.swift */; };
@@ -121,6 +122,7 @@
 		6C51408222CFC50C0065E086 /* BlogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogViewController.swift; sourceTree = "<group>"; };
 		6C51408522CFC5540065E086 /* InfoUtileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoUtileViewController.swift; sourceTree = "<group>"; };
 		6C51408822CFC5730065E086 /* TransportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportViewController.swift; sourceTree = "<group>"; };
+		6C51408A22CFFD740065E086 /* TimePickerBulletinPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerBulletinPage.swift; sourceTree = "<group>"; };
 		6CA356CB22A9A49F00ECD409 /* ChoisirFiliereViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoisirFiliereViewController.swift; sourceTree = "<group>"; };
 		6CA356D122A9A9E100ECD409 /* BtnVide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BtnVide.swift; sourceTree = "<group>"; };
 		6CA356D322A9AABA00ECD409 /* BtnVideLarge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BtnVideLarge.swift; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 				6C51407522CE55120065E086 /* TextFieldBulletinPage.swift */,
 				6C51407722CE57DA0065E086 /* NumberPickerBulletinPage.swift */,
 				6C51407922CE5EA30065E086 /* DatePickerBulletinPage.swift */,
+				6C51408A22CFFD740065E086 /* TimePickerBulletinPage.swift */,
 			);
 			path = BLT;
 			sourceTree = "<group>";
@@ -908,6 +911,7 @@
 				6C51407222CE4B2E0065E086 /* NomTextFieldBulletinPage.swift in Sources */,
 				6CD1550622A0B07800DEA4D3 /* CoursesCollection+Extension.swift in Sources */,
 				6C51407422CE4B4C0065E086 /* FeedbackPageBLTNItem.swift in Sources */,
+				6C51408B22CFFD740065E086 /* TimePickerBulletinPage.swift in Sources */,
 				6CD154AE229F499C00DEA4D3 /* AppDelegate.swift in Sources */,
 				6CD1551A22A18F6F00DEA4D3 /* SemestreCollection+Extension.swift in Sources */,
 				6CD1551822A18D1800DEA4D3 /* SemestreViewController.swift in Sources */,

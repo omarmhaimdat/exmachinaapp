@@ -166,6 +166,7 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
     
     let InfoUtile: BtnPleinLarge = {
         let cours = BtnPleinLarge()
+        cours.addTarget(self, action: #selector(buttonToInfoUtile(_:)), for: .touchUpInside)
         cours.translatesAutoresizingMaskIntoConstraints = false
         cours.titleLabel?.numberOfLines = 0
         let str = NSMutableAttributedString(string: "Informations utiles\nTrouver vos cours personnalisés")
@@ -565,6 +566,13 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
     @objc func buttonToBiblio(_ sender: BtnPleinLarge) {
         
         let controller = BibliothequeViewController()
+        self.navigationController?.pushViewController(controller, animated: true)
+        
+    }
+    
+    @objc func buttonToInfoUtile(_ sender: BtnPleinLarge) {
+        
+        let controller = InfoUtileViewController()
         self.navigationController?.pushViewController(controller, animated: true)
         
     }
