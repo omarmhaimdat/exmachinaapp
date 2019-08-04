@@ -167,7 +167,7 @@ class BibliothequeViewController: UIViewController, MFMailComposeViewControllerD
     func setupTabBar() {
         view.backgroundColor = UIColor.white
         navigationController?.navigationBar.prefersLargeTitles = true
-        self.navigationItem.title = "ING"
+        self.navigationItem.title = "Bibliothèque"
         self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.navigationBar.barTintColor = .lightText
         self.setNeedsStatusBarAppearanceUpdate()

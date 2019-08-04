@@ -19,7 +19,6 @@ class ListeMatieresViewController: UIViewController {
     
     let newCollection: UICollectionView = {
         
-//        let layout = UICollectionViewFlowLayout()
         let layout = BouncyLayout(style: .regular)
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         layout.scrollDirection = .vertical

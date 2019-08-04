@@ -60,6 +60,7 @@ extension ListeFilesViewController: UICollectionViewDataSource, UICollectionView
                 pdfView.document = pdfDocument
                 let detailVC = PdfViewerViewController()
                 detailVC.pdfView = pdfView
+                detailVC.fileName = self.files[indexPath.item].titre
 //                let t = pdfView.document == nil
 //                let e = t
                 self.navigationController?.pushViewController(detailVC, animated: true)

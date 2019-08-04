@@ -186,8 +186,6 @@ class OfflineViewController: UIViewController, UISearchControllerDelegate {
     private func setupUI() {
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        title = "Accueil"
-        
         // Initial setup for image for Large NavBar state since the the screen always has Large NavBar once it gets opened
         guard let navigationBar = self.navigationController?.navigationBar else { return }
         navigationBar.addSubview(imageView)

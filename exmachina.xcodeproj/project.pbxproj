@@ -348,12 +348,11 @@
 				6C51407022CE4B080065E086 /* BLT */,
 				6C224BB622A9998A0011F70D /* Models */,
 				6C17F86A22A1DDFF0046FD7D /* PDF */,
-				6CD1550922A0B25A00DEA4D3 /* Utitlies */,
+				6CD154DD229F5EC300DEA4D3 /* Buttons */,
+				6CD1550922A0B25A00DEA4D3 /* Utilities */,
 				6CD154EC229F855500DEA4D3 /* Navigation */,
 				6CD154EB229F79E700DEA4D3 /* exmachina.entitlements */,
 				6CD154E9229F789500DEA4D3 /* GoogleService-Info.plist */,
-				6CD154E2229F5F3900DEA4D3 /* Utilities */,
-				6CD154DD229F5EC300DEA4D3 /* Buttons */,
 				6CD154AD229F499C00DEA4D3 /* AppDelegate.swift */,
 				6CD154AF229F499C00DEA4D3 /* OnboardingViewController.swift */,
 				6CD154B4229F499E00DEA4D3 /* Assets.xcassets */,
@@ -394,14 +393,6 @@
 				6CD154FA229F8B5F00DEA4D3 /* Button.swift */,
 			);
 			path = Buttons;
-			sourceTree = "<group>";
-		};
-		6CD154E2229F5F3900DEA4D3 /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				6CD154E3229F5F5300DEA4D3 /* UIImage+Extension.swift */,
-			);
-			path = Utilities;
 			sourceTree = "<group>";
 		};
 		6CD154EC229F855500DEA4D3 /* Navigation */ = {
@@ -485,17 +476,18 @@
 			path = Favoris;
 			sourceTree = "<group>";
 		};
-		6CD1550922A0B25A00DEA4D3 /* Utitlies */ = {
+		6CD1550922A0B25A00DEA4D3 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
 				6CD1550A22A0B26600DEA4D3 /* Extensions */,
 			);
-			path = Utitlies;
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		6CD1550A22A0B26600DEA4D3 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				6CD154E3229F5F5300DEA4D3 /* UIImage+Extension.swift */,
 				6C42E6C122A83DE50017CF57 /* UIViewController+Extension.swift */,
 				6CD1550B22A0B28A00DEA4D3 /* UIColor+Extensions.swift */,
 				6CD1550D22A0B2A600DEA4D3 /* UIView+Extensions.swift */,

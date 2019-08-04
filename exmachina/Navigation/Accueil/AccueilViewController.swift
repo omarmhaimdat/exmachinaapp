@@ -178,7 +178,7 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
         cours.setAttributedTitle(str, for: .normal)
         let icon = UIImage(named: "info")?.resized(newSize: CGSize(width: 40, height: 40))
         cours.addRightImage(image: icon!, offset: 30)
-        cours.backgroundColor = #colorLiteral(red: 0.9990773797, green: 0.2295021415, blue: 0.1888831556, alpha: 1)
+        cours.backgroundColor = #colorLiteral(red: 1, green: 0.231372549, blue: 0.1882352941, alpha: 1)
         cours.layer.borderColor = #colorLiteral(red: 0.9990773797, green: 0.2295021415, blue: 0.1888831556, alpha: 1).cgColor
         cours.layer.shadowOpacity = 0.3
         cours.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1).cgColor
@@ -323,13 +323,10 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
         self.tabBarController?.tabBar.isHidden = false
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.backgroundColor = .white
     }
     
     private func setupUI() {
-        navigationController?.navigationBar.prefersLargeTitles = true
-        
-        title = "Accueil"
-        
         // Initial setup for image for Large NavBar state since the the screen always has Large NavBar once it gets opened
         guard let navigationBar = self.navigationController?.navigationBar else { return }
         navigationBar.addSubview(imageView)
