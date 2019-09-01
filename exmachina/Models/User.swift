@@ -18,6 +18,8 @@ struct User {
     var filiere: Filiere
     var semestre: Semestre
     var faculte: Faculte
+    var new: Bool
+    var ajoutFaculte: Bool
     
     init() {
         self.uid = ""
@@ -29,6 +31,8 @@ struct User {
         self.filiere = Filiere()
         self.semestre = Semestre()
         self.faculte = Faculte()
+        self.new = false
+        self.ajoutFaculte = false
     }
     
 }

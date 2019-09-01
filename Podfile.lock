@@ -1,4 +1,6 @@
 PODS:
+  - AppleWelcomeScreen (1.0.1):
+    - SnapKit
   - BouncyLayout (2.1.0)
   - BulletinBoard (3.0.0)
   - FBSDKCoreKit (5.0.2):
@@ -100,6 +102,8 @@ PODS:
     - NVActivityIndicatorView/Presenter (= 4.7.0)
   - NVActivityIndicatorView/Presenter (4.7.0)
   - QuickLayout (3.0.0)
+  - SnapKit (5.0.0)
+  - SPStorkController (1.7.9)
   - SwiftEntryKit (1.0.1):
     - QuickLayout (= 3.0.0)
   - SwiftWebVC (0.4.2)
@@ -107,6 +111,7 @@ PODS:
   - SwipeCellKit (2.6.0)
 
 DEPENDENCIES:
+  - AppleWelcomeScreen
   - BouncyLayout
   - BulletinBoard
   - FBSDKCoreKit
@@ -120,6 +125,7 @@ DEPENDENCIES:
   - JGProgressHUD
   - LBTAComponents (~> 1.0.2)
   - NVActivityIndicatorView
+  - SPStorkController
   - SwiftEntryKit (= 1.0.1)
   - SwiftWebVC
   - SwiftyOnboard
@@ -127,6 +133,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - AppleWelcomeScreen
     - BouncyLayout
     - BulletinBoard
     - FBSDKCoreKit
@@ -150,12 +157,15 @@ SPEC REPOS:
     - nanopb
     - NVActivityIndicatorView
     - QuickLayout
+    - SnapKit
+    - SPStorkController
     - SwiftEntryKit
     - SwiftWebVC
     - SwiftyOnboard
     - SwipeCellKit
 
 SPEC CHECKSUMS:
+  AppleWelcomeScreen: dcf8848bf928e391467b2ea2ff1e40bcaf5a46b3
   BouncyLayout: a7955879861375cc4e88bb64d42bcf622cd2694c
   BulletinBoard: 927f4f9fd22503ceecd71bfc830fd65d5996593a
   FBSDKCoreKit: 3e41c402eb64ea7799c71833ff9e5690f27b9c42
@@ -179,11 +189,13 @@ SPEC CHECKSUMS:
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   NVActivityIndicatorView: b19ddab2576f805cbe0fb2306cba3476e09a1dea
   QuickLayout: 07b45a72b10083fee3f095990cfed1c1e7b27f0a
+  SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
+  SPStorkController: 36bd84206267232747b19d48852659bd71ede28f
   SwiftEntryKit: 3f55c0b8e676afe24a3703237bcac68372891c56
   SwiftWebVC: ecc4feaabe5a3f75e059a0a345d3386bb0d16c44
   SwiftyOnboard: de60e90c2af23dd61b01ec0c6a8d0be3370f857b
   SwipeCellKit: 935ca28c187ec6e1ffb2b578cf8ddca842bfdcbb
 
-PODFILE CHECKSUM: 712c00940e7864851be5d1c5e2e69c6ab5909128
+PODFILE CHECKSUM: d4514ea84ef0ad04ad70cec73855076df55c9ab5
 
 COCOAPODS: 1.6.0

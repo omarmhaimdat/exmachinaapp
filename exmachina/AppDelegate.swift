@@ -113,7 +113,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate, LoginB
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         
         FirebaseApp.configure()
         
@@ -122,17 +121,73 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate, LoginB
         
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
-        if Auth.auth().currentUser != nil {
-            window = UIWindow(frame: UIScreen.main.bounds)
-            window?.makeKeyAndVisible()
-            let mainViewController = MainTabBarController()
-            window?.rootViewController = mainViewController
-        } else {
-            window = UIWindow(frame: UIScreen.main.bounds)
-            window?.makeKeyAndVisible()
-            let onBoarding = OnboardingViewController()
-            window?.rootViewController = onBoarding
-            print("Hello onboarding")
+//        if Auth.auth().currentUser != nil && !Auth.auth().currentUser!.isAnonymous {
+//            window = UIWindow(frame: UIScreen.main.bounds)
+//            window?.makeKeyAndVisible()
+//            let mainViewController = MainTabBarController()
+//            window?.rootViewController = mainViewController
+//        } else if Auth.auth().currentUser == nil {
+//            window = UIWindow(frame: UIScreen.main.bounds)
+//            window?.makeKeyAndVisible()
+//            let onBoarding = OnboardingViewController()
+//            window?.rootViewController = onBoarding
+//            print("Hello onboarding")
+//        } else if Auth.auth().currentUser != nil && Auth.auth().currentUser!.isAnonymous {
+//            window = UIWindow(frame: UIScreen.main.bounds)
+//            window?.makeKeyAndVisible()
+//            let anonymousViewController = AnonymousTabBarController()
+//            window?.rootViewController = anonymousViewController
+//        }
+        
+//        Auth.auth().addStateDidChangeListener() { auth, user in
+//            if user != nil && !Auth.auth().currentUser!.isAnonymous {
+//                self.window = UIWindow(frame: UIScreen.main.bounds)
+//                self.window?.makeKeyAndVisible()
+//                let mainViewController = MainTabBarController()
+//                self.window?.rootViewController = mainViewController
+//            } else if user == nil {
+//                self.window = UIWindow(frame: UIScreen.main.bounds)
+//                self.window?.makeKeyAndVisible()
+//                let onBoarding = SignInViewController()
+//                self.window?.rootViewController = onBoarding
+//                print("Hello onboarding")
+//            } else if user != nil && Auth.auth().currentUser!.isAnonymous {
+//                self.window = UIWindow(frame: UIScreen.main.bounds)
+//                self.window?.makeKeyAndVisible()
+//                let anonymousViewController = AnonymousTabBarController()
+//                self.window?.rootViewController = anonymousViewController
+//            }
+//        }
+//
+        Auth.auth().addStateDidChangeListener() { auth, user in
+            if user != nil && !Auth.auth().currentUser!.isAnonymous {
+                self.window = UIWindow(frame: UIScreen.main.bounds)
+                self.window?.makeKeyAndVisible()
+                let mainViewController = MainTabBarController()
+                var options = UIWindow.TransitionOptions()
+                options.direction = .toTop
+                options.duration = 0.3
+                options.style = .easeIn
+                self.window?.setRootViewController(mainViewController, options: options)
+            } else if user == nil {
+                self.window = UIWindow(frame: UIScreen.main.bounds)
+                self.window?.makeKeyAndVisible()
+                let signIn = OnboardingViewController()
+                var options = UIWindow.TransitionOptions()
+                options.direction = .toRight
+                options.duration = 0.3
+                options.style = .easeIn
+                self.window?.setRootViewController(signIn, options: options)
+            } else if user != nil && Auth.auth().currentUser!.isAnonymous {
+                self.window = UIWindow(frame: UIScreen.main.bounds)
+                self.window?.makeKeyAndVisible()
+                let anonymousViewController = AnonymousTabBarController()
+                var options = UIWindow.TransitionOptions()
+                options.direction = .toTop
+                options.duration = 0.3
+                options.style = .easeIn
+                self.window?.setRootViewController(anonymousViewController, options: options)
+            }
         }
         
         return true
@@ -181,14 +236,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate, LoginB
         provider = Auth.auth().currentUser?.providerData[0].providerID ?? "provider"
         let dateToday = DateFormatter()
         dateToday.locale = Locale(identifier: "fr_FR")
-        dateToday.setLocalizedDateFormatFromTemplate("MMM yyyy")
+        dateToday.setLocalizedDateFormatFromTemplate("MM yyyy")
         dateDeCreation = dateToday.string(from: Date())
         let ref = Database.database().reference()
         
         ref.child("users").child(uid).observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
             
             if snapshot.exists() == false {
-                ref.child("users").child(self.uid).setValue(["uid": self.uid, "name": self.name, "email": self.email, "profileImageUrl": self.profileImageUrl, "provider": self.provider, "dateDeCreation": self.dateDeCreation, "faculte": "Sélectionner la faculté", "filiere": "Sélectionner la filière", "semestre": "Sélectionner le semestre"])
+                ref.child("users").child(self.uid).setValue(["faculte": "Sélectionner la faculté",
+                                                             "filiere": "Sélectionner la filière",
+                                                             "semestre": "Sélectionner le semestre",
+                                                             "new": true,
+                                                             "uid": self.uid,
+                                                             "name": self.name,
+                                                             "email": self.email,
+                                                             "profileImageUrl": self.profileImageUrl,
+                                                             "provider": self.provider,
+                                                             "dateDeCreation": self.dateDeCreation
+                                                             ])
             }
         }, withCancel: nil)
     }
