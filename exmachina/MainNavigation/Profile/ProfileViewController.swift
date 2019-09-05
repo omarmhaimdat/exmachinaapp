@@ -19,6 +19,8 @@ import SwiftEntryKit
 class ProfileViewController: UIViewController, MFMailComposeViewControllerDelegate {
     
     var user = User()
+    var filieres = [Filiere]()
+    var semestres = [Semestre]()
     var myError: Error?
     
     let scrollView: UIScrollView = {
@@ -276,6 +278,7 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
         if Auth.auth().currentUser!.isAnonymous {
             changerDeFiliere.isEnabled = false
             changerDeFiliere.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+            changerDeFiliere.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         }
     }
     
@@ -301,7 +304,7 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
     func setupTabBar() {
         view.backgroundColor = UIColor.white
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.title = "Profile"
+        navigationItem.title = "Profil"
         self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.navigationBar.barTintColor = .lightText
         self.setNeedsStatusBarAppearanceUpdate()
@@ -483,15 +486,69 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
                 user.semestre.sid = (dictionary["semestre"] as! String?)!
                 user.faculte.facId = (dictionary["faculte"] as! String?)!
                 self.user = user
+                self.getFilieres()
                 
             }
         }, withCancel: nil)
+    }
+    
+    func getFilieres() {
+        self.filieres.removeAll()
+        if self.user.faculte.facId != "Sélectionner la faculté" || self.user.faculte.facId != "Selectionner la faculté" {
+            let ref = Database.database().reference().child("data").child("faculte").child(self.user.faculte.facId).child("liste")
+            ref.observe(DataEventType.childAdded, with: { (snapshot) in
+//                print(snapshot)
+                    if let dictionary = snapshot.value as? [String: AnyObject] {
+                        var filiere = Filiere()
+                        filiere.titre = dictionary["titre"] as? String ?? ""
+                        filiere.fid = dictionary["fid"] as? String ?? ""
+                        print(filiere.fid)
+                        self.filieres.append(filiere)
+                    }
+            }, withCancel: nil)
+            self.getSemestres()
+        }
+        
+    }
+    
+    func getSemestres() {
+        self.semestres.removeAll()
+        
+        if self.user.filiere.fid != "Sélectionner la filière" || self.user.filiere.fid != "Selectionner la filière" {
+            let ref = Database.database().reference().child("data").child("faculte").child(self.user.faculte.facId).child("liste").child(self.user.filiere.fid).child("liste")
+            ref.observe(DataEventType.childAdded, with: { (snapshot) in
+                
+                if let dictionary = snapshot.value as? [String: AnyObject] {
+                    
+                    var semestre = Semestre()
+                    semestre.titre = (dictionary["titre"] as! String?)!
+                    semestre.sid = (dictionary["sid"] as! String?)!
+                    
+                    self.semestres.append(semestre)
+                }
+                
+            }, withCancel: nil)
+        }
+        
     }
     
     @objc func buttonToChangerDeFiliere() {
         
         let controller = ChoisirFiliereViewController()
         controller.user = self.user
+        controller.filieres = self.filieres
+        controller.semestres = self.semestres
+        print(self.filieres)
+        let index2 = self.semestres.firstIndex(where: { (item) -> Bool in
+            item.sid == self.user.semestre.sid
+        })
+
+        controller.index2 = index2
+        let index = self.filieres.firstIndex(where: { (item) -> Bool in
+            item.fid == self.user.filiere.fid
+        })
+        controller.index = index
+        
         self.navigationController?.pushViewController(controller, animated: true)
     }
     

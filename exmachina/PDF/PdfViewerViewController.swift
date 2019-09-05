@@ -54,7 +54,7 @@ class PdfViewerViewController: UIViewController {
     }
     
     @objc func shareBarButtonItemClicked(_ sender: UIBarButtonItem) {
-        guard let items = [self.pdfView.document?.documentURL as Any] as? [Any] else { return }
+        guard let items = [self.pdfView.document?.documentURL as Any] as? [URL] else { return }
         let avc = UIActivityViewController(activityItems: items, applicationActivities: nil)
         
         //If user on iPad

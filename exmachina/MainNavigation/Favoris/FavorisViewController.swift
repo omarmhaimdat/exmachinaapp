@@ -128,7 +128,7 @@ class FavorisViewController: UIViewController, UISearchControllerDelegate {
         setupSearchController()
         setupTabBar()
         setupUI()
-        self.getFavoris()
+//        self.getFavoris()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -296,7 +296,6 @@ class FavorisViewController: UIViewController, UISearchControllerDelegate {
         let ref = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("favoris")
         self.files.removeAll()
         ref.queryOrdered(byChild: "timestamp").observe(DataEventType.childAdded, with: { (snapshot) in
-            
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 
                 var file = File()
@@ -306,6 +305,8 @@ class FavorisViewController: UIViewController, UISearchControllerDelegate {
                 file.fileId = (dictionary["fid"] as! String?)!
                 
                 self.files.append(file)
+                self.newCollection.reloadData()
+                print(self.files)
                 DispatchQueue.main.async(execute: {
                     self.newCollection.reloadData()
                      self.activityIndicatorView.stopAnimating()

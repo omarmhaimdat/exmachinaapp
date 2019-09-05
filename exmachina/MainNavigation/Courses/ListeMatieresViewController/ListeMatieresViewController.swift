@@ -91,7 +91,7 @@ class ListeMatieresViewController: UIViewController {
     
     fileprivate func getMatiere() {
         
-        let ref = Database.database().reference().child("facultes").child("liste").child(self.filiere.fid).child("liste").child(self.semestre.sid).child("liste")
+        let ref = Database.database().reference().child("faculte").child("liste").child("ING").child("liste").child(self.filiere.fid).child("liste").child(self.semestre.sid).child("liste")
         self.matieres.removeAll()
         ref.observe(DataEventType.childAdded, with: { (snapshot) in
             

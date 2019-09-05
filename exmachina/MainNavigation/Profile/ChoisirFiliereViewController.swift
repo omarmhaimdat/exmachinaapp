@@ -22,6 +22,9 @@ class ChoisirFiliereViewController: UIViewController {
     var filiereSelected = Filiere()
     var semestreSelected = Semestre()
     
+    var index: Int?
+    var index2: Int?
+    
     let faculteLabel: UILabel = {
         let label = UILabel()
         label.text = "Faculté"
@@ -40,8 +43,8 @@ class ChoisirFiliereViewController: UIViewController {
         text.text = "Sélectionner la faculté"
         text.translatesAutoresizingMaskIntoConstraints = false
         text.textColor = UIColor.black
-        text.font = UIFont(name: "Avenir", size: 24)
-        text.textColor = UIColor(named: "exmachina")
+        text.font = UIFont(name: "Avenir-Medium", size: 24)
+        text.textColor = UIColor.green
     
         return text
     }()
@@ -73,7 +76,7 @@ class ChoisirFiliereViewController: UIViewController {
         text.textColor = UIColor.black
         text.font = UIFont(name: "Avenir", size: 24)
         text.translatesAutoresizingMaskIntoConstraints = false
-        text.textColor = UIColor(named: "exmachina")
+        text.textColor = UIColor.green
         
         
         return text
@@ -106,7 +109,7 @@ class ChoisirFiliereViewController: UIViewController {
         text.textColor = UIColor.black
         text.font = UIFont(name: "Avenir", size: 24)
         text.translatesAutoresizingMaskIntoConstraints = false
-        text.textColor = UIColor(named: "exmachina")
+        text.textColor = UIColor.green
         
         return text
     }()
@@ -130,6 +133,12 @@ class ChoisirFiliereViewController: UIViewController {
         facultePicker.delegate = self
         filierePicker.delegate = self
         semestrePicker.delegate = self
+        
+        self.filierePicker.reloadAllComponents()
+        self.filierePicker.selectRow(index ?? 0, inComponent: 0, animated: true)
+        
+        self.semestrePicker.reloadAllComponents()
+        self.semestrePicker.selectRow(index2 ?? 0, inComponent: 0, animated: true)
     }
     
     func setupTabBar() {
@@ -155,10 +164,11 @@ class ChoisirFiliereViewController: UIViewController {
         
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
-        toolbar.barStyle = .blackTranslucent
+        toolbar.barStyle = .blackOpaque
         toolbar.tintColor = .white
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(ChoisirFiliereViewController.dismissKeyboard))
-        toolbar.setItems([doneButton], animated: true)
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        toolbar.setItems([flexibleSpace, doneButton], animated: true)
         toolbar.isUserInteractionEnabled = true
         
         faculteLabel.topAnchor.constraint(equalTo: self.view.safeTopAnchor, constant: 30).isActive = true
@@ -168,6 +178,8 @@ class ChoisirFiliereViewController: UIViewController {
         faculteTextField.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         faculteTextField.inputView = facultePicker
         faculteTextField.inputAccessoryView = toolbar
+        faculteTextField.borderStyle = .roundedRect
+        
         
         filiereLabel.topAnchor.constraint(equalTo: self.faculteTextField.bottomAnchor, constant: 30).isActive = true
         filiereLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
@@ -176,6 +188,7 @@ class ChoisirFiliereViewController: UIViewController {
         filiereTextField.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         filiereTextField.inputView = filierePicker
         filiereTextField.inputAccessoryView = toolbar
+        filiereTextField.borderStyle = .roundedRect
         
         semestreLabel.topAnchor.constraint(equalTo: self.filiereTextField.bottomAnchor, constant: 30).isActive = true
         semestreLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
@@ -184,6 +197,7 @@ class ChoisirFiliereViewController: UIViewController {
         semestreTextField.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         semestreTextField.inputView = semestrePicker
         semestreTextField.inputAccessoryView = toolbar
+        semestreTextField.borderStyle = .roundedRect
         
     }
     
@@ -191,7 +205,6 @@ class ChoisirFiliereViewController: UIViewController {
         self.facultes.removeAll()
         let ref = Database.database().reference().child("data").child("faculte")
         ref.observe(DataEventType.childAdded, with: { (snapshot) in
-            
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 
                 var faculte = Faculte()
@@ -200,17 +213,23 @@ class ChoisirFiliereViewController: UIViewController {
                 
                 self.facultes.append(faculte)
             }
+
+            let index = self.facultes.firstIndex(where: { (item) -> Bool in
+                item.facId == self.user.faculte.facId
+            })
+            
+            self.facultePicker.reloadAllComponents()
+            self.facultePicker.selectRow(index ?? 0, inComponent: 0, animated: true)
+            
         }, withCancel: nil)
         
     }
     
-    func getFilieres() {
+    func getFilieres(facId: String) {
         self.filieres.removeAll()
-        let ref = Database.database().reference().child("data").child("faculte").child(faculteSelected.facId).child("liste")
+        let ref = Database.database().reference().child("data").child("faculte").child(facId).child("liste")
         ref.observe(DataEventType.childAdded, with: { (snapshot) in
-            
             if let dictionary = snapshot.value as? [String: AnyObject] {
-                
                 var filiere = Filiere()
                 filiere.titre = (dictionary["titre"] as! String?)!
                 filiere.fid = (dictionary["fid"] as! String?)!
@@ -220,9 +239,9 @@ class ChoisirFiliereViewController: UIViewController {
         }, withCancel: nil)
     }
     
-    func getSemestres() {
+    func getSemestres(fid: String, facId: String) {
         self.semestres.removeAll()
-        let ref = Database.database().reference().child("data").child("faculte").child(faculteSelected.facId).child("liste").child(filiereSelected.fid).child("liste")
+        let ref = Database.database().reference().child("data").child("faculte").child(facId).child("liste").child(fid).child("liste")
         ref.observe(DataEventType.childAdded, with: { (snapshot) in
             
             if let dictionary = snapshot.value as? [String: AnyObject] {
@@ -233,6 +252,7 @@ class ChoisirFiliereViewController: UIViewController {
                 
                 self.semestres.append(semestre)
             }
+            
         }, withCancel: nil)
     }
     

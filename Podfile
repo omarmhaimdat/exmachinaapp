@@ -24,6 +24,7 @@ target 'exmachina' do
   pod 'BulletinBoard'
   pod 'AppleWelcomeScreen'
   pod 'SPStorkController'
+  pod 'ReachabilitySwift'
 
   target 'exmachinaTests' do
     inherit! :search_paths

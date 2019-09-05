@@ -40,16 +40,24 @@ extension ChoisirFiliereViewController: UIPickerViewDelegate, UIPickerViewDataSo
             faculteTextField.text = faculteSelected.facId
             saveFaculte()
             filiereTextField.text = "Sélectionner la filière"
-            getFilieres()
+            semestreTextField.text = "Sélectionner le semestre"
+            filiereTextField.textColor = .red
+            semestreTextField.textColor = .red
+            getFilieres(facId: faculteSelected.facId.isEmpty ? self.user.faculte.facId : faculteSelected.facId)
+            self.semestres.removeAll()
         } else if pickerView == self.filierePicker {
             filiereSelected = filieres[row]
             filiereTextField.text = filiereSelected.fid
             saveFiliere()
+            print(filiereSelected.fid.isEmpty)
             semestreTextField.text = "Sélectionner le semestre"
-            getSemestres()
+            semestreTextField.textColor = .red
+            filiereTextField.textColor = UIColor.green
+            getSemestres(fid: filiereSelected.fid.isEmpty ? self.user.filiere.fid : filiereSelected.fid, facId: faculteSelected.facId.isEmpty ? self.user.faculte.facId : faculteSelected.facId)
         } else {
             semestreSelected = semestres[row]
             semestreTextField.text = semestreSelected.sid
+            semestreTextField.textColor = UIColor.green
             saveSemestre()
         }
     }

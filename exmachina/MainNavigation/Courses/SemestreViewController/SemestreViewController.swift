@@ -94,7 +94,7 @@ class SemestreViewController: UIViewController {
         
         let ref = Database.database().reference()
         self.semestres.removeAll()
-        ref.child("facultes").child("liste").child(self.filiere.fid).child("liste").observe(DataEventType.childAdded, with: { (snapshot) in
+        ref.child("faculte").child("liste").child("ING").child("liste").child(self.filiere.fid).child("liste").observe(DataEventType.childAdded, with: { (snapshot) in
             
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 

@@ -290,6 +290,8 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
         setupLoadingControl()
         setupUI()
         scrollView.delegate = self
+        Auth.auth().addStateDidChangeListener() { auth, user in
+        }
         
     }
     
@@ -491,10 +493,10 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
                     item2.title = "Demandes à la scolarité"
                     item2.description = "Envoyer une demande d'attestation n'a jamais été aussi facile"
                     
-                    var item3 = AWSItem()
-                    item3.image = UIImage(named: "utile")
-                    item3.title = "Informations Utiles"
-                    item3.description = "Toutes les informations utiles sont à portée de main"
+//                    var item3 = AWSItem()
+//                    item3.image = UIImage(named: "utile")
+//                    item3.title = "Informations Utiles"
+//                    item3.description = "Toutes les informations utiles sont à portée de main"
                     
                     var item4 = AWSItem()
                     item4.image = UIImage(named: "favoris")
@@ -506,7 +508,7 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
                     item5.title = "Offline"
                     item5.description = "Vous pouvez enregistrer des fichiers directement sur votre appareil"
                     
-                    configuration.items = [item1, item2, item3, item4, item5]
+                    configuration.items = [item1, item2, item4, item5]
                     
                     configuration.continueButtonText = "Commencer"
                     
@@ -623,97 +625,6 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
         let controller = ProfileViewController()
         let navController = UINavigationController(rootViewController: controller)
         self.present(navController, animated: true, completion: nil)
-    }
-    
-    func Authenticate(completion: @escaping ((Bool) -> ())){
-        
-        //Create a context
-        let authenticationContext = LAContext()
-        var error:NSError?
-        
-        //Check if device have Biometric sensor
-        let isValidSensor : Bool = authenticationContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error)
-        
-        if isValidSensor {
-            //Device have BiometricSensor
-            //It Supports TouchID
-            
-            authenticationContext.evaluatePolicy(
-                .deviceOwnerAuthenticationWithBiometrics,
-                localizedReason: "Touch / Face ID authentication",
-                reply: { [unowned self] (success, error) -> Void in
-                    
-                    if(success) {
-                        // Touch / Face ID recognized success here
-                        completion(true)
-                    } else {
-                        //If not recognized then
-                        if let error = error {
-                            let strMessage = self.errorMessage(errorCode: error._code)
-                            if strMessage != ""{
-                                self.showAlertWithTitle(title: "Error", message: strMessage)
-                            }
-                        }
-                        completion(false)
-                    }
-            })
-        } else {
-            let strMessage = self.errorMessage(errorCode: (error?._code)!)
-            if strMessage != ""{
-                self.showAlertWithTitle(title: "Error", message: strMessage)
-            }
-        }
-        
-    }
-    
-    //MARK: TouchID error
-    func errorMessage(errorCode:Int) -> String{
-        
-        var strMessage = ""
-        
-        switch errorCode {
-            
-        case LAError.Code.authenticationFailed.rawValue:
-            strMessage = "Authentication Failed"
-            
-        case LAError.Code.userCancel.rawValue:
-            strMessage = "User Cancel"
-            
-        case LAError.Code.systemCancel.rawValue:
-            strMessage = "System Cancel"
-            
-        case LAError.Code.passcodeNotSet.rawValue:
-            strMessage = "Please goto the Settings & Turn On Passcode"
-            
-        case LAError.Code.touchIDNotAvailable.rawValue:
-            strMessage = "TouchI or FaceID DNot Available"
-            
-        case LAError.Code.touchIDNotEnrolled.rawValue:
-            strMessage = "TouchID or FaceID Not Enrolled"
-            
-        case LAError.Code.touchIDLockout.rawValue:
-            strMessage = "TouchID or FaceID Lockout Please goto the Settings & Turn On Passcode"
-            
-        case LAError.Code.appCancel.rawValue:
-            strMessage = "App Cancel"
-            
-        case LAError.Code.invalidContext.rawValue:
-            strMessage = "Invalid Context"
-            
-        default:
-            strMessage = ""
-            
-        }
-        return strMessage
-    }
-    
-    //MARK: Show Alert
-    func showAlertWithTitle( title:String, message:String ) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
-        let actionOk = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alert.addAction(actionOk)
-        self.present(alert, animated: true, completion: nil)
     }
 
 }

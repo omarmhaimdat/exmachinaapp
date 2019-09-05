@@ -102,6 +102,7 @@ PODS:
     - NVActivityIndicatorView/Presenter (= 4.7.0)
   - NVActivityIndicatorView/Presenter (4.7.0)
   - QuickLayout (3.0.0)
+  - ReachabilitySwift (4.3.1)
   - SnapKit (5.0.0)
   - SPStorkController (1.7.9)
   - SwiftEntryKit (1.0.1):
@@ -125,6 +126,7 @@ DEPENDENCIES:
   - JGProgressHUD
   - LBTAComponents (~> 1.0.2)
   - NVActivityIndicatorView
+  - ReachabilitySwift
   - SPStorkController
   - SwiftEntryKit (= 1.0.1)
   - SwiftWebVC
@@ -157,6 +159,7 @@ SPEC REPOS:
     - nanopb
     - NVActivityIndicatorView
     - QuickLayout
+    - ReachabilitySwift
     - SnapKit
     - SPStorkController
     - SwiftEntryKit
@@ -189,6 +192,7 @@ SPEC CHECKSUMS:
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   NVActivityIndicatorView: b19ddab2576f805cbe0fb2306cba3476e09a1dea
   QuickLayout: 07b45a72b10083fee3f095990cfed1c1e7b27f0a
+  ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
   SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
   SPStorkController: 36bd84206267232747b19d48852659bd71ede28f
   SwiftEntryKit: 3f55c0b8e676afe24a3703237bcac68372891c56
@@ -196,6 +200,6 @@ SPEC CHECKSUMS:
   SwiftyOnboard: de60e90c2af23dd61b01ec0c6a8d0be3370f857b
   SwipeCellKit: 935ca28c187ec6e1ffb2b578cf8ddca842bfdcbb
 
-PODFILE CHECKSUM: d4514ea84ef0ad04ad70cec73855076df55c9ab5
+PODFILE CHECKSUM: 19730f540434cc60dba2109bc74fa488fc4936a7
 
 COCOAPODS: 1.6.0

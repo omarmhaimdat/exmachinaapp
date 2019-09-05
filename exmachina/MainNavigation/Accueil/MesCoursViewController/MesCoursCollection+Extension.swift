@@ -24,8 +24,8 @@ extension MesCoursViewController: UICollectionViewDataSource, UICollectionViewDe
         cell.listNameLabel.text = self.matieres[indexPath.item].titre
         cell.listDescriptionLabel.text = self.semestre.titre
         cell.editButton.isHidden = true
-        
-        cell.contentView.setGradientBackgroundColor(colorOne: self.filiere.colorOne, colorTow: self.filiere.colorTwo)
+        cell.contentView.backgroundColor = self.filiere.colorTwo
+//        cell.contentView.setGradientBackgroundColor(colorOne: self.filiere.colorOne, colorTow: self.filiere.colorTwo)
         
         return cell
     }
@@ -39,8 +39,9 @@ extension MesCoursViewController: UICollectionViewDataSource, UICollectionViewDe
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let filiere: Filiere
+        var filiere: Filiere
         filiere = self.user.filiere
+        filiere.colorTwo = self.filiere.colorTwo
         let semestre: Semestre
         semestre = self.user.semestre
         let matiere: Matiere

@@ -252,7 +252,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate, LoginB
                                                              "email": self.email,
                                                              "profileImageUrl": self.profileImageUrl,
                                                              "provider": self.provider,
-                                                             "dateDeCreation": self.dateDeCreation
+                                                             "dateDeCreation": self.dateDeCreation,
+                                                             "ajoutFiliere" : false
                                                              ])
             }
         }, withCancel: nil)
