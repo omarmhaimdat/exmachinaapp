@@ -28,13 +28,10 @@ extension ChoisirFaculteViewController: UICollectionViewDataSource, UICollection
         cell.listDescriptionLabel.text = self.facultes[indexPath.item].titre
         if self.facultes[indexPath.item].facId == "ING" {
             cell.contentView.backgroundColor = #colorLiteral(red: 0.3731170297, green: 0.283844918, blue: 0.6121758819, alpha: 1)
-            self.getFilieres(facId: "ING")
         } else if self.facultes[indexPath.item].facId == "FSS" {
             cell.contentView.backgroundColor = #colorLiteral(red: 0.4980392157, green: 0.6980392157, blue: 0.3843137255, alpha: 1)
-            self.getFilieres(facId: "FSS")
         } else {
             cell.contentView.backgroundColor = #colorLiteral(red: 0.9294117647, green: 0.3450980392, blue: 0.2862745098, alpha: 1)
-            self.getFilieres(facId: "FCG")
         }
         
         return cell
@@ -52,7 +49,13 @@ extension ChoisirFaculteViewController: UICollectionViewDataSource, UICollection
         let faculte: Faculte
         faculte = self.facultes[indexPath.row]
         let controller = ChoisirFilieresViewController()
-        controller.filieres = self.filieres
+        if self.facultes[indexPath.item].facId == "ING" {
+            controller.filieres = self.filieresING
+        } else if self.facultes[indexPath.item].facId == "FSS" {
+            controller.filieres = self.filieresFSS
+        } else {
+            controller.filieres = self.filieresFCG
+        }
         controller.faculte = faculte
         let ref = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid)
         ref.updateChildValues(["faculte": faculte.facId])

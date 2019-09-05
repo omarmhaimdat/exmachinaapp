@@ -14,7 +14,9 @@ import BouncyLayout
 class ChoisirFaculteViewController: UIViewController {
     
     var facultes = [Faculte]()
-    var filieres = [Filiere]()
+    var filieresING = [Filiere]()
+    var filieresFSS = [Filiere]()
+    var filieresFCG = [Filiere]()
     
     let cellId = "cellId"
     
@@ -105,12 +107,15 @@ class ChoisirFaculteViewController: UIViewController {
         
         ING.facId = "ING"
         ING.titre = "Ingénierie"
+        self.getFilieres(facId: ING.facId)
         
         FSS.facId = "FSS"
         FSS.titre = "Sciences de la santé"
+        self.getFilieres(facId: FSS.facId)
         
         FCG.facId = "FCG"
         FCG.titre = "Commerce et gestion"
+        self.getFilieres(facId: FCG.facId)
         
         self.facultes.append(ING)
         self.facultes.append(FSS)
@@ -120,7 +125,9 @@ class ChoisirFaculteViewController: UIViewController {
     func getFilieres(facId: String) {
         
         let ref = Database.database().reference()
-        self.filieres.removeAll()
+//        self.filieresING.removeAll()
+//        self.filieresFSS.removeAll()
+//        self.filieresFCG.removeAll()
         ref.child("faculte").child("liste").child(facId).child("liste").observe(DataEventType.childAdded, with: { (snapshot) in
             
             if let dictionary = snapshot.value as? [String: AnyObject] {
@@ -131,7 +138,14 @@ class ChoisirFaculteViewController: UIViewController {
                 filiere.colorOne = UIColor(hexString: (dictionary["colorOne"] as? String ?? "#d5c100"))
                 filiere.colorTwo = UIColor(hexString: (dictionary["colorTwo"] as? String ?? "#d5c100"))
                 
-                self.filieres.append(filiere)
+                if facId == "ING" {
+                    self.filieresING.append(filiere)
+                } else if facId == "FSS" {
+                    self.filieresFSS.append(filiere)
+                } else {
+                    self.filieresFCG.append(filiere)
+                }
+                
                 DispatchQueue.main.async(execute: {
                     self.newCollection.reloadData()
                     self.activityIndicatorView.stopAnimating()
