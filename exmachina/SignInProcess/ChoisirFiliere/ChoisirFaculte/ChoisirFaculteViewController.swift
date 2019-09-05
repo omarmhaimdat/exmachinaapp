@@ -43,7 +43,7 @@ class ChoisirFaculteViewController: UIViewController {
         super.viewDidLoad()
         setupTabBar()
         remplirFaculte()
-        getFilieres()
+//        getFilieres()
         setupLoadingControl()
         setupCollection()
         setupCollectionView()
@@ -117,63 +117,21 @@ class ChoisirFaculteViewController: UIViewController {
         self.facultes.append(FCG)
     }
     
-    func getFilieres() {
+    func getFilieres(facId: String) {
         
         let ref = Database.database().reference()
         self.filieres.removeAll()
-        ref.child("facultes").child("liste").observe(DataEventType.childAdded, with: { (snapshot) in
+        ref.child("faculte").child("liste").child(facId).child("liste").observe(DataEventType.childAdded, with: { (snapshot) in
             
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 
                 var filiere = Filiere()
-                filiere.titre = (dictionary["titre"] as! String?)!
-                filiere.fid = (dictionary["fid"] as! String?)!
+                filiere.titre = dictionary["titre"] as? String ?? ""
+                filiere.fid = dictionary["fid"] as? String ?? ""
+                filiere.colorOne = UIColor(hexString: (dictionary["colorOne"] as? String ?? "#d5c100"))
+                filiere.colorTwo = UIColor(hexString: (dictionary["colorTwo"] as? String ?? "#d5c100"))
                 
-                if filiere.fid == "CPI-1" {
-                    filiere.colorOne = #colorLiteral(red: 0.3843137255, green: 0.4470588235, blue: 0.4823529412, alpha: 1)
-                    filiere.colorTwo = #colorLiteral(red: 0.2156862745, green: 0.2784313725, blue: 0.3098039216, alpha: 1)
-                    self.filieres.append(filiere)
-                } else if filiere.fid == "CPI-2" {
-                    filiere.colorOne = #colorLiteral(red: 0.5058823529, green: 0.6117647059, blue: 0.662745098, alpha: 1)
-                    filiere.colorTwo = #colorLiteral(red: 0.3294117647, green: 0.431372549, blue: 0.4784313725, alpha: 1)
-                    self.filieres.append(filiere)
-                } else if filiere.fid == "GC-1" {
-                    filiere.colorOne = #colorLiteral(red: 0.6117647059, green: 0.4705882353, blue: 0.4235294118, alpha: 1)
-                    filiere.colorTwo = #colorLiteral(red: 0.2509803922, green: 0.1411764706, blue: 0.1019607843, alpha: 1)
-                    self.filieres.append(filiere)
-                } else if filiere.fid == "GC-2" {
-                    filiere.colorOne = #colorLiteral(red: 0.7450980392, green: 0.6117647059, blue: 0.568627451, alpha: 1)
-                    filiere.colorTwo = #colorLiteral(red: 0.3725490196, green: 0.262745098, blue: 0.2235294118, alpha: 1)
-                    self.filieres.append(filiere)
-                } else if filiere.fid == "GIND-1" {
-                    filiere.colorOne = #colorLiteral(red: 1, green: 0.4588235294, blue: 0.262745098, alpha: 1)
-                    filiere.colorTwo = #colorLiteral(red: 0.8470588235, green: 0.262745098, blue: 0.08235294118, alpha: 1)
-                    self.filieres.append(filiere)
-                } else if filiere.fid == "GIND-2" {
-                    filiere.colorOne = #colorLiteral(red: 1, green: 0.5176470588, blue: 0.2980392157, alpha: 1)
-                    filiere.colorTwo = #colorLiteral(red: 0.9568627451, green: 0.3176470588, blue: 0.1176470588, alpha: 1)
-                    self.filieres.append(filiere)
-                } else if filiere.fid == "GINF-1" {
-                    filiere.colorOne = #colorLiteral(red: 0.3764705882, green: 0.6784313725, blue: 0.368627451, alpha: 1)
-                    filiere.colorTwo = #colorLiteral(red: 0.1803921569, green: 0.4901960784, blue: 0.1960784314, alpha: 1)
-                    self.filieres.append(filiere)
-                } else if filiere.fid == "GINF-2" {
-                    filiere.colorOne = #colorLiteral(red: 0.5215686275, green: 0.7333333333, blue: 0.3607843137, alpha: 1)
-                    filiere.colorTwo = #colorLiteral(red: 0.3333333333, green: 0.5450980392, blue: 0.1843137255, alpha: 1)
-                    self.filieres.append(filiere)
-                } else if filiere.fid == "MIAGE-1" {
-                    filiere.colorOne = #colorLiteral(red: 0.4039215686, green: 0.2274509804, blue: 0.7176470588, alpha: 1)
-                    filiere.colorTwo = #colorLiteral(red: 0.3176470588, green: 0.1764705882, blue: 0.6588235294, alpha: 1)
-                    self.filieres.append(filiere)
-                } else if filiere.fid == "MIAGE-2" {
-                    filiere.colorOne = #colorLiteral(red: 0.8196078431, green: 0.768627451, blue: 0.9137254902, alpha: 1)
-                    filiere.colorTwo = #colorLiteral(red: 0.4862745098, green: 0.3019607843, blue: 1, alpha: 1)
-                    self.filieres.append(filiere)
-                } else {
-                    filiere.colorOne = #colorLiteral(red: 0.8352941176, green: 0.7568627451, blue: 0, alpha: 1)
-                    filiere.colorTwo = #colorLiteral(red: 0.8352941176, green: 0.7568627451, blue: 0, alpha: 1)
-                    self.filieres.append(filiere)
-                }
+                self.filieres.append(filiere)
                 DispatchQueue.main.async(execute: {
                     self.newCollection.reloadData()
                     self.activityIndicatorView.stopAnimating()
