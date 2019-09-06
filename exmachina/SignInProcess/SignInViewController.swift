@@ -295,8 +295,14 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate, LoginButtonDe
         let screenHeight = screenSize.height
         
         if UIDevice().userInterfaceIdiom == .pad {
+            
+            anonymousSignInButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+            anonymousSignInButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -view.frame.height/3.8).isActive = true
+            anonymousSignInButton.widthAnchor.constraint(equalToConstant: view.frame.width - 100).isActive = true
+            anonymousSignInButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
+            
             googleSignInButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-            googleSignInButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -view.frame.height/3.8).isActive = true
+            googleSignInButton.bottomAnchor.constraint(equalTo: anonymousSignInButton.bottomAnchor, constant: -100).isActive = true
             googleSignInButton.widthAnchor.constraint(equalToConstant: view.frame.width - 100).isActive = true
             googleSignInButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
 

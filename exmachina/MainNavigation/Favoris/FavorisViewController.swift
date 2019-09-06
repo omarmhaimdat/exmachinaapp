@@ -194,6 +194,18 @@ class FavorisViewController: UIViewController, UISearchControllerDelegate {
         labelNoFavorites.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         labelNoFavorites.topAnchor.constraint(equalTo: imageNoFavorites.bottomAnchor, constant: 30).isActive = true
         
+        if UIDevice().userInterfaceIdiom == .pad {
+            
+            imageNoFavorites.topAnchor.constraint(equalTo: view.safeTopAnchor, constant: 100).isActive = true
+            imageNoFavorites.widthAnchor.constraint(equalToConstant: view.frame.width - 250).isActive = true
+            imageNoFavorites.heightAnchor.constraint(equalToConstant: view.frame.width - 250).isActive = true
+            imageNoFavorites.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+            
+            labelNoFavorites.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+            labelNoFavorites.topAnchor.constraint(equalTo: imageNoFavorites.bottomAnchor, constant: 100).isActive = true
+            
+        }
+        
     }
     
     private func setupUI() {
@@ -261,6 +273,11 @@ class FavorisViewController: UIViewController, UISearchControllerDelegate {
         newCollection.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
         newCollection.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.newCollection.collectionViewLayout.invalidateLayout()
     }
     
     fileprivate func setupCollectionView() {

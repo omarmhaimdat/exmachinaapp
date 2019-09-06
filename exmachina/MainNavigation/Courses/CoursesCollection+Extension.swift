@@ -46,4 +46,28 @@ extension CoursesViewController: UICollectionViewDataSource, UICollectionViewDel
         self.navigationController?.pushViewController(controller, animated: true)
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        if UIDevice.current.orientation.isLandscape,
+            let layout = self.newCollection.collectionViewLayout as? UICollectionViewFlowLayout {
+            let width = self.view.frame.width - 40
+            layout.itemSize = CGSize(width: width - 16, height: 180)
+            layout.invalidateLayout()
+            print("Landscrape")
+        } else if UIDevice.current.orientation.isPortrait,
+            let layout = self.newCollection.collectionViewLayout as? UICollectionViewFlowLayout {
+            let width = self.view.frame.width - 40
+            layout.itemSize = CGSize(width: width - 16, height: 180)
+            layout.invalidateLayout()
+            print("Portrait")
+        }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        newCollection.collectionViewLayout.invalidateLayout()
+        newCollection.layoutIfNeeded()
+    }
+
+    
 }

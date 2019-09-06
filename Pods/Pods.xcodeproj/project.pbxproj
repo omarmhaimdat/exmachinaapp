@@ -234,6 +234,7 @@
 		1A582DAD623FD2EB04A5BB605117E53A /* hash.cc in Sources */ = {isa = PBXBuildFile; fileRef = 5F8EC3F743F521141D2A59D6A27ABF9E /* hash.cc */; settings = {COMPILER_FLAGS = "-DOS_MACOSX -DLEVELDB_PLATFORM_POSIX -fno-objc-arc"; }; };
 		1A8274687D194B4928D1428C160B1C56 /* FIRInstanceIDTokenFetchOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 109E4DAB754D0ED481BFC4F4D59A7434 /* FIRInstanceIDTokenFetchOperation.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		1AC5EFC7AAC89F68ACED801CF5503023 /* FBSDKMath.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF10407996F715CE6C0C76CD78D52C6 /* FBSDKMath.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		1AECE7734077E33CC922BF90D0BC230C /* ReachabilitySwift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EFE14178F251A73DBB181CFA2863CF /* ReachabilitySwift-dummy.m */; };
 		1AF1A301BCBD20A478D8502277C7BF56 /* FBSDKLoginButton.h in Headers */ = {isa = PBXBuildFile; fileRef = BC145664B7DD7268EF1D00CD808AA752 /* FBSDKLoginButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B0B73B3A5894C51A8CE7619288C30D5 /* GTMSessionFetcherLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F776E2111E67D82E44966B3578869AD /* GTMSessionFetcherLogging.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B0BEA7E7047FFF0F5CFF64CA867AAA0 /* FBSDKApplicationDelegate+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 481E98C7A799337AC318436B4737A8E3 /* FBSDKApplicationDelegate+Internal.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -675,6 +676,7 @@
 		6B028340301D2631FAD2B3BA07F25939 /* FBSDKGraphErrorRecoveryProcessor.h in Headers */ = {isa = PBXBuildFile; fileRef = 80044BC2C0DFF9DE7F42010048D9B790 /* FBSDKGraphErrorRecoveryProcessor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6B3365D956FAC37BC7064429F606BCBA /* FIRTransactionResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DCE8A3D7B16546480373140025FFB4 /* FIRTransactionResult.m */; };
 		6B9AF025C55B9C7A00C03D9C88E36A4D /* FBSDKAppEvents.h in Headers */ = {isa = PBXBuildFile; fileRef = DE3DE2D3AFCEB1301953EBE7FC2D060A /* FBSDKAppEvents.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6BBC936AF12824ABB14CCF8EA8DA68B1 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AF2DA3AD88126E44674DA68E3270D7 /* Reachability.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		6C2126B03C6CB32C13F7742B0B182375 /* FTupleTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 478D98F7BC1B92C3FE4A04FB3AE814FC /* FTupleTransaction.m */; };
 		6C3A1820D6CCD05A7BCD2E25AB227024 /* FIRAuthAPNSTokenManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CF186A9353C8BB8D804F1632FD25DAB9 /* FIRAuthAPNSTokenManager.m */; };
 		6CAA16DE0386DA9069E13345798A7AA6 /* FRepoManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BC00884B0344677FB8339B54506E826 /* FRepoManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -1386,13 +1388,11 @@
 		E9231A66F3E05C9568D3D48219A8D64D /* EKAlertMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101E8BF04AD0987DCD7714069B0726C /* EKAlertMessage.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		E96DBDADFB429E3E8E223B9EBBF56D50 /* FBSDKAppLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B69239907C611BD914CCFE223E9969 /* FBSDKAppLink.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		E9931BB7C1FC49C9A974CE90FB2489E4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B88E36834AB1461CA9A1109F64997365 /* Foundation.framework */; };
-		E99EF5D966F4EF1D5A4A25DD4318B8AB /* ReachabilitySwift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EFE14178F251A73DBB181CFA2863CF /* ReachabilitySwift-dummy.m */; };
 		E9A429D764A46B67BEECABF919AC4713 /* FNamedNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 556FEF25085A074A80A7CBDE103FE7E9 /* FNamedNode.m */; };
 		EA2DA91D33FC951D0B134E9EBD494ED8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B88E36834AB1461CA9A1109F64997365 /* Foundation.framework */; };
 		EA32CF2FD1C7635635B1A5771394163D /* FBSDKHybridAppEventsScriptMessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E6191DCA5296A351D769F09FEFEF25 /* FBSDKHybridAppEventsScriptMessageHandler.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		EA6639D579514C71961D4DE57C161989 /* FIRSetAccountInfoRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 92C21D4048D2E2ADDEC1C857441DFFD1 /* FIRSetAccountInfoRequest.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		EAD0319670FF45580509B349C09D0371 /* FBSDKApplicationDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 54418DCD8C777118711A1203BF21F45C /* FBSDKApplicationDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EAF40F8A0D870770A0FCC0FBAECDAC53 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AF2DA3AD88126E44674DA68E3270D7 /* Reachability.swift */; };
 		EB1A8EE3D93B9E6A5ADF1F4CA93A0094 /* FIRInstanceIDCheckinPreferences.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D3E0E33664B113C9D9AFB62CE5F06E5 /* FIRInstanceIDCheckinPreferences.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		EB1CDB1F9CEAB935C9B2AE50737F707D /* FIRInstanceIDKeyPairStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B7F4CC084B3FBB98E8B4C7C2BEFF900 /* FIRInstanceIDKeyPairStore.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		EB2ACFA9EA0F95124E063AABC6DB235B /* FIRInstanceIDKeyPairUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = AC85CED2DC97132E9345ADB14DD9CDCE /* FIRInstanceIDKeyPairUtilities.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -7180,7 +7180,7 @@
 			buildConfigurationList = BB08C45203B16659471E8EC1EB8890E9 /* Build configuration list for PBXNativeTarget "ReachabilitySwift" */;
 			buildPhases = (
 				8B7F94003E391F0EFDBC6D8B12F7FDE3 /* Headers */,
-				90CDC74B9FAD739638827AC7DB96D7E6 /* Sources */,
+				EEC293C77AE2A7A9AC329A91E25DD4AA /* Sources */,
 				E1DAEFB6F36A1084E42229B2F8232DBD /* Frameworks */,
 				6FF9D1A561607260F7CDF80A47BEB632 /* Resources */,
 			);
@@ -8320,15 +8320,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		90CDC74B9FAD739638827AC7DB96D7E6 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EAF40F8A0D870770A0FCC0FBAECDAC53 /* Reachability.swift in Sources */,
-				E99EF5D966F4EF1D5A4A25DD4318B8AB /* ReachabilitySwift-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		9D41CFFEA8E686ABCF1EF1D65410F017 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -8795,6 +8786,15 @@
 				5895F89165B9F415E6F88841B2E68D11 /* FBSDKLoginTooltipView.m in Sources */,
 				6D2E68D344F2D6DC80C6062D41FB5376 /* FBSDKLoginUtility.m in Sources */,
 				AF3E76AB7BD0B5E9A58439F4B0A8840A /* FBSDKTooltipView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EEC293C77AE2A7A9AC329A91E25DD4AA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6BBC936AF12824ABB14CCF8EA8DA68B1 /* Reachability.swift in Sources */,
+				1AECE7734077E33CC922BF90D0BC230C /* ReachabilitySwift-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

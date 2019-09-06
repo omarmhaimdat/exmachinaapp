@@ -333,16 +333,6 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
             changerDeFiliere.widthAnchor.constraint(equalToConstant: view.frame.width - 40).isActive = true
             changerDeFiliere.heightAnchor.constraint(equalToConstant: 60).isActive = true
             
-//            general.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-//            general.topAnchor.constraint(equalTo: changerDeFiliere.bottomAnchor, constant: 20).isActive = true
-//            general.widthAnchor.constraint(equalToConstant: view.frame.width - 40).isActive = true
-//            general.heightAnchor.constraint(equalToConstant: 70).isActive = true
-//
-//            notifications.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-//            notifications.topAnchor.constraint(equalTo: general.bottomAnchor, constant: 20).isActive = true
-//            notifications.widthAnchor.constraint(equalToConstant: view.frame.width - 40).isActive = true
-//            notifications.heightAnchor.constraint(equalToConstant: 70).isActive = true
-            
             infos.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
             infos.topAnchor.constraint(equalTo: changerDeFiliere.bottomAnchor, constant: 60).isActive = true
             infos.widthAnchor.constraint(equalToConstant: view.frame.width - 40).isActive = true
@@ -363,6 +353,40 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
             buttonDeconnecte.topAnchor.constraint(equalTo: copyright.bottomAnchor, constant: 20).isActive = true
             buttonDeconnecte.widthAnchor.constraint(equalToConstant: view.frame.width - 40).isActive = true
             buttonDeconnecte.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        }
+        
+        if UIDevice().userInterfaceIdiom == .pad {
+            
+            profileEdit.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+            profileEdit.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 40).isActive = true
+            profileEdit.widthAnchor.constraint(equalToConstant: view.frame.width - 80).isActive = true
+            profileEdit.heightAnchor.constraint(equalToConstant: 80).isActive = true
+            
+            changerDeFiliere.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+            changerDeFiliere.topAnchor.constraint(equalTo: profileEdit.bottomAnchor, constant: 20).isActive = true
+            changerDeFiliere.widthAnchor.constraint(equalToConstant: view.frame.width - 80).isActive = true
+            changerDeFiliere.heightAnchor.constraint(equalToConstant: 80).isActive = true
+            
+            infos.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+            infos.topAnchor.constraint(equalTo: changerDeFiliere.bottomAnchor, constant: 60).isActive = true
+            infos.widthAnchor.constraint(equalToConstant: view.frame.width - 80).isActive = true
+            infos.heightAnchor.constraint(equalToConstant: 80).isActive = true
+            
+            feedback.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+            feedback.topAnchor.constraint(equalTo: infos.bottomAnchor, constant: 20).isActive = true
+            feedback.widthAnchor.constraint(equalToConstant: view.frame.width - 80).isActive = true
+            feedback.heightAnchor.constraint(equalToConstant: 80).isActive = true
+            
+            copyright.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+            copyright.topAnchor.constraint(equalTo: feedback.bottomAnchor, constant: 60).isActive = true
+            copyright.widthAnchor.constraint(equalToConstant: view.frame.width - 80).isActive = true
+            copyright.heightAnchor.constraint(equalToConstant: 80).isActive = true
+            
+            buttonDeconnecte.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+            buttonDeconnecte.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -60).isActive = true
+            buttonDeconnecte.topAnchor.constraint(equalTo: copyright.bottomAnchor, constant: 20).isActive = true
+            buttonDeconnecte.widthAnchor.constraint(equalToConstant: view.frame.width - 80).isActive = true
+            buttonDeconnecte.heightAnchor.constraint(equalToConstant: 80).isActive = true
         }
     }
     

@@ -12,7 +12,7 @@ import SwiftyOnboard
 class OnboardingViewController: UIViewController {
 
     var swiftyOnboard: SwiftyOnboard!
-    let colors:[UIColor] = [#colorLiteral(red: 0.4862745098, green: 0.7019607843, blue: 0.2588235294, alpha: 1),#colorLiteral(red: 0.2470588235, green: 0.3176470588, blue: 0.7098039216, alpha: 1),#colorLiteral(red: 0.8352941176, green: 0.7568627451, blue: 0, alpha: 1)]
+    let colors:[UIColor] = [#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1),#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1),#colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1)]
     var titleArray: [String] = ["Ex-Machina", "Par, pour les étudiants", "Au service des étudiants"]
     var subTitleArray: [String] = ["Club universitaire scientifique qui regroupe des étudiants de l’école d’ingénierie de l’université Internationale de Casablanca.", "Retrouvez tous les supports de cours", "L'application qui vous aide tout au long de votre cursus universitaire"]
     

@@ -191,6 +191,18 @@ class OfflineViewController: UIViewController, UISearchControllerDelegate {
         labelNoOffline.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         labelNoOffline.topAnchor.constraint(equalTo: imageNoOffline.bottomAnchor, constant: 30).isActive = true
         
+        if UIDevice().userInterfaceIdiom == .pad {
+            
+            imageNoOffline.topAnchor.constraint(equalTo: view.safeTopAnchor, constant: 100).isActive = true
+            imageNoOffline.widthAnchor.constraint(equalToConstant: view.frame.width - 250).isActive = true
+            imageNoOffline.heightAnchor.constraint(equalToConstant: view.frame.width - 250).isActive = true
+            imageNoOffline.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+            
+            labelNoOffline.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+            labelNoOffline.topAnchor.constraint(equalTo: imageNoOffline.bottomAnchor, constant: 100).isActive = true
+            
+        }
+        
     }
     
     fileprivate func setupCollection() {
@@ -204,6 +216,11 @@ class OfflineViewController: UIViewController, UISearchControllerDelegate {
         newCollection.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
         newCollection.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.newCollection.collectionViewLayout.invalidateLayout()
     }
     
     fileprivate func setupCollectionView() {

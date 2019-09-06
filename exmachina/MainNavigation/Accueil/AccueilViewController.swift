@@ -88,7 +88,7 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
         cours.backgroundColor = #colorLiteral(red: 1, green: 0.5825584531, blue: 0, alpha: 1)
         cours.layer.borderColor = #colorLiteral(red: 1, green: 0.5825584531, blue: 0, alpha: 1).cgColor
         cours.layer.shadowOpacity = 0.3
-        cours.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1).cgColor
+        cours.layer.shadowColor = #colorLiteral(red: 1, green: 0.5825584531, blue: 0, alpha: 1)
         cours.layer.shadowOffset = CGSize(width: 1, height: 5)
         cours.layer.cornerRadius = 10
         cours.layer.shadowRadius = 8
@@ -118,7 +118,7 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
         cours.backgroundColor = #colorLiteral(red: 0, green: 0.4793452024, blue: 0.9990863204, alpha: 1)
         cours.layer.borderColor = #colorLiteral(red: 0, green: 0.4793452024, blue: 0.9990863204, alpha: 1).cgColor
         cours.layer.shadowOpacity = 0.3
-        cours.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1).cgColor
+        cours.layer.shadowColor = #colorLiteral(red: 0, green: 0.4793452024, blue: 0.9990863204, alpha: 1)
         cours.layer.shadowOffset = CGSize(width: 1, height: 5)
         cours.layer.cornerRadius = 10
         cours.layer.shadowRadius = 8
@@ -149,7 +149,7 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
         cours.backgroundColor = #colorLiteral(red: 0.1521916687, green: 0.6835762858, blue: 0.376893878, alpha: 1)
         cours.layer.borderColor = #colorLiteral(red: 0.1521916687, green: 0.6835762858, blue: 0.376893878, alpha: 1).cgColor
         cours.layer.shadowOpacity = 0.3
-        cours.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1).cgColor
+        cours.layer.shadowColor = #colorLiteral(red: 0.1521916687, green: 0.6835762858, blue: 0.376893878, alpha: 1)
         cours.layer.shadowOffset = CGSize(width: 1, height: 5)
         cours.layer.cornerRadius = 10
         cours.layer.shadowRadius = 8
@@ -180,7 +180,7 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
         cours.backgroundColor = #colorLiteral(red: 1, green: 0.231372549, blue: 0.1882352941, alpha: 1)
         cours.layer.borderColor = #colorLiteral(red: 0.9990773797, green: 0.2295021415, blue: 0.1888831556, alpha: 1).cgColor
         cours.layer.shadowOpacity = 0.3
-        cours.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1).cgColor
+        cours.layer.shadowColor = #colorLiteral(red: 1, green: 0.231372549, blue: 0.1882352941, alpha: 1)
         cours.layer.shadowOffset = CGSize(width: 1, height: 5)
         cours.layer.cornerRadius = 10
         cours.layer.shadowRadius = 8
@@ -210,7 +210,7 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
         cours.backgroundColor = #colorLiteral(red: 0.3450980392, green: 0.337254902, blue: 0.8392156863, alpha: 1)
         cours.layer.borderColor = #colorLiteral(red: 0.3460007906, green: 0.3354875743, blue: 0.8400039077, alpha: 1).cgColor
         cours.layer.shadowOpacity = 0.3
-        cours.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1).cgColor
+        cours.layer.shadowColor = #colorLiteral(red: 0.3450980392, green: 0.337254902, blue: 0.8392156863, alpha: 1)
         cours.layer.shadowOffset = CGSize(width: 1, height: 5)
         cours.layer.cornerRadius = 10
         cours.layer.shadowRadius = 8
@@ -241,7 +241,7 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
         cours.backgroundColor = #colorLiteral(red: 0.7098039216, green: 0.2392156863, blue: 0, alpha: 1)
         cours.layer.borderColor = #colorLiteral(red: 0.7098039216, green: 0.2392156863, blue: 0, alpha: 1).cgColor
         cours.layer.shadowOpacity = 0.3
-        cours.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1).cgColor
+        cours.layer.shadowColor = #colorLiteral(red: 0.7098039216, green: 0.2392156863, blue: 0, alpha: 1)
         cours.layer.shadowOffset = CGSize(width: 1, height: 5)
         cours.layer.cornerRadius = 10
         cours.layer.shadowRadius = 8

@@ -45,7 +45,8 @@ extension FavorisViewController: UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: round((view.frame.width - 40) / 2.0)*2, height: 80)
+//        return CGSize(width: round((view.frame.width - 40) / 2.0)*2, height: 80)
+        return CGSize(width: self.view.frame.width - 40, height: 80)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
