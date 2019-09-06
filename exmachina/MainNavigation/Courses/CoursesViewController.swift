@@ -35,7 +35,7 @@ private struct Const {
 
 class CoursesViewController: UIViewController {
     
-    private let reachability = Reachability()!
+    private let reachability = Reachability(hostname: "www.ex-machina.ma")
     
     let cellId = "cellId"
     var matieres = [Matiere]()
@@ -113,7 +113,7 @@ class CoursesViewController: UIViewController {
         setupUI()
         NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(note:)), name: .reachabilityChanged, object: reachability)
         do{
-            try reachability.startNotifier()
+            try reachability?.startNotifier()
         }catch{
             print("could not start reachability notifier")
         }
@@ -129,6 +129,8 @@ class CoursesViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         imageView.removeFromSuperview()
+        reachability?.stopNotifier()
+        NotificationCenter.default.removeObserver(self, name: .reachabilityChanged, object: reachability)
     }
     
     func setupTabBar() {

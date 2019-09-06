@@ -82,6 +82,7 @@
 		6CD1552322A1956E00DEA4D3 /* ListeFilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD1552222A1956E00DEA4D3 /* ListeFilesViewController.swift */; };
 		6CD1552522A1973300DEA4D3 /* ListeFilesCollection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD1552422A1973300DEA4D3 /* ListeFilesCollection+Extension.swift */; };
 		6CD6E18A2305889A00DDD3E2 /* ScolariteEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD6E1892305889A00DDD3E2 /* ScolariteEmail.swift */; };
+		6CEE77412322944700E48E38 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEE77402322944700E48E38 /* Network.swift */; };
 		6CF487062304919F0031A956 /* ChoisirFaculteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF487052304919F0031A956 /* ChoisirFaculteViewController.swift */; };
 		6CF487082304943E0031A956 /* ChoisirFaculteCollection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF487072304943E0031A956 /* ChoisirFaculteCollection+Extension.swift */; };
 		6CF4870B2304A1BB0031A956 /* ChoisirFilieresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF4870A2304A1BB0031A956 /* ChoisirFilieresViewController.swift */; };
@@ -197,6 +198,7 @@
 		6CD1552222A1956E00DEA4D3 /* ListeFilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListeFilesViewController.swift; sourceTree = "<group>"; };
 		6CD1552422A1973300DEA4D3 /* ListeFilesCollection+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListeFilesCollection+Extension.swift"; sourceTree = "<group>"; };
 		6CD6E1892305889A00DDD3E2 /* ScolariteEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScolariteEmail.swift; sourceTree = "<group>"; };
+		6CEE77402322944700E48E38 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		6CF487052304919F0031A956 /* ChoisirFaculteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoisirFaculteViewController.swift; sourceTree = "<group>"; };
 		6CF487072304943E0031A956 /* ChoisirFaculteCollection+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChoisirFaculteCollection+Extension.swift"; sourceTree = "<group>"; };
 		6CF4870A2304A1BB0031A956 /* ChoisirFilieresViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoisirFilieresViewController.swift; sourceTree = "<group>"; };
@@ -540,6 +542,7 @@
 		6CD1550922A0B25A00DEA4D3 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				6CEE773F2322942D00E48E38 /* Network */,
 				6CD1550A22A0B26600DEA4D3 /* Extensions */,
 			);
 			path = Utilities;
@@ -597,6 +600,14 @@
 				6CD1552422A1973300DEA4D3 /* ListeFilesCollection+Extension.swift */,
 			);
 			path = ListeFilesViewController;
+			sourceTree = "<group>";
+		};
+		6CEE773F2322942D00E48E38 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				6CEE77402322944700E48E38 /* Network.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		6CF487042304913D0031A956 /* ChoisirFiliere */ = {
@@ -963,6 +974,7 @@
 				6C42E6B822A733FB0017CF57 /* OfflineCollection+Extension.swift in Sources */,
 				6CD154B0229F499C00DEA4D3 /* OnboardingViewController.swift in Sources */,
 				6CD1550E22A0B2A600DEA4D3 /* UIView+Extensions.swift in Sources */,
+				6CEE77412322944700E48E38 /* Network.swift in Sources */,
 				6C51407822CE57DA0065E086 /* NumberPickerBulletinPage.swift in Sources */,
 				6CCD438C2306B88F00EE9F9D /* WelcomeViewController.swift in Sources */,
 				6C51407622CE55120065E086 /* TextFieldBulletinPage.swift in Sources */,
