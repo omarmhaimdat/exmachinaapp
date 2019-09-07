@@ -81,11 +81,23 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
         cours.translatesAutoresizingMaskIntoConstraints = false
         cours.titleLabel?.numberOfLines = 0
         let str = NSMutableAttributedString(string: "Mes cours\nTrouver vos cours personnalisés")
-        str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir-Heavy", size: 20)!, range: NSMakeRange(0, 9))
-        str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir", size: 14)!, range: NSMakeRange(10, 31))
-        str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(0, 9))
-        str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(10, 31))
-        str.setLineSpacing(8)
+        
+        switch UIScreen.main.nativeBounds.height {
+        case 1136:
+            str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir-Heavy", size: 16)!, range: NSMakeRange(0, 9))
+            str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir", size: 12)!, range: NSMakeRange(10, 31))
+            str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(0, 9))
+            str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(10, 31))
+            str.setLineSpacing(8)
+            cours.contentEdgeInsets = UIEdgeInsets(top: 0, left: -15, bottom: 0, right: 20)
+        default:
+            str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir-Heavy", size: 20)!, range: NSMakeRange(0, 9))
+            str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir", size: 14)!, range: NSMakeRange(10, 31))
+            str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(0, 9))
+            str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(10, 31))
+            str.setLineSpacing(8)
+            cours.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 20)
+        }
         cours.setAttributedTitle(str, for: .normal)
         let icon = UIImage(named: "mesCours")?.resized(newSize: CGSize(width: 40, height: 40))
         cours.addRightImage(image: icon!, offset: 30)
@@ -100,7 +112,6 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
         cours.clipsToBounds = false
         cours.contentHorizontalAlignment = .left
         cours.layoutIfNeeded()
-        cours.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 20)
         cours.titleEdgeInsets.left = 0
         
         return cours
@@ -130,7 +141,6 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
         cours.clipsToBounds = false
         cours.contentHorizontalAlignment = .left
         cours.layoutIfNeeded()
-        cours.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 20)
         cours.titleEdgeInsets.left = 0
         
         return cours
@@ -142,11 +152,24 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
         cours.translatesAutoresizingMaskIntoConstraints = false
         cours.titleLabel?.numberOfLines = 0
         let str = NSMutableAttributedString(string: "Scolarité\nProcédures et contacts")
-        str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir-Heavy", size: 20)!, range: NSMakeRange(0, 9))
-        str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir", size: 14)!, range: NSMakeRange(10, 22))
-        str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(0, 9))
-        str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(10, 22))
-        str.setLineSpacing(8)
+        
+        switch UIScreen.main.nativeBounds.height {
+        case 1136:
+            str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir-Heavy", size: 16)!, range: NSMakeRange(0, 9))
+            str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir", size: 12)!, range: NSMakeRange(10, 22))
+            str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(0, 9))
+            str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(10, 22))
+            str.setLineSpacing(8)
+            cours.contentEdgeInsets = UIEdgeInsets(top: 0, left: -15, bottom: 0, right: 20)
+        default:
+            str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir-Heavy", size: 20)!, range: NSMakeRange(0, 9))
+            str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir", size: 14)!, range: NSMakeRange(10, 22))
+            str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(0, 9))
+            str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(10, 22))
+            str.setLineSpacing(8)
+            cours.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 20)
+        }
+        
         cours.setAttributedTitle(str, for: .normal)
         let icon = UIImage(named: "scolarite")?.resized(newSize: CGSize(width: 40, height: 40))
         cours.addRightImage(image: icon!, offset: 30)
@@ -161,7 +184,6 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
         cours.clipsToBounds = false
         cours.contentHorizontalAlignment = .left
         cours.layoutIfNeeded()
-        cours.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 16)
         cours.titleEdgeInsets.left = 0
         
         return cours
@@ -173,11 +195,24 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
         cours.translatesAutoresizingMaskIntoConstraints = false
         cours.titleLabel?.numberOfLines = 0
         let str = NSMutableAttributedString(string: "Informations utiles\nTrouver vos cours personnalisés")
-        str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir-Heavy", size: 20)!, range: NSMakeRange(0, 19))
-        str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir", size: 14)!, range: NSMakeRange(20, 31))
-        str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(0, 19))
-        str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(20, 31))
-        str.setLineSpacing(8)
+        
+        switch UIScreen.main.nativeBounds.height {
+        case 1136:
+            str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir-Heavy", size: 16)!, range: NSMakeRange(0, 19))
+            str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir", size: 12)!, range: NSMakeRange(20, 31))
+            str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(0, 19))
+            str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(20, 31))
+            str.setLineSpacing(8)
+            cours.contentEdgeInsets = UIEdgeInsets(top: 0, left: -15, bottom: 0, right: 20)
+        default:
+            str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir-Heavy", size: 20)!, range: NSMakeRange(0, 19))
+            str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir", size: 14)!, range: NSMakeRange(20, 31))
+            str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(0, 19))
+            str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(20, 31))
+            str.setLineSpacing(8)
+            cours.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 20)
+        }
+        
         cours.setAttributedTitle(str, for: .normal)
         let icon = UIImage(named: "info")?.resized(newSize: CGSize(width: 40, height: 40))
         cours.addRightImage(image: icon!, offset: 30)
@@ -192,7 +227,6 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
         cours.clipsToBounds = false
         cours.contentHorizontalAlignment = .left
         cours.layoutIfNeeded()
-        cours.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 20)
         cours.titleEdgeInsets.left = 0
         
         return cours
@@ -203,11 +237,24 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
         cours.translatesAutoresizingMaskIntoConstraints = false
         cours.titleLabel?.numberOfLines = 0
         let str = NSMutableAttributedString(string: "Transport\nLes diffèrents circuits")
-        str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir-Heavy", size: 20)!, range: NSMakeRange(0, 9))
-        str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir", size: 14)!, range: NSMakeRange(10, 23))
-        str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(0, 9))
-        str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(10, 23))
-        str.setLineSpacing(8)
+        
+        switch UIScreen.main.nativeBounds.height {
+        case 1136:
+            str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir-Heavy", size: 16)!, range: NSMakeRange(0, 9))
+            str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir", size: 12)!, range: NSMakeRange(10, 23))
+            str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(0, 9))
+            str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(10, 23))
+            str.setLineSpacing(8)
+            cours.contentEdgeInsets = UIEdgeInsets(top: 0, left: -15, bottom: 0, right: 20)
+        default:
+            str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir-Heavy", size: 20)!, range: NSMakeRange(0, 9))
+            str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir", size: 14)!, range: NSMakeRange(10, 23))
+            str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(0, 9))
+            str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(10, 23))
+            str.setLineSpacing(8)
+            cours.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 20)
+        }
+        
         cours.setAttributedTitle(str, for: .normal)
         let icon = UIImage(named: "bus")?.resized(newSize: CGSize(width: 40, height: 40))
         cours.addRightImage(image: icon!, offset: 30)
@@ -222,7 +269,6 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
         cours.clipsToBounds = false
         cours.contentHorizontalAlignment = .left
         cours.layoutIfNeeded()
-        cours.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 20)
         cours.titleEdgeInsets.left = 0
         
         return cours
@@ -234,11 +280,24 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
         cours.translatesAutoresizingMaskIntoConstraints = false
         cours.titleLabel?.numberOfLines = 0
         let str = NSMutableAttributedString(string: "Bibliothèque\nRéservation de salles")
-        str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir-Heavy", size: 20)!, range: NSMakeRange(0, 12))
-        str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir", size: 14)!, range: NSMakeRange(13, 21))
-        str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(0, 12))
-        str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(13, 21))
-        str.setLineSpacing(8)
+        
+        switch UIScreen.main.nativeBounds.height {
+        case 1136:
+            str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir-Heavy", size: 16)!, range: NSMakeRange(0, 12))
+            str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir", size: 12)!, range: NSMakeRange(13, 21))
+            str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(0, 12))
+            str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(13, 21))
+            str.setLineSpacing(8)
+            cours.contentEdgeInsets = UIEdgeInsets(top: 0, left: -15, bottom: 0, right: 20)
+        default:
+            str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir-Heavy", size: 20)!, range: NSMakeRange(0, 12))
+            str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir", size: 14)!, range: NSMakeRange(13, 21))
+            str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(0, 12))
+            str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(13, 21))
+            str.setLineSpacing(8)
+            cours.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 20)
+        }
+        
         cours.setAttributedTitle(str, for: .normal)
         let icon = UIImage(named: "biblio")?.resized(newSize: CGSize(width: 40, height: 40))
         cours.addRightImage(image: icon!, offset: 30)
@@ -253,7 +312,6 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
         cours.clipsToBounds = false
         cours.contentHorizontalAlignment = .left
         cours.layoutIfNeeded()
-        cours.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 20)
         cours.titleEdgeInsets.left = 0
         
         return cours

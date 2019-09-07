@@ -25,9 +25,17 @@ class BtnPlein: Button {
         layer.borderWidth = 6/UIScreen.main.nativeScale
         layer.backgroundColor = UIColor(red:0.24, green:0.51, blue:1.00, alpha:1.0).cgColor
         setTitleColor(.white, for: .normal)
-        titleLabel?.font = UIFont(name: "Avenir", size: 22)
+        
         layer.borderColor = UIColor(red:0.24, green:0.51, blue:1.00, alpha:1.0).cgColor
         layer.cornerRadius = 5
+        
+        switch UIScreen.main.nativeBounds.height {
+        case 1136:
+            titleLabel?.font = UIFont(name: "Avenir", size: 14)
+        default:
+            titleLabel?.font = UIFont(name: "Avenir", size: 20)
+        }
+            
     }
     
     required init?(coder aDecoder: NSCoder) {
