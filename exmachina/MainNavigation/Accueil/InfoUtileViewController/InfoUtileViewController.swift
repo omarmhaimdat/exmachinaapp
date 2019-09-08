@@ -22,7 +22,7 @@ class InfoUtileViewController: UIViewController {
     
     let paiement: BtnPleinLarge = {
         let cours = BtnPleinLarge()
-        cours.addTarget(self, action: #selector(buttonToBiblio(_:)), for: .touchUpInside)
+        cours.addTarget(self, action: #selector(buttonToPaiement(_:)), for: .touchUpInside)
         cours.translatesAutoresizingMaskIntoConstraints = false
         cours.titleLabel?.numberOfLines = 0
         let str = NSMutableAttributedString(string: "Paiement\nModalités de paiement")
@@ -171,9 +171,25 @@ class InfoUtileViewController: UIViewController {
         
     }
     
-    @objc func buttonToIng(_ sender: BtnPleinLarge) {
-        let controller = IngScolariteViewController()
-        self.navigationController?.pushViewController(controller, animated: true)
+    @objc func buttonToPaiement(_ sender: BtnPleinLarge) {
+        let screenSize = UIScreen.main.bounds
+        let screenHeight = screenSize.height
+        
+        let controller = PaiementViewController()
+        let transitionDelegate = SPStorkTransitioningDelegate()
+        transitionDelegate.swipeToDismissEnabled = true
+        transitionDelegate.showCloseButton = true
+        transitionDelegate.customHeight = screenHeight/1.2
+        transitionDelegate.tapAroundToDismissEnabled = true
+        transitionDelegate.swipeToDismissEnabled = true
+        transitionDelegate.translateForDismiss = 100
+        transitionDelegate.hapticMoments = [.willPresent, .willDismiss]
+        controller.transitioningDelegate = transitionDelegate
+        controller.modalPresentationStyle = .custom
+        controller.modalPresentationCapturesStatusBarAppearance = true
+        
+        controller.color = #colorLiteral(red: 0.1215686277, green: 0.01176470611, blue: 0.4235294163, alpha: 1)
+        self.present(controller, animated: true, completion: nil)
     }
     
     @objc func buttonToBiblio(_ sender: BtnPleinLarge) {

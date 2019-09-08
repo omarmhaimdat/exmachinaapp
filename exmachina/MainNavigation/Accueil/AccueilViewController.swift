@@ -15,6 +15,7 @@ import LocalAuthentication
 import AppleWelcomeScreen
 import Reachability
 import SwiftEntryKit
+import PDFKit
 
 private struct Const {
     /// Image height/width for Large NavBar state
@@ -236,6 +237,7 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
         let cours = BtnPleinLarge()
         cours.translatesAutoresizingMaskIntoConstraints = false
         cours.titleLabel?.numberOfLines = 0
+        cours.addTarget(self, action: #selector(buttonToTransport(_:)), for: .touchUpInside)
         let str = NSMutableAttributedString(string: "Transport\nLes diffèrents circuits")
         
         switch UIScreen.main.nativeBounds.height {
@@ -468,11 +470,6 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
         mesCours.widthAnchor.constraint(equalToConstant: view.frame.width - 40).isActive = true
         mesCours.heightAnchor.constraint(equalToConstant: 110).isActive = true
         
-//        Blog.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-//        Blog.topAnchor.constraint(equalTo: mesCours.bottomAnchor, constant: 20).isActive = true
-//        Blog.widthAnchor.constraint(equalToConstant: view.frame.width - 40).isActive = true
-//        Blog.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        
         DemandeDeDocumentsScolarite.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         DemandeDeDocumentsScolarite.topAnchor.constraint(equalTo: mesCours.bottomAnchor, constant: 20).isActive = true
         DemandeDeDocumentsScolarite.widthAnchor.constraint(equalToConstant: view.frame.width - 40).isActive = true
@@ -565,11 +562,6 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
                     item2.title = "Demandes à la scolarité"
                     item2.description = "Envoyer une demande d'attestation n'a jamais été aussi facile"
                     
-//                    var item3 = AWSItem()
-//                    item3.image = UIImage(named: "utile")
-//                    item3.title = "Informations Utiles"
-//                    item3.description = "Toutes les informations utiles sont à portée de main"
-                    
                     var item4 = AWSItem()
                     item4.image = UIImage(named: "favoris")
                     item4.title = "Favoris"
@@ -611,40 +603,6 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
                 filiere.titre = (dictionary["titre"] as! String?)!
                 filiere.fid = (dictionary["fid"] as! String?)!
                 
-                if filiere.fid == "CPI-1" {
-                    filiere.colorOne = #colorLiteral(red: 0.3843137255, green: 0.4470588235, blue: 0.4823529412, alpha: 1)
-                    filiere.colorTwo = #colorLiteral(red: 0.2156862745, green: 0.2784313725, blue: 0.3098039216, alpha: 1)
-                } else if filiere.fid == "CPI-2" {
-                    filiere.colorOne = #colorLiteral(red: 0.5058823529, green: 0.6117647059, blue: 0.662745098, alpha: 1)
-                    filiere.colorTwo = #colorLiteral(red: 0.3294117647, green: 0.431372549, blue: 0.4784313725, alpha: 1)
-                } else if filiere.fid == "GC-1" {
-                    filiere.colorOne = #colorLiteral(red: 0.6117647059, green: 0.4705882353, blue: 0.4235294118, alpha: 1)
-                    filiere.colorTwo = #colorLiteral(red: 0.2509803922, green: 0.1411764706, blue: 0.1019607843, alpha: 1)
-                } else if filiere.fid == "GC-2" {
-                    filiere.colorOne = #colorLiteral(red: 0.7450980392, green: 0.6117647059, blue: 0.568627451, alpha: 1)
-                    filiere.colorTwo = #colorLiteral(red: 0.3725490196, green: 0.262745098, blue: 0.2235294118, alpha: 1)
-                } else if filiere.fid == "GIND-1" {
-                    filiere.colorOne = #colorLiteral(red: 1, green: 0.4588235294, blue: 0.262745098, alpha: 1)
-                    filiere.colorTwo = #colorLiteral(red: 0.8470588235, green: 0.262745098, blue: 0.08235294118, alpha: 1)
-                } else if filiere.fid == "GIND-2" {
-                    filiere.colorOne = #colorLiteral(red: 1, green: 0.5176470588, blue: 0.2980392157, alpha: 1)
-                    filiere.colorTwo = #colorLiteral(red: 0.9568627451, green: 0.3176470588, blue: 0.1176470588, alpha: 1)
-                } else if filiere.fid == "GINF-1" {
-                    filiere.colorOne = #colorLiteral(red: 0.3764705882, green: 0.6784313725, blue: 0.368627451, alpha: 1)
-                    filiere.colorTwo = #colorLiteral(red: 0.1803921569, green: 0.4901960784, blue: 0.1960784314, alpha: 1)
-                } else if filiere.fid == "GINF-2" {
-                    filiere.colorOne = #colorLiteral(red: 0.5215686275, green: 0.7333333333, blue: 0.3607843137, alpha: 1)
-                    filiere.colorTwo = #colorLiteral(red: 0.3333333333, green: 0.5450980392, blue: 0.1843137255, alpha: 1)
-                } else if filiere.fid == "MIAGE-1" {
-                    filiere.colorOne = #colorLiteral(red: 0.4039215686, green: 0.2274509804, blue: 0.7176470588, alpha: 1)
-                    filiere.colorTwo = #colorLiteral(red: 0.3176470588, green: 0.1764705882, blue: 0.6588235294, alpha: 1)
-                } else if filiere.fid == "MIAGE-2" {
-                    filiere.colorOne = #colorLiteral(red: 0.8196078431, green: 0.768627451, blue: 0.9137254902, alpha: 1)
-                    filiere.colorTwo = #colorLiteral(red: 0.4862745098, green: 0.3019607843, blue: 1, alpha: 1)
-                } else {
-                    filiere.colorOne = #colorLiteral(red: 0.8352941176, green: 0.7568627451, blue: 0, alpha: 1)
-                    filiere.colorTwo = #colorLiteral(red: 0.8352941176, green: 0.7568627451, blue: 0, alpha: 1)
-                }
                 self.filiere = filiere
             }
         }, withCancel: nil)
@@ -685,6 +643,42 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
         
         let controller = InfoUtileViewController()
         self.navigationController?.pushViewController(controller, animated: true)
+        
+    }
+    
+    @objc func buttonToTransport(_ sender: BtnPleinLarge) {
+        
+        self.activityIndicatorView.startAnimating()
+        
+        let ref = Database.database().reference().child("data").child("transport")
+        ref.observe(DataEventType.value, with: { (snapshot) in
+            
+            if let dictionary = snapshot.value as? [String: AnyObject] {
+                
+                guard let url = URL(string: (dictionary["lien"] as! String?)!) else { return }
+                
+                let pdfView = PDFView(frame: self.view.frame)
+                pdfView.backgroundColor = .lightGray
+                pdfView.displayMode = .singlePageContinuous
+                pdfView.autoScales = true
+                pdfView.displayDirection = .vertical
+                
+                self.run(after: 0.5) {
+                    DispatchQueue.main.async {
+                        let pdfDocument = PDFDocument(url: url)
+                        pdfView.document = pdfDocument
+                        let detailVC = PdfViewerViewController()
+                        detailVC.pdfView = pdfView
+                        detailVC.fileName = "Transport"
+                        self.navigationController?.pushViewController(detailVC, animated: true)
+                        self.activityIndicatorView.stopAnimating()
+                        
+                    }
+                }
+            }
+        }, withCancel: nil)
+        
+        
         
     }
     
