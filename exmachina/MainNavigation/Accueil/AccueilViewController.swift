@@ -16,6 +16,7 @@ import AppleWelcomeScreen
 import Reachability
 import SwiftEntryKit
 import PDFKit
+import Crashlytics
 
 private struct Const {
     /// Image height/width for Large NavBar state
@@ -44,6 +45,8 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
     private var semestre = Semestre()
     private var isReady = false
     private var isMyCours = false
+    private var infoBiblio = ScolariteEmail()
+    
     
     lazy var imageView: CachedImageView = {
         let profileImageViewHeight: CGFloat = 56
@@ -195,21 +198,21 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
         cours.addTarget(self, action: #selector(buttonToInfoUtile(_:)), for: .touchUpInside)
         cours.translatesAutoresizingMaskIntoConstraints = false
         cours.titleLabel?.numberOfLines = 0
-        let str = NSMutableAttributedString(string: "Informations utiles\nTrouver vos cours personnalisés")
+        let str = NSMutableAttributedString(string: "Informations utiles\nHoraires, Paiement...")
         
         switch UIScreen.main.nativeBounds.height {
         case 1136:
             str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir-Heavy", size: 16)!, range: NSMakeRange(0, 19))
-            str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir", size: 12)!, range: NSMakeRange(20, 31))
+            str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir", size: 12)!, range: NSMakeRange(20, 21))
             str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(0, 19))
-            str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(20, 31))
+            str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(20, 21))
             str.setLineSpacing(8)
             cours.contentEdgeInsets = UIEdgeInsets(top: 0, left: -15, bottom: 0, right: 20)
         default:
             str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir-Heavy", size: 20)!, range: NSMakeRange(0, 19))
-            str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir", size: 14)!, range: NSMakeRange(20, 31))
+            str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir", size: 14)!, range: NSMakeRange(20, 21))
             str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(0, 19))
-            str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(20, 31))
+            str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(20, 21))
             str.setLineSpacing(8)
             cours.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 20)
         }
@@ -356,13 +359,13 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
         scrollView.delegate = self
         Auth.auth().addStateDidChangeListener() { auth, user in
         }
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupTabBar()
         getCurrentUser()
+        getEmailsBibiliotheque()
         setupUI()
         if Auth.auth().currentUser!.isAnonymous {
             mesCours.isEnabled = false
@@ -525,17 +528,16 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 
                 var user = User()
-                user.dateDeCreation = (dictionary["dateDeCreation"] as! String?)!
-                user.email = (dictionary["email"] as! String?)!
-                user.name = (dictionary["name"] as! String?)!
-                user.profileImageUrl = (dictionary["profileImageUrl"] as! String?)!
-                user.provider = (dictionary["provider"] as! String?)!
-                user.filiere.fid = (dictionary["filiere"] as! String?)!
-                user.semestre.sid = (dictionary["semestre"] as! String?)!
-                user.faculte.facId = (dictionary["faculte"] as! String?)!
-                user.ajoutFaculte = (dictionary["ajoutFiliere"] as! Bool?)!
-                user.new = (dictionary["new"] as! Bool?)!
-                print(user.new)
+                user.dateDeCreation = dictionary["dateDeCreation"] as? String ?? ""
+                user.email = dictionary["email"] as? String ?? ""
+                user.name = dictionary["name"] as? String ?? ""
+                user.profileImageUrl = dictionary["profileImageUrl"] as? String ?? ""
+                user.provider = dictionary["provider"] as? String ?? ""
+                user.filiere.fid = dictionary["filiere"] as? String ?? ""
+                user.semestre.sid = dictionary["semestre"] as? String ?? ""
+                user.faculte.facId = dictionary["faculte"] as? String ?? ""
+                user.ajoutFaculte = dictionary["ajoutFiliere"] as? Bool ?? true
+                user.new = dictionary["new"] as? Bool ?? false
                 self.user = user
                 self.getFiliere()
                 self.getSemestre()
@@ -600,8 +602,8 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 
                 var filiere = Filiere()
-                filiere.titre = (dictionary["titre"] as! String?)!
-                filiere.fid = (dictionary["fid"] as! String?)!
+                filiere.titre = dictionary["titre"] as? String ?? ""
+                filiere.fid = dictionary["fid"] as? String ?? ""
                 
                 self.filiere = filiere
             }
@@ -615,11 +617,25 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 
                 var semestre = Semestre()
-                semestre.titre = (dictionary["titre"] as! String?)!
-                semestre.sid = (dictionary["sid"] as! String?)!
+                semestre.titre = dictionary["titre"] as? String ?? ""
+                semestre.sid = dictionary["sid"] as? String ?? ""
                 
                 self.semestre = semestre
                 self.isReady = true
+            }
+        }, withCancel: nil)
+    }
+    
+    private func getEmailsBibiliotheque() {
+        let ref = Database.database().reference().child("data").child("bibliotheque")
+        ref.observe(DataEventType.value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String: AnyObject] {
+                
+                var email = ScolariteEmail()
+                email.responsable = dictionary["responsable"] as? String ?? ""
+                email.responsableEmail = dictionary["email"] as? String ?? ""
+                email.tel = dictionary["numero"] as? String ?? ""
+                self.infoBiblio = email
             }
         }, withCancel: nil)
     }
@@ -636,6 +652,7 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
     
     @objc func buttonToBiblio(_ sender: BtnPleinLarge) {
         let controller = BibliothequeViewController()
+        controller.infoBiblio = self.infoBiblio
         self.navigationController?.pushViewController(controller, animated: true)
     }
     
@@ -655,7 +672,7 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
             
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 
-                guard let url = URL(string: (dictionary["lien"] as! String?)!) else { return }
+                guard let url = URL(string: dictionary["lien"] as? String ?? "") else { return }
                 
                 let pdfView = PDFView(frame: self.view.frame)
                 pdfView.backgroundColor = .lightGray

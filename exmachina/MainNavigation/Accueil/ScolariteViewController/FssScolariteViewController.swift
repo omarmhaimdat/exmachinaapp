@@ -355,27 +355,27 @@ class FssScolariteViewController: UIViewController, MFMailComposeViewControllerD
             switch demande.type {
             case .Inscription?:
                 mail.mailComposeDelegate = self
-                mail.setToRecipients(["piecesfss@uic.ac.ma"])
+                mail.setToRecipients(["\(self.email.responsableEmail)"])
                 mail.setSubject("Demande d'Attestion d'inscription")
                 mail.setMessageBody("<p>Bonjour Monsieur/Madame,</p>Je souhaiterai demander une attestation d'inscription, voici mes informations personnelles :<p><b>Nom au complet:</b> \(self.demande.nomAuComplet)</p><p><b>CIN:</b> \(self.demande.cin)</p><p><b>Date de naissance:</b> \(self.demande.dateDeNaissance)</p><p><b>Nombre d'exemplaire:</b> \(self.demande.nombreExemplaire)</p><p>Bien à vous,</p>", isHTML: true)
             case .Reussite?:
                 mail.mailComposeDelegate = self
-                mail.setToRecipients(["piecesfss@uic.ac.ma"])
+                mail.setToRecipients(["\(self.email.responsableEmail)"])
                 mail.setSubject("Demande d'Attestion de Réussite")
                 mail.setMessageBody("<p>Bonjour Monsieur/Madame,</p>Je souhaiterai demander une attestation de réussite, voici mes informations personnelles :<p><b>Nom au complet:</b> \(self.demande.nomAuComplet)</p><p><b>CIN:</b> \(self.demande.cin)</p><p><b>Date de naissance:</b> \(self.demande.dateDeNaissance)</p><p><b>Nombre d'exemplaire:</b> \(self.demande.nombreExemplaire)</p><p>Bien à vous,</p>", isHTML: true)
             case .ReussiteDiplome?:
                 mail.mailComposeDelegate = self
-                mail.setToRecipients(["piecesfss@uic.ac.ma"])
+                mail.setToRecipients(["\(self.email.responsableEmail)"])
                 mail.setSubject("Demande d'Attestion de Réussite au Diplôme")
                 mail.setMessageBody("<p>Bonjour Monsieur/Madame,</p>Je souhaiterai demander une attestation de réussite au diplôme, voici mes informations personnelles :<p><b>Nom au complet:</b> \(self.demande.nomAuComplet)</p><p><b>CIN:</b> \(self.demande.cin)</p><p><b>Date de naissance:</b> \(self.demande.dateDeNaissance)</p><p><b>Nombre d'exemplaire:</b> \(self.demande.nombreExemplaire)</p><p>Bien à vous,</p>", isHTML: true)
             case .Scolarite?:
                 mail.mailComposeDelegate = self
-                mail.setToRecipients(["piecesfss@uic.ac.ma"])
+                mail.setToRecipients(["\(self.email.responsableEmail)"])
                 mail.setSubject("Demande d'Attestion de Scolarité")
                 mail.setMessageBody("<p>Bonjour Monsieur/Madame,</p>Je souhaiterai demander une attestation de scolarité, voici mes informations personnelles :<p><b>Nom au complet:</b> \(self.demande.nomAuComplet)</p><p><b>CIN:</b> \(self.demande.cin)</p><p><b>Date de naissance:</b> \(self.demande.dateDeNaissance)</p><p><b>Nombre d'exemplaire:</b> \(self.demande.nombreExemplaire)</p><p>Bien à vous,</p>", isHTML: true)
             case .Responsable?:
                 mail.mailComposeDelegate = self
-                mail.setToRecipients(["sara.elfetaoui@uic.ac.ma"])
+                mail.setToRecipients(["\(self.email.responsable)"])
             case .none:
                 print("Fail !!!! hard")
             }

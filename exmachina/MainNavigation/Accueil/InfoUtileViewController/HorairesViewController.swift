@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import SPStorkController
 
-class HorairesViewController: UIViewController {
+class HorairesViewController: UIViewController, UIScrollViewDelegate {
     
     var color = UIColor()
     
@@ -138,6 +139,7 @@ class HorairesViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = self.color
         scrollView.backgroundColor = self.color
+        scrollView.delegate = self
         
         setupScrollView()
         contentView.backgroundColor = self.color
@@ -154,8 +156,18 @@ class HorairesViewController: UIViewController {
         setupLayout()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.labelContact.isHidden = true
+        self.barreContact.isHidden = true
+    }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        SPStorkController.scrollViewDidScroll(scrollView)
     }
     
     func setupLayout() {

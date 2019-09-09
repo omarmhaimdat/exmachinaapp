@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4996673BE3AE869622F979FF0BF03EB5"
+               BlueprintIdentifier = "107D577E5EB7F7592387925B0DA71F61"
                BuildableName = "SPStorkController.framework"
                BlueprintName = "SPStorkController"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4996673BE3AE869622F979FF0BF03EB5"
+            BlueprintIdentifier = "107D577E5EB7F7592387925B0DA71F61"
             BuildableName = "SPStorkController.framework"
             BlueprintName = "SPStorkController"
             ReferencedContainer = "container:Pods.xcodeproj">

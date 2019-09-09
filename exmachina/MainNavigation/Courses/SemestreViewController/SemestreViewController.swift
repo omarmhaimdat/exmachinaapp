@@ -99,8 +99,8 @@ class SemestreViewController: UIViewController {
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 
                 var semestre = Semestre()
-                semestre.titre = (dictionary["titre"] as! String?)!
-                semestre.sid = (dictionary["sid"] as! String?)!
+                semestre.titre = dictionary["titre"] as? String ?? ""
+                semestre.sid = dictionary["sid"] as? String ?? ""
                 
                 self.semestres.append(semestre)
                 DispatchQueue.main.async(execute: {

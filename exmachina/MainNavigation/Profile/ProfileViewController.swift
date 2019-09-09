@@ -493,14 +493,16 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 
                 var user = User()
-                user.dateDeCreation = (dictionary["dateDeCreation"] as! String?)!
-                user.email = (dictionary["email"] as! String?)!
-                user.name = (dictionary["name"] as! String?)!
-                user.profileImageUrl = (dictionary["profileImageUrl"] as! String?)!
-                user.provider = (dictionary["provider"] as! String?)!
-                user.filiere.fid = (dictionary["filiere"] as! String?)!
-                user.semestre.sid = (dictionary["semestre"] as! String?)!
-                user.faculte.facId = (dictionary["faculte"] as! String?)!
+                user.dateDeCreation = dictionary["dateDeCreation"] as? String ?? ""
+                user.email = dictionary["email"] as? String ?? ""
+                user.name = dictionary["name"] as? String ?? ""
+                user.profileImageUrl = dictionary["profileImageUrl"] as? String ?? ""
+                user.provider = dictionary["provider"] as? String ?? ""
+                user.filiere.fid = dictionary["filiere"] as? String ?? ""
+                user.semestre.sid = dictionary["semestre"] as? String ?? ""
+                user.faculte.facId = dictionary["faculte"] as? String ?? ""
+                user.ajoutFaculte = dictionary["ajoutFiliere"] as? Bool ?? true
+                user.new = dictionary["new"] as? Bool ?? false
                 self.user = user
                 self.getFilieres()
                 
@@ -537,8 +539,8 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
                 if let dictionary = snapshot.value as? [String: AnyObject] {
                     
                     var semestre = Semestre()
-                    semestre.titre = (dictionary["titre"] as! String?)!
-                    semestre.sid = (dictionary["sid"] as! String?)!
+                    semestre.titre = dictionary["titre"] as? String ?? ""
+                    semestre.sid = dictionary["sid"] as? String ?? ""
                     
                     self.semestres.append(semestre)
                 }

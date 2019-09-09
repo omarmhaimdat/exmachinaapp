@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "549168C0FE75ECB5D1403AC5ED1EBDFC"
-               BuildableName = "Firebase-Auth-Core-CoreOnly-Database"
-               BlueprintName = "Firebase-Auth-Core-CoreOnly-Database"
+               BlueprintIdentifier = "AE7DF56D77A90CF541307F5FC8FA1AD7"
+               BuildableName = "Firebase-Analytics-Auth-Core-CoreOnly-Database"
+               BlueprintName = "Firebase-Analytics-Auth-Core-CoreOnly-Database"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "549168C0FE75ECB5D1403AC5ED1EBDFC"
-            BuildableName = "Firebase-Auth-Core-CoreOnly-Database"
-            BlueprintName = "Firebase-Auth-Core-CoreOnly-Database"
+            BlueprintIdentifier = "AE7DF56D77A90CF541307F5FC8FA1AD7"
+            BuildableName = "Firebase-Analytics-Auth-Core-CoreOnly-Database"
+            BlueprintName = "Firebase-Analytics-Auth-Core-CoreOnly-Database"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

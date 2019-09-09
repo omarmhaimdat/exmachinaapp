@@ -158,9 +158,9 @@ class ListeFilesViewController: UIViewController {
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 
                 var file = File()
-                file.titre = (dictionary["titre"] as! String?)!
-                file.matiere = (dictionary["matiere"] as! String?)!
-                file.url = (dictionary["url"] as! String?)!
+                file.titre = dictionary["titre"] as? String ?? ""
+                file.matiere = dictionary["matiere"] as? String ?? ""
+                file.url = dictionary["url"] as? String ?? ""
                 
                 self.favoris.append(file)
                 

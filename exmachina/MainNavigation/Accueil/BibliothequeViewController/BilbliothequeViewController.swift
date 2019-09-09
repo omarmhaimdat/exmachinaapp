@@ -13,6 +13,7 @@ import BLTNBoard
 class BibliothequeViewController: UIViewController, MFMailComposeViewControllerDelegate {
     
     private var demande = Demande()
+    var infoBiblio = ScolariteEmail()
     
     let contentView = UIView()
     
@@ -164,6 +165,18 @@ class BibliothequeViewController: UIViewController, MFMailComposeViewControllerD
         setupLayout()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let str = NSMutableAttributedString(string: "Responsable\n\(self.infoBiblio.responsable)")
+        let size = self.infoBiblio.responsable.count
+        str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir-Heavy", size: 20)!, range: NSMakeRange(0, 11))
+        str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir", size: 14)!, range: NSMakeRange(12, size))
+        str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(0, 11))
+        str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(12, size))
+        str.setLineSpacing(8)
+        responsable.setAttributedTitle(str, for: .normal)
+    }
+    
     func setupTabBar() {
         view.backgroundColor = UIColor.white
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -216,7 +229,7 @@ class BibliothequeViewController: UIViewController, MFMailComposeViewControllerD
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
-            mail.setToRecipients(["sonia.barinchi@uic.ac.ma"])
+            mail.setToRecipients(["\(self.infoBiblio.responsableEmail)"])
             mail.setSubject("Réservation de Salle")
             mail.setMessageBody("<p>Bonjour Monsieur/Madame,</p>Je souhaiterai réserver une salle, voici mes informations personnelles et l'horaire:<p><b>Nom au complet:</b> \(self.demande.nomAuComplet)</p><p><b>CIN:</b> \(self.demande.cin)</p><p><b>Date et heure:</b> \(self.demande.dateDeNaissance)</p><p>Bien à vous,</p>", isHTML: true)
             
@@ -236,14 +249,14 @@ class BibliothequeViewController: UIViewController, MFMailComposeViewControllerD
     }
     
     @objc func buttonToResponsable(_ sender: BtnPleinLarge) {
-        let alert = UIAlertController(title: "Sonia BARNACHI", message: nil, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: "\(self.infoBiblio.responsable)", message: nil, preferredStyle: .actionSheet)
         
         let annulerAction = UIAlertAction(title: "Annuler", style: .cancel) { action -> Void in
             
         }
         
         let appeler = UIAlertAction(title: "Contacter par téléphone", style: .default) { action -> Void in
-            if let url = URL(string: "tel://0529023728"),
+            if let url = URL(string: "tel://\(self.infoBiblio.tel)"),
                 UIApplication.shared.canOpenURL(url) {
                 if #available(iOS 10, *) {
                     UIApplication.shared.open(url, options: [:], completionHandler:nil)
@@ -259,7 +272,7 @@ class BibliothequeViewController: UIViewController, MFMailComposeViewControllerD
             if MFMailComposeViewController.canSendMail() {
                 let mail = MFMailComposeViewController()
                 mail.mailComposeDelegate = self
-                mail.setToRecipients(["sonia.barinchi@uic.ac.ma"])
+                mail.setToRecipients(["\(self.infoBiblio.responsableEmail)"])
                 
                 self.present(mail, animated: true)
             } else {

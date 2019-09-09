@@ -12,10 +12,12 @@ struct ScolariteEmail {
     var piece: String
     var responsable: String
     var responsableEmail: String
+    var tel: String
     
     init() {
         self.piece = ""
         self.responsable = ""
         self.responsableEmail = ""
+        self.tel = ""
     }
 }

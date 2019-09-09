@@ -124,6 +124,11 @@ class ScolariteViewController: UIViewController {
         setupLayout()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        getEmails()
+    }
+    
     func setupTabBar() {
         view.backgroundColor = UIColor.white
         navigationController?.navigationBar.prefersLargeTitles = true

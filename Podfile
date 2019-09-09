@@ -11,6 +11,9 @@ target 'exmachina' do
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
+  pod 'Fabric', '~> 1.10.2'
+  pod 'Crashlytics', '~> 3.13.4'
+  pod 'Firebase/Analytics'
   pod 'GoogleSignIn'
   pod 'FBSDKCoreKit', :inhibit_warnings => true
   pod 'FBSDKShareKit', :inhibit_warnings => true
@@ -21,7 +24,7 @@ target 'exmachina' do
   pod 'SwiftEntryKit', '1.0.1', :inhibit_warnings => true
   pod 'BouncyLayout', :inhibit_warnings => true
   pod 'LBTAComponents', '~> 1.0.2'
-  pod 'BulletinBoard'
+  pod 'BulletinBoard', '4.0.0'
   pod 'AppleWelcomeScreen'
   pod 'SPStorkController'
   pod 'ReachabilitySwift', :inhibit_warnings => true

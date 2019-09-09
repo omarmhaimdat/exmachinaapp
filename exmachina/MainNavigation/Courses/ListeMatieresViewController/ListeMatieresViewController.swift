@@ -98,8 +98,8 @@ class ListeMatieresViewController: UIViewController {
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 
                 var matiere = Matiere()
-                matiere.titre = (dictionary["titre"] as! String?)!
-                matiere.mid = (dictionary["mid"] as! String?)!
+                matiere.titre = dictionary["titre"] as? String ?? ""
+                matiere.mid = dictionary["mid"] as? String ?? ""
                 
                 self.matieres.append(matiere)
                 DispatchQueue.main.async(execute: {

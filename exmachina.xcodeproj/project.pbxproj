@@ -60,7 +60,6 @@
 		6CD154E1229F5F1600DEA4D3 /* BtnFacebookSignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD154E0229F5F1600DEA4D3 /* BtnFacebookSignIn.swift */; };
 		6CD154E4229F5F5300DEA4D3 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD154E3229F5F5300DEA4D3 /* UIImage+Extension.swift */; };
 		6CD154E6229F632B00DEA4D3 /* BtnAnonymousSignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD154E5229F632B00DEA4D3 /* BtnAnonymousSignIn.swift */; };
-		6CD154EA229F789500DEA4D3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CD154E9229F789500DEA4D3 /* GoogleService-Info.plist */; };
 		6CD154EE229F857700DEA4D3 /* AccueilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD154ED229F857700DEA4D3 /* AccueilViewController.swift */; };
 		6CD154F0229F858600DEA4D3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD154EF229F858600DEA4D3 /* ProfileViewController.swift */; };
 		6CD154F2229F859B00DEA4D3 /* OfflineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD154F1229F859B00DEA4D3 /* OfflineViewController.swift */; };
@@ -92,6 +91,7 @@
 		6CF487112304A71B0031A956 /* ChoisirSemestreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF487102304A71B0031A956 /* ChoisirSemestreViewController.swift */; };
 		6CF487132304A7B50031A956 /* ChoisirSemestreCollection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF487122304A7B50031A956 /* ChoisirSemestreCollection+Extension.swift */; };
 		6CF487152304AB940031A956 /* ConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF487142304AB940031A956 /* ConfirmationViewController.swift */; };
+		6CF5E868232564FD0013323E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CF5E867232564FD0013323E /* GoogleService-Info.plist */; };
 		CA231E4FCC4935686A14EF5F /* Pods_exmachinaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE7AD9E0FCF6909B7053CFAB /* Pods_exmachinaTests.framework */; };
 		DF0D87EE8C81EC968D8CC8D0 /* Pods_exmachina.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A95332A0026FAD47F6AE38A /* Pods_exmachina.framework */; };
 /* End PBXBuildFile section */
@@ -177,7 +177,6 @@
 		6CD154E0229F5F1600DEA4D3 /* BtnFacebookSignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BtnFacebookSignIn.swift; sourceTree = "<group>"; };
 		6CD154E3229F5F5300DEA4D3 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		6CD154E5229F632B00DEA4D3 /* BtnAnonymousSignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BtnAnonymousSignIn.swift; sourceTree = "<group>"; };
-		6CD154E9229F789500DEA4D3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6CD154EB229F79E700DEA4D3 /* exmachina.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = exmachina.entitlements; sourceTree = "<group>"; };
 		6CD154ED229F857700DEA4D3 /* AccueilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccueilViewController.swift; sourceTree = "<group>"; };
 		6CD154EF229F858600DEA4D3 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -210,6 +209,7 @@
 		6CF487102304A71B0031A956 /* ChoisirSemestreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoisirSemestreViewController.swift; sourceTree = "<group>"; };
 		6CF487122304A7B50031A956 /* ChoisirSemestreCollection+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChoisirSemestreCollection+Extension.swift"; sourceTree = "<group>"; };
 		6CF487142304AB940031A956 /* ConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationViewController.swift; sourceTree = "<group>"; };
+		6CF5E867232564FD0013323E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ADCEE86D7DD5AD1F296AEB5C /* Pods-exmachina.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exmachina.debug.xcconfig"; path = "Target Support Files/Pods-exmachina/Pods-exmachina.debug.xcconfig"; sourceTree = "<group>"; };
 		AF70D309E9BDC279CE0F470A /* Pods-exmachinaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exmachinaTests.release.xcconfig"; path = "Target Support Files/Pods-exmachinaTests/Pods-exmachinaTests.release.xcconfig"; sourceTree = "<group>"; };
 		BE7AD9E0FCF6909B7053CFAB /* Pods_exmachinaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_exmachinaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -422,9 +422,9 @@
 				6CD1550922A0B25A00DEA4D3 /* Utilities */,
 				6CD154EC229F855500DEA4D3 /* MainNavigation */,
 				6CD154EB229F79E700DEA4D3 /* exmachina.entitlements */,
-				6CD154E9229F789500DEA4D3 /* GoogleService-Info.plist */,
 				6CD154AD229F499C00DEA4D3 /* AppDelegate.swift */,
 				6CD154B4229F499E00DEA4D3 /* Assets.xcassets */,
+				6CF5E867232564FD0013323E /* GoogleService-Info.plist */,
 				6CD154B6229F499E00DEA4D3 /* LaunchScreen.storyboard */,
 				6CD154B9229F499E00DEA4D3 /* Info.plist */,
 			);
@@ -667,6 +667,7 @@
 				6CD154A8229F499C00DEA4D3 /* Resources */,
 				525088A0A8AD7B15C5A9A100 /* [CP] Embed Pods Frameworks */,
 				5DC57AEB8896B21935E04EAF /* [CP] Copy Pods Resources */,
+				6CF5E8662325613D0013323E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -769,8 +770,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CF5E868232564FD0013323E /* GoogleService-Info.plist in Resources */,
 				6CD154B8229F499E00DEA4D3 /* LaunchScreen.storyboard in Resources */,
-				6CD154EA229F789500DEA4D3 /* GoogleService-Info.plist in Resources */,
 				6CD154B5229F499E00DEA4D3 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -899,6 +900,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-exmachina/Pods-exmachina-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		6CF5E8662325613D0013323E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/Fabric/run\"\n";
 		};
 		CC73747088B9C4805D18F62D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1225,6 +1244,7 @@
 				CODE_SIGN_ENTITLEMENTS = exmachina/exmachina.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = KF6724J2G9;
 				INFOPLIST_FILE = exmachina/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;

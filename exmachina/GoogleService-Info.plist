@@ -3,9 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>177964333236-cf98ti13esoifisr3nl9613chrh7v2gc.apps.googleusercontent.com</string>
+	<string>177964333236-7utcim7t6k9ct2er84jfeh2ssiiqd92o.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.177964333236-cf98ti13esoifisr3nl9613chrh7v2gc</string>
+	<string>com.googleusercontent.apps.177964333236-7utcim7t6k9ct2er84jfeh2ssiiqd92o</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>177964333236-dddb26th3tu7t8j3n2b03ag0sagalsi9.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyBiUuDex-MAnC1DRnNEDLxzJRilJbk3BJw</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>omar.exmachina</string>
+	<string>exmachina.exmachinaapp</string>
 	<key>PROJECT_ID</key>
 	<string>exmachina-bd482</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,7 +31,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:177964333236:ios:4c18148ce201a4b5</string>
+	<string>1:177964333236:ios:13622876e1d3f3e856bfe1</string>
 	<key>DATABASE_URL</key>
 	<string>https://exmachina-bd482.firebaseio.com</string>
 </dict>
