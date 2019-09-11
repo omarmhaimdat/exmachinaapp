@@ -74,7 +74,7 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
         feedback.backgroundColor = .white
         feedback.layer.borderColor = UIColor(named: "exmachina")?.cgColor
         feedback.layer.shadowOpacity = 0.3
-        feedback.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1).cgColor
+        feedback.layer.shadowColor = #colorLiteral(red: 0.8341107965, green: 0.7586194277, blue: 0, alpha: 1)
         feedback.layer.shadowOffset = CGSize(width: 1, height: 2)
         feedback.layer.cornerRadius = 14
         feedback.layer.shadowRadius = 5
@@ -181,7 +181,7 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
         changerDeFiliere.backgroundColor = .white
         changerDeFiliere.layer.borderColor = UIColor(named: "exmachina")?.cgColor
         changerDeFiliere.layer.shadowOpacity = 0.3
-        changerDeFiliere.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1).cgColor
+        changerDeFiliere.layer.shadowColor = #colorLiteral(red: 0.8341107965, green: 0.7586194277, blue: 0, alpha: 1)
         changerDeFiliere.layer.shadowOffset = CGSize(width: 1, height: 2)
         changerDeFiliere.layer.cornerRadius = 14
         changerDeFiliere.layer.shadowRadius = 5
@@ -478,7 +478,7 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
     }
     
     @objc func buttonToExMachina(sender: BtnPleinLarge) {
-        let webVC = SwiftModalWebVC(urlString: "https://courses.ex-machina.ma", theme: .lightBlack, dismissButtonStyle: .cross)
+        let webVC = SwiftModalWebVC(urlString: "https://courses.ex-machina.ma", theme: .dark, dismissButtonStyle: .cross)
         self.present(webVC, animated: true, completion: nil)
     }
     
@@ -515,12 +515,11 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
         if self.user.faculte.facId != "Sélectionner la faculté" || self.user.faculte.facId != "Selectionner la faculté" {
             let ref = Database.database().reference().child("data").child("faculte").child(self.user.faculte.facId).child("liste")
             ref.observe(DataEventType.childAdded, with: { (snapshot) in
-//                print(snapshot)
                     if let dictionary = snapshot.value as? [String: AnyObject] {
                         var filiere = Filiere()
                         filiere.titre = dictionary["titre"] as? String ?? ""
                         filiere.fid = dictionary["fid"] as? String ?? ""
-                        print(filiere.fid)
+                        
                         self.filieres.append(filiere)
                     }
             }, withCancel: nil)
@@ -556,7 +555,6 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
         controller.user = self.user
         controller.filieres = self.filieres
         controller.semestres = self.semestres
-        print(self.filieres)
         let index2 = self.semestres.firstIndex(where: { (item) -> Bool in
             item.sid == self.user.semestre.sid
         })

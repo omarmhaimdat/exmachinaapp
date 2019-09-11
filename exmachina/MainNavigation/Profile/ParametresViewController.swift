@@ -13,6 +13,7 @@ import JGProgressHUD
 import GoogleSignIn
 import FBSDKLoginKit
 import SwiftWebVC
+import SwiftEntryKit
 
 class ParametresViewController: UIViewController {
     
@@ -34,70 +35,48 @@ class ParametresViewController: UIViewController {
         return hud
     }()
     
-    let CGU: BtnPleinLarge = {
-        let btn = BtnPleinLarge()
-        btn.addTarget(self, action: #selector(buttonToSignOutView(sender:)), for: .touchUpInside)
-        btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.setTitle("Conditions générale d'utilisation", for: .normal)
-        btn.titleLabel?.font = UIFont(name: "Avenir", size: 16)
-        btn.backgroundColor = .white
-        btn.layer.borderColor = UIColor(named: "exmachina")?.cgColor
-        btn.layer.shadowOpacity = 0.3
-        btn.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1).cgColor
-        btn.layer.shadowOffset = CGSize(width: 1, height: 2)
-        btn.layer.cornerRadius = 14
-        btn.layer.shadowRadius = 5
-        btn.layer.masksToBounds = true
-        btn.clipsToBounds = false
-        btn.contentHorizontalAlignment = .left
-        btn.setTitleColor(.black, for: .normal)
-        let icon = UIImage(named: "cgu")?.resized(newSize: CGSize(width: 25, height: 25))
-        btn.setImage( icon, for: .normal)
-        btn.imageEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 10)
-        btn.layoutIfNeeded()
-        btn.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 16)
-        btn.titleEdgeInsets.left = 35
+    let CGU_privacy: BtnPleinLarge = {
+        let cours = BtnPleinLarge()
+        cours.addTarget(self, action: #selector(buttonToCGU(sender:)), for: .touchUpInside)
+        cours.translatesAutoresizingMaskIntoConstraints = false
+        cours.titleLabel?.numberOfLines = 0
+        let str = NSMutableAttributedString(string: "Conditions générale d'utilisation et\nPolitique de confidentialité")
+        
         switch UIScreen.main.nativeBounds.height {
         case 1136:
-            btn.titleLabel?.font = UIFont(name: "Avenir", size: 14)
+            str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir", size: 12)!, range: NSMakeRange(0, 36))
+            str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir", size: 12)!, range: NSMakeRange(37, 28))
+            str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.black, range: NSMakeRange(0, 36))
+            str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.black, range: NSMakeRange(37, 28))
+            str.setLineSpacing(8)
+            cours.contentEdgeInsets = UIEdgeInsets(top: 0, left: -15, bottom: 0, right: 20)
         default:
-            btn.titleLabel?.font = UIFont(name: "Avenir", size: 16)
+            str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir", size: 14)!, range: NSMakeRange(0, 36))
+            str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir", size: 14)!, range: NSMakeRange(37, 28))
+            str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.black, range: NSMakeRange(0, 36))
+            str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.black, range: NSMakeRange(37, 28))
+            str.setLineSpacing(8)
+            cours.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 16)
+            cours.titleEdgeInsets.left = 35
+            cours.imageEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 20)
         }
         
-        return btn
-    }()
-    
-    let privacy: BtnPleinLarge = {
-        let btn = BtnPleinLarge()
-        btn.addTarget(self, action: #selector(buttonToSignOutView(sender:)), for: .touchUpInside)
-        btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.setTitle("Politique de confidentialité", for: .normal)
-        btn.titleLabel?.font = UIFont(name: "Avenir", size: 16)
-        btn.backgroundColor = .white
-        btn.layer.borderColor = UIColor(named: "exmachina")?.cgColor
-        btn.layer.shadowOpacity = 0.3
-        btn.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1).cgColor
-        btn.layer.shadowOffset = CGSize(width: 1, height: 2)
-        btn.layer.cornerRadius = 14
-        btn.layer.shadowRadius = 5
-        btn.layer.masksToBounds = true
-        btn.clipsToBounds = false
-        btn.contentHorizontalAlignment = .left
-        btn.setTitleColor(.black, for: .normal)
-        let icon = UIImage(named: "privacy")?.resized(newSize: CGSize(width: 25, height: 25))
-        btn.setImage( icon, for: .normal)
-        btn.imageEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 10)
-        btn.layoutIfNeeded()
-        btn.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 16)
-        btn.titleEdgeInsets.left = 35
-        switch UIScreen.main.nativeBounds.height {
-        case 1136:
-            btn.titleLabel?.font = UIFont(name: "Avenir", size: 14)
-        default:
-            btn.titleLabel?.font = UIFont(name: "Avenir", size: 16)
-        }
+        cours.setAttributedTitle(str, for: .normal)
+        let icon = UIImage(named: "privacy")?.resized(newSize: CGSize(width: 35, height: 35))
+        cours.setImage( icon, for: .normal)
+        cours.backgroundColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)
+        cours.layer.borderColor = #colorLiteral(red: 0.8352941176, green: 0.7568627451, blue: 0, alpha: 1).cgColor
+        cours.layer.shadowOpacity = 0.3
+        cours.layer.shadowColor = #colorLiteral(red: 0.8341107965, green: 0.7586194277, blue: 0, alpha: 1)
+        cours.layer.shadowOffset = CGSize(width: 1, height: 5)
+        cours.layer.cornerRadius = 14
+        cours.layer.shadowRadius = 5
+        cours.layer.masksToBounds = true
+        cours.clipsToBounds = false
+        cours.contentHorizontalAlignment = .left
+        cours.layoutIfNeeded()
         
-        return btn
+        return cours
     }()
     
     let buttonDeconnecte: BtnPleinLarge = {
@@ -135,7 +114,7 @@ class ParametresViewController: UIViewController {
         btn.backgroundColor = .white
         btn.layer.borderColor = #colorLiteral(red: 0.7803921569, green: 0.1176470588, blue: 0.1137254902, alpha: 1)
         btn.layer.shadowOpacity = 0.3
-        btn.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1).cgColor
+        btn.layer.shadowColor = #colorLiteral(red: 0.7803921569, green: 0.1176470588, blue: 0.1137254902, alpha: 1)
         btn.layer.shadowOffset = CGSize(width: 1, height: 2)
         btn.layer.cornerRadius = 14
         btn.layer.shadowRadius = 5
@@ -159,8 +138,7 @@ class ParametresViewController: UIViewController {
         setupScrollView()
         contentView.addSubview(buttonDeconnecte)
         contentView.addSubview(deleteAccount)
-        contentView.addSubview(CGU)
-        contentView.addSubview(privacy)
+        contentView.addSubview(CGU_privacy)
         setupLayout()
     }
     
@@ -202,18 +180,13 @@ class ParametresViewController: UIViewController {
         
         if UIDevice().userInterfaceIdiom == .phone {
             
-            CGU.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-            CGU.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 40).isActive = true
-            CGU.widthAnchor.constraint(equalToConstant: view.frame.width - 40).isActive = true
-            CGU.heightAnchor.constraint(equalToConstant: 60).isActive = true
-            
-            privacy.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-            privacy.topAnchor.constraint(equalTo: CGU.bottomAnchor, constant: 20).isActive = true
-            privacy.widthAnchor.constraint(equalToConstant: view.frame.width - 40).isActive = true
-            privacy.heightAnchor.constraint(equalToConstant: 60).isActive = true
+            CGU_privacy.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+            CGU_privacy.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 40).isActive = true
+            CGU_privacy.widthAnchor.constraint(equalToConstant: view.frame.width - 40).isActive = true
+            CGU_privacy.heightAnchor.constraint(equalToConstant: 80).isActive = true
             
             deleteAccount.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-            deleteAccount.topAnchor.constraint(equalTo: privacy.bottomAnchor, constant: 60).isActive = true
+            deleteAccount.topAnchor.constraint(equalTo: CGU_privacy.bottomAnchor, constant: 60).isActive = true
             deleteAccount.widthAnchor.constraint(equalToConstant: view.frame.width - 40).isActive = true
             deleteAccount.heightAnchor.constraint(equalToConstant: 60).isActive = true
             
@@ -226,18 +199,13 @@ class ParametresViewController: UIViewController {
         
         if UIDevice().userInterfaceIdiom == .pad {
             
-            CGU.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-            CGU.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 40).isActive = true
-            CGU.widthAnchor.constraint(equalToConstant: view.frame.width - 80).isActive = true
-            CGU.heightAnchor.constraint(equalToConstant: 80).isActive = true
-            
-            privacy.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-            privacy.topAnchor.constraint(equalTo: CGU.bottomAnchor, constant: 40).isActive = true
-            privacy.widthAnchor.constraint(equalToConstant: view.frame.width - 80).isActive = true
-            privacy.heightAnchor.constraint(equalToConstant: 80).isActive = true
+            CGU_privacy.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+            CGU_privacy.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 40).isActive = true
+            CGU_privacy.widthAnchor.constraint(equalToConstant: view.frame.width - 80).isActive = true
+            CGU_privacy.heightAnchor.constraint(equalToConstant: 80).isActive = true
             
             deleteAccount.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-            deleteAccount.topAnchor.constraint(equalTo: privacy.bottomAnchor, constant: 80).isActive = true
+            deleteAccount.topAnchor.constraint(equalTo: CGU_privacy.bottomAnchor, constant: 80).isActive = true
             deleteAccount.widthAnchor.constraint(equalToConstant: view.frame.width - 80).isActive = true
             deleteAccount.heightAnchor.constraint(equalToConstant: 80).isActive = true
             
@@ -305,7 +273,7 @@ class ParametresViewController: UIViewController {
     @objc func buttonToDelete() {
         let user = Auth.auth().currentUser
         
-        let alert = UIAlertController(title: "Confirmation", message: nil, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: "Toutes vos données seront supprimées", message: nil, preferredStyle: .actionSheet)
         
         let annulerAction = UIAlertAction(title: "Annuler", style: .cancel) { action -> Void in
         }
@@ -319,17 +287,39 @@ class ParametresViewController: UIViewController {
                     alert.addAction(erreur)
                     self.myError = error
                 } else {
-                    let alert = UIAlertController(title: "Confirmation", message: "Votre compte a été supprimé", preferredStyle: .alert)
-                    let confirmation = UIAlertAction(title: "Ok", style: .default) { action -> Void in
-                    }
-                    alert.addAction(confirmation)
                     self.myError = error
                 }
             }
             if self.myError == nil {
                 let ref = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid)
                 ref.removeValue()
-                print("supprimer")
+                let minEdge = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
+                var themeImage: EKPopUpMessage.ThemeImage?
+                var attributes = EKAttributes()
+                attributes.hapticFeedbackType = .success
+                attributes.entryBackground = .color(color: UIColor(named: "exmachina")!)
+                attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.7, duration: 0.7)))
+                attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
+                attributes.statusBar = .dark
+                attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .jolt)
+                attributes.positionConstraints.maxSize = .init(width: .constant(value: minEdge - 30), height: .intrinsic)
+                attributes.position = .bottom
+                attributes.displayDuration = .infinity
+                attributes.roundCorners = .all(radius: 15)
+                
+                if let image = UIImage(named: "ok_black") {
+                    themeImage = .init(image: .init(image: image, size: CGSize(width: 50, height: 50), contentMode: .scaleAspectFit))
+                }
+                
+                let title = EKProperty.LabelContent(text: "Confirmation", style: .init(font: UIFont(name: "Avenir", size: 24)!, color: .black, alignment: .center))
+                let description = EKProperty.LabelContent(text: "Votre compte a été supprimé, vous recevrez un email de confirmation.", style: .init(font: UIFont(name: "Avenir-Medium", size: 16)!, color: .black, alignment: .center))
+                let button = EKProperty.ButtonContent(label: .init(text: "Ok", style: .init(font: UIFont(name: "Avenir", size: 16)!, color: UIColor(named: "exmachina")!)), backgroundColor: .black, highlightedBackgroundColor: UIColor(named: "exmachina")!)
+                let message = EKPopUpMessage(themeImage: themeImage, title: title, description: description, button: button) {
+                    SwiftEntryKit.dismiss()
+                }
+                
+                let contentView = EKPopUpMessageView(with: message)
+                SwiftEntryKit.display(entry: contentView, using: attributes)
             }
         }
         
@@ -343,6 +333,24 @@ class ParametresViewController: UIViewController {
         }
         //End: Uniquement pour les iPads
         present(alert, animated: true, completion: nil)
+    }
+    
+    @objc func buttonToCGU(sender: BtnPleinLarge) {
+        let webVC = SwiftModalWebVC(urlString: "https://courses.ex-machina.ma/data/cgu.pdf", theme: .dark, dismissButtonStyle: .cross)
+        self.present(webVC, animated: true, completion: nil)
+        print("CGU PRESSED !")
+    }
+    
+}
+
+extension ParametresViewController: SwiftWebVCDelegate {
+    
+    func didStartLoading() {
+        print("Started loading.")
+    }
+    
+    func didFinishLoading(success: Bool) {
+        print("Finished loading. Success: \(success).")
     }
     
 }

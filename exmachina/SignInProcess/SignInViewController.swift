@@ -168,8 +168,10 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate, LoginButtonDe
         
         var attributedString = NSMutableAttributedString(string:"")
         
-        let buttonTitleStr = NSMutableAttributedString(string:"Conditions générales d'utilisation", attributes:attrs)
+        let buttonTitleStr = NSMutableAttributedString(string:"Conditions générales d'utilisation et la politique de confidentialité", attributes:attrs)
         attributedString.append(buttonTitleStr)
+        btnCGULink.titleLabel?.lineBreakMode = .byWordWrapping
+        btnCGULink.titleLabel?.textAlignment = .center
         btnCGULink.setAttributedTitle(attributedString, for: .normal)
         btnCGULink.addTarget(self, action: #selector(openLinkCGU(sender:)), for: .touchUpInside)
         return btnCGULink
@@ -178,7 +180,7 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate, LoginButtonDe
     let textCredit: UITextView = {
         let textView = UITextView()
         let year = Calendar.current.component(.year, from: Date())
-        textView.text = "© Ex-Machina Inc. \(year)"
+        textView.text = "© Ex-Machina . \(year)"
         textView.translatesAutoresizingMaskIntoConstraints = false
         let style = NSMutableParagraphStyle()
         style.lineSpacing = 10
@@ -368,7 +370,7 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate, LoginButtonDe
                 facebookSignInButton.widthAnchor.constraint(equalToConstant: view.frame.width - 32).isActive = true
                 facebookSignInButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
                 
-                textCredit.topAnchor.constraint(equalTo: btnCGU.bottomAnchor, constant: screenHeight/16).isActive = true
+                textCredit.topAnchor.constraint(equalTo: btnCGU.bottomAnchor, constant: screenHeight/18).isActive = true
                 textCredit.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
                 textCredit.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
             }
@@ -382,8 +384,8 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate, LoginButtonDe
         
         logoImage.topAnchor.constraint(equalTo: nameLogo.bottomAnchor, constant: 10).isActive = true
         logoImage.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
-        logoImage.widthAnchor.constraint(equalToConstant: screenHeight/5.2).isActive = true
-        logoImage.heightAnchor.constraint(equalToConstant: screenHeight/5.2).isActive = true
+        logoImage.widthAnchor.constraint(equalToConstant: screenHeight/5).isActive = true
+        logoImage.heightAnchor.constraint(equalToConstant: screenHeight/5).isActive = true
         
         textPourCGU.topAnchor.constraint(equalTo: anonymousSignInButton.bottomAnchor, constant: screenHeight/20).isActive = true
         textPourCGU.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
@@ -396,7 +398,7 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate, LoginButtonDe
     }
     
     @objc func openLinkCGU(sender: UIButton) {
-        let webVC = SwiftModalWebVC(urlString: "https://courses.ex-machina.ma", theme: .lightBlue, dismissButtonStyle: .cross)
+        let webVC = SwiftModalWebVC(urlString: "https://courses.ex-machina.ma/data/cgu.pdf", theme: .dark, dismissButtonStyle: .cross)
         self.present(webVC, animated: true, completion: nil)
         print("CGU PRESSED !")
     }
