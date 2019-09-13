@@ -537,7 +537,7 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
                 user.semestre.sid = dictionary["semestre"] as? String ?? ""
                 user.faculte.facId = dictionary["faculte"] as? String ?? ""
                 user.ajoutFaculte = dictionary["ajoutFiliere"] as? Bool ?? true
-                user.new = dictionary["new"] as? Bool ?? false
+                user.new = dictionary["newUser"] as? Bool ?? false
                 self.user = user
                 self.getFiliere()
                 self.getSemestre()
@@ -580,7 +580,7 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
                     
                     configuration.continueButtonAction = {
                         let ref = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid)
-                        ref.updateChildValues(["new": false])
+                        ref.updateChildValues(["newUser": false])
                         self.dismiss(animated: true)
                     }
                     

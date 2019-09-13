@@ -141,7 +141,7 @@ class MesCoursViewController: UIViewController {
                 user.semestre.sid = dictionary["semestre"] as? String ?? ""
                 user.faculte.facId = dictionary["faculte"] as? String ?? ""
                 user.ajoutFaculte = dictionary["ajoutFiliere"] as? Bool ?? true
-                user.new = dictionary["new"] as? Bool ?? false
+                user.new = dictionary["newUser"] as? Bool ?? false
                 self.user = user
                 self.getFiliere()
             }

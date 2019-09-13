@@ -459,7 +459,7 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate, LoginButtonDe
                                                                   "faculte": "Sélectionner la faculté",
                                                                   "filiere": "Sélectionner la filière",
                                                                   "semestre": "Sélectionner le semestre",
-                                                                  "new": true,
+                                                                  "newUser": true,
                                                                   "ajoutFiliere": false])
             }
         }, withCancel: nil)

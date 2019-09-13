@@ -236,7 +236,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate, LoginB
         provider = Auth.auth().currentUser?.providerData[0].providerID ?? "provider"
         let dateToday = DateFormatter()
         dateToday.locale = Locale(identifier: "fr_FR")
-        dateToday.setLocalizedDateFormatFromTemplate("MM yyyy")
+        dateToday.dateStyle = .long
+        dateToday.setLocalizedDateFormatFromTemplate("d MMMM yyyy")
         dateDeCreation = dateToday.string(from: Date())
         let ref = Database.database().reference()
         
@@ -246,7 +247,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate, LoginB
                 ref.child("users").child(self.uid).setValue(["faculte": "Sélectionner la faculté",
                                                              "filiere": "Sélectionner la filière",
                                                              "semestre": "Sélectionner le semestre",
-                                                             "new": true,
+                                                             "newUser": true,
                                                              "uid": self.uid,
                                                              "name": self.name,
                                                              "email": self.email,
