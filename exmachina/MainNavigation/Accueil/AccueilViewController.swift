@@ -241,21 +241,21 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
         cours.translatesAutoresizingMaskIntoConstraints = false
         cours.titleLabel?.numberOfLines = 0
         cours.addTarget(self, action: #selector(buttonToTransport(_:)), for: .touchUpInside)
-        let str = NSMutableAttributedString(string: "Transport\nLes diffèrents circuits")
+        let str = NSMutableAttributedString(string: "Transport\nCircuits et navette")
         
         switch UIScreen.main.nativeBounds.height {
         case 1136:
             str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir-Heavy", size: 16)!, range: NSMakeRange(0, 9))
-            str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir", size: 12)!, range: NSMakeRange(10, 23))
+            str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir", size: 12)!, range: NSMakeRange(10, 19))
             str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(0, 9))
-            str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(10, 23))
+            str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(10, 19))
             str.setLineSpacing(8)
             cours.contentEdgeInsets = UIEdgeInsets(top: 0, left: -15, bottom: 0, right: 20)
         default:
             str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir-Heavy", size: 20)!, range: NSMakeRange(0, 9))
-            str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir", size: 14)!, range: NSMakeRange(10, 23))
+            str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir", size: 14)!, range: NSMakeRange(10, 19))
             str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(0, 9))
-            str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(10, 23))
+            str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(10, 19))
             str.setLineSpacing(8)
             cours.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 20)
         }
@@ -665,37 +665,8 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
     
     @objc func buttonToTransport(_ sender: BtnPleinLarge) {
         
-        self.activityIndicatorView.startAnimating()
-        
-        let ref = Database.database().reference().child("data").child("transport")
-        ref.observe(DataEventType.value, with: { (snapshot) in
-            
-            if let dictionary = snapshot.value as? [String: AnyObject] {
-                
-                guard let url = URL(string: dictionary["lien"] as? String ?? "") else { return }
-                
-                let pdfView = PDFView(frame: self.view.frame)
-                pdfView.backgroundColor = .lightGray
-                pdfView.displayMode = .singlePageContinuous
-                pdfView.autoScales = true
-                pdfView.displayDirection = .vertical
-                
-                self.run(after: 0.5) {
-                    DispatchQueue.main.async {
-                        let pdfDocument = PDFDocument(url: url)
-                        pdfView.document = pdfDocument
-                        let detailVC = PdfViewerViewController()
-                        detailVC.pdfView = pdfView
-                        detailVC.fileName = "Transport"
-                        self.navigationController?.pushViewController(detailVC, animated: true)
-                        self.activityIndicatorView.stopAnimating()
-                        
-                    }
-                }
-            }
-        }, withCancel: nil)
-        
-        
+        let controller = TransportViewController()
+        self.navigationController?.pushViewController(controller, animated: true)
         
     }
     
