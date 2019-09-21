@@ -106,7 +106,12 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate, LoginButtonDe
         style.lineSpacing = 10
         let atributes = [NSAttributedString.Key.paragraphStyle: style ]
         textView.attributedText = NSAttributedString(string: textView.text, attributes: atributes)
-        textView.textColor = UIColor(red:0.0, green:0.0, blue:0.0, alpha:0.8)
+        if #available(iOS 13.0, *) {
+            textView.textColor = .label
+        } else {
+            // Fallback on earlier versions
+            textView.textColor = UIColor(red:0.0, green:0.0, blue:0.0, alpha:0.8)
+        }
         let screenSize = UIScreen.main.bounds
         let screenHeight = screenSize.height
         let screenWidth = screenSize.width
@@ -136,7 +141,12 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate, LoginButtonDe
         let atributes = [NSAttributedString.Key.paragraphStyle: style ]
         textView.attributedText = NSAttributedString(string: textView.text, attributes: atributes)
         
-        textView.textColor = UIColor(red:0.0, green:0.0, blue:0.0, alpha:0.6)
+        if #available(iOS 13.0, *) {
+            textView.textColor = .secondaryLabel
+        } else {
+            // Fallback on earlier versions
+            textView.textColor = UIColor(red:0.0, green:0.0, blue:0.0, alpha:0.6)
+        }
         
         let screenSize = UIScreen.main.bounds
         let screenHeight = screenSize.height
@@ -161,32 +171,54 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate, LoginButtonDe
         btnCGULink.translatesAutoresizingMaskIntoConstraints = false
         btnCGULink.contentHorizontalAlignment = .center
         
-        var attrs = [
+        if #available(iOS 13.0, *) {
+            var attrs = [
             NSAttributedString.Key.font : UIFont(name: "Avenir", size: screenHeight/60) as Any,
-            NSAttributedString.Key.foregroundColor : UIColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 0.6),
+            NSAttributedString.Key.foregroundColor : UIColor.systemBlue,
             NSAttributedString.Key.underlineStyle : 1] as [NSAttributedString.Key : Any]
+            var attributedString = NSMutableAttributedString(string:"")
+            
+            let buttonTitleStr = NSMutableAttributedString(string:"Conditions générales d'utilisation et la politique de confidentialité", attributes:attrs)
+            attributedString.append(buttonTitleStr)
+            btnCGULink.titleLabel?.lineBreakMode = .byWordWrapping
+            btnCGULink.titleLabel?.textAlignment = .center
+            btnCGULink.setAttributedTitle(attributedString, for: .normal)
+            btnCGULink.addTarget(self, action: #selector(openLinkCGU(sender:)), for: .touchUpInside)
+        } else {
+            // Fallback on earlier versions
+            var attrs = [
+            NSAttributedString.Key.font : UIFont(name: "Avenir", size: screenHeight/60) as Any,
+            NSAttributedString.Key.foregroundColor : UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1),
+            NSAttributedString.Key.underlineStyle : 1] as [NSAttributedString.Key : Any]
+            var attributedString = NSMutableAttributedString(string:"")
+            
+            let buttonTitleStr = NSMutableAttributedString(string:"Conditions générales d'utilisation et la politique de confidentialité", attributes:attrs)
+            attributedString.append(buttonTitleStr)
+            btnCGULink.titleLabel?.lineBreakMode = .byWordWrapping
+            btnCGULink.titleLabel?.textAlignment = .center
+            btnCGULink.setAttributedTitle(attributedString, for: .normal)
+            btnCGULink.addTarget(self, action: #selector(openLinkCGU(sender:)), for: .touchUpInside)
+        }
         
-        var attributedString = NSMutableAttributedString(string:"")
         
-        let buttonTitleStr = NSMutableAttributedString(string:"Conditions générales d'utilisation et la politique de confidentialité", attributes:attrs)
-        attributedString.append(buttonTitleStr)
-        btnCGULink.titleLabel?.lineBreakMode = .byWordWrapping
-        btnCGULink.titleLabel?.textAlignment = .center
-        btnCGULink.setAttributedTitle(attributedString, for: .normal)
-        btnCGULink.addTarget(self, action: #selector(openLinkCGU(sender:)), for: .touchUpInside)
         return btnCGULink
     }()
     
     let textCredit: UITextView = {
         let textView = UITextView()
         let year = Calendar.current.component(.year, from: Date())
-        textView.text = "© Ex-Machina . \(year)"
+        textView.text = "© Ex-Machina. \(year)"
         textView.translatesAutoresizingMaskIntoConstraints = false
         let style = NSMutableParagraphStyle()
         style.lineSpacing = 10
         let atributes = [NSAttributedString.Key.paragraphStyle: style ]
         textView.attributedText = NSAttributedString(string: textView.text, attributes: atributes)
-        textView.textColor = UIColor(red:0.0, green:0.0, blue:0.0, alpha:0.6)
+        if #available(iOS 13.0, *) {
+            textView.textColor = .secondaryLabel
+        } else {
+            // Fallback on earlier versions
+            textView.textColor = UIColor(red:0.0, green:0.0, blue:0.0, alpha:0.6)
+        }
         let screenSize = UIScreen.main.bounds
         let screenHeight = screenSize.height
         let screenWidth = screenSize.width
@@ -270,8 +302,18 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate, LoginButtonDe
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        self.navigationController?.navigationBar.barTintColor = UIColor.white
-        view.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1)
+        if #available(iOS 13.0, *) {
+            self.navigationController?.navigationBar.barTintColor = .systemGray
+        } else {
+            // Fallback on earlier versions
+            self.navigationController?.navigationBar.barTintColor = UIColor.white
+        }
+        if #available(iOS 13.0, *) {
+            view.backgroundColor = UIColor.systemGray6
+        } else {
+            // Fallback on earlier versions
+            view.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1)
+        }
         self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.isToolbarHidden = true
         self.tabBarController?.tabBar.isHidden = true
@@ -293,7 +335,18 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate, LoginButtonDe
         navigationController?.setNavigationBarHidden(false, animated: animated)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.navigationController?.navigationBar.barTintColor = UIColor.white
-        view.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1)
+        if #available(iOS 13.0, *) {
+            self.navigationController?.navigationBar.barTintColor = .systemGray
+        } else {
+            // Fallback on earlier versions
+            self.navigationController?.navigationBar.barTintColor = UIColor.white
+        }
+        if #available(iOS 13.0, *) {
+            view.backgroundColor = UIColor.systemGray
+        } else {
+            // Fallback on earlier versions
+            view.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1)
+        }
         self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.isToolbarHidden = true
         self.tabBarController?.tabBar.isHidden = true

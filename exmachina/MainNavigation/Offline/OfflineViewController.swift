@@ -123,19 +123,19 @@ class OfflineViewController: UIViewController, UISearchControllerDelegate {
         super.viewDidLoad()
         setupTabBar()
         setupSearchController()
-        setupUI()
+//        setupUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupTabBar()
-        setupUI()
+//        setupUI()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setupTabBar()
-        setupUI()
+//        setupUI()
         
         if self.files.count == 0 {
             setupNoOffline()
@@ -158,15 +158,41 @@ class OfflineViewController: UIViewController, UISearchControllerDelegate {
     }
     
     func setupTabBar() {
-        view.backgroundColor = UIColor.white
-        navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Offline | \(self.files.count)"
+        if #available(iOS 13.0, *) {
+            view.backgroundColor = UIColor.systemBackground
+        } else {
+            // Fallback on earlier versions
+            view.backgroundColor = UIColor.white
+        }
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
         self.navigationController?.navigationBar.isHidden = false
-        self.navigationController?.navigationBar.barTintColor = .lightText
+        if #available(iOS 13.0, *) {
+            self.navigationController?.navigationBar.barTintColor = .systemBackground
+             navigationController?.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.label]
+        } else {
+            // Fallback on earlier versions
+            self.navigationController?.navigationBar.barTintColor = .lightText
+            navigationController?.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.black]
+        }
         self.setNeedsStatusBarAppearanceUpdate()
         self.navigationItem.largeTitleDisplayMode = .automatic
         self.navigationController?.navigationBar.barStyle = .default
         self.tabBarController?.tabBar.isHidden = false
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        if #available(iOS 13.0, *) {
+            navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor : UIColor.label]
+        } else {
+            navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor : UIColor.black]
+        }
+        if #available(iOS 13.0, *) {
+            navigationController?.navigationBar.backgroundColor = .systemBackground
+        } else {
+            // Fallback on earlier versions
+            navigationController?.navigationBar.backgroundColor = .white
+        }
         self.navigationItem.searchController = searchBar
     }
     
@@ -208,6 +234,12 @@ class OfflineViewController: UIViewController, UISearchControllerDelegate {
     fileprivate func setupCollection() {
         
         self.view.addSubview(newCollection)
+        if #available(iOS 13.0, *) {
+            newCollection.backgroundColor = UIColor.systemBackground
+        } else {
+            // Fallback on earlier versions
+            newCollection.backgroundColor = UIColor.white
+        }
         
         newCollection.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         newCollection.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
@@ -224,7 +256,6 @@ class OfflineViewController: UIViewController, UISearchControllerDelegate {
     }
     
     fileprivate func setupCollectionView() {
-        newCollection.backgroundColor = .white
         newCollection.register(OfflineFileCollectionCell.self, forCellWithReuseIdentifier: cellId)
         newCollection.alwaysBounceVertical = true
         newCollection.delegate = self

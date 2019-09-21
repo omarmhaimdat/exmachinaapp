@@ -30,7 +30,12 @@ class OfflineFileCollectionCell: UICollectionViewCell {
     let listNameLabel: UILabel = {
         let label = UILabel()
         label.text = "....."
-        label.textColor = UIColor.black
+        if #available(iOS 13.0, *) {
+            label.textColor = UIColor.label
+        } else {
+            // Fallback on earlier versions
+            label.textColor = UIColor.black
+        }
         label.font = UIFont(name: "Avenir-Heavy", size: 16)
         label.textAlignment = .left
         label.numberOfLines = 1
@@ -41,7 +46,12 @@ class OfflineFileCollectionCell: UICollectionViewCell {
     let listDescriptionLabel: UILabel = {
         let label = UILabel()
         label.text = "........................."
-        label.textColor = UIColor.gray
+        if #available(iOS 13.0, *) {
+            label.textColor = UIColor.systemGray2
+        } else {
+            // Fallback on earlier versions
+            label.textColor = UIColor.gray
+        }
         label.font = UIFont(name: "Avenir", size: 12)
         label.textAlignment = .left
         label.numberOfLines = 1
@@ -99,7 +109,12 @@ class OfflineFileCollectionCell: UICollectionViewCell {
         self.contentView.layer.masksToBounds = true
         self.contentView.layer.borderWidth = 3.0
         self.contentView.layer.borderColor = UIColor(red: 240/255, green: 16/255, blue: 28/255, alpha:1.0).cgColor
-        self.contentView.backgroundColor = .white
+        if #available(iOS 13.0, *) {
+            self.contentView.backgroundColor = .systemBackground
+        } else {
+            // Fallback on earlier versions
+            self.contentView.backgroundColor = .white
+        }
     }
     
 }

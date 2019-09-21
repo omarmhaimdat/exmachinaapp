@@ -32,7 +32,12 @@ class FavorisViewControllerCell: UICollectionViewCell {
     let listNameLabel: UILabel = {
         let label = UILabel()
         label.text = "....."
-        label.textColor = UIColor.black
+        if #available(iOS 13.0, *) {
+            label.textColor = UIColor.label
+        } else {
+            // Fallback on earlier versions
+            label.textColor = UIColor.black
+        }
         label.font = UIFont.boldSystemFont(ofSize: 16)
         label.textAlignment = .left
         label.numberOfLines = 1
@@ -43,7 +48,12 @@ class FavorisViewControllerCell: UICollectionViewCell {
     let listDescriptionLabel: UILabel = {
         let label = UILabel()
         label.text = "........................."
-        label.textColor = UIColor.gray
+        if #available(iOS 13.0, *) {
+            label.textColor = UIColor.systemGray2
+        } else {
+            // Fallback on earlier versions
+            label.textColor = UIColor.gray
+        }
         label.font = UIFont.boldSystemFont(ofSize: 12)
         label.textAlignment = .left
         label.numberOfLines = 1
@@ -98,7 +108,12 @@ class FavorisViewControllerCell: UICollectionViewCell {
         self.contentView.layer.masksToBounds = true
         self.contentView.layer.borderWidth = 3.0
         self.contentView.layer.borderColor = UIColor(red:1.00, green:0.73, blue:0.00, alpha:1.0).cgColor
-        self.contentView.backgroundColor = .white
+        if #available(iOS 13.0, *) {
+            self.contentView.backgroundColor = .systemBackground
+        } else {
+            // Fallback on earlier versions
+            self.contentView.backgroundColor = .white
+        }
     }
     
 }

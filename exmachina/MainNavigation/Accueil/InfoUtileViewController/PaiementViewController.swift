@@ -19,7 +19,12 @@ class PaiementViewController: UIViewController, UIScrollViewDelegate {
     let scrollView: UIScrollView = {
         let view = UIScrollView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor.white
+        if #available(iOS 13.0, *) {
+            view.backgroundColor = UIColor.systemBackground
+        } else {
+            // Fallback on earlier versions
+            view.backgroundColor = UIColor.white
+        }
         
         return view
     }()

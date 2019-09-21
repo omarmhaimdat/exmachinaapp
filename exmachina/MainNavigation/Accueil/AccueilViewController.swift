@@ -12,7 +12,6 @@ import FirebaseAuth
 import NVActivityIndicatorView
 import LBTAComponents
 import LocalAuthentication
-import AppleWelcomeScreen
 import Reachability
 import SwiftEntryKit
 import PDFKit
@@ -54,7 +53,7 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
         iv.backgroundColor = #colorLiteral(red: 0.8380756974, green: 0.7628322244, blue: 0, alpha: 1)
         iv.contentMode = .scaleAspectFill
         iv.layer.borderWidth = 0
-        iv.layer.borderColor = UIColor.black.cgColor
+        iv.layer.borderColor = UIColor.gray.cgColor
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.layer.cornerRadius = profileImageViewHeight / 2
         var photoProfile: String = Auth.auth().currentUser?.photoURL?.absoluteString ?? "Profile"
@@ -105,10 +104,11 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
         cours.setAttributedTitle(str, for: .normal)
         let icon = UIImage(named: "mesCours")?.resized(newSize: CGSize(width: 40, height: 40))
         cours.addRightImage(image: icon!, offset: 30)
-        cours.backgroundColor = #colorLiteral(red: 1, green: 0.5825584531, blue: 0, alpha: 1)
-        cours.layer.borderColor = #colorLiteral(red: 1, green: 0.5825584531, blue: 0, alpha: 1).cgColor
+//        cours.backgroundColor = #colorLiteral(red: 1, green: 0.5825584531, blue: 0, alpha: 1)
+        cours.backgroundColor = .systemOrange
+        cours.layer.borderColor = UIColor.systemOrange.cgColor
         cours.layer.shadowOpacity = 0.3
-        cours.layer.shadowColor = #colorLiteral(red: 1, green: 0.5825584531, blue: 0, alpha: 1)
+        cours.layer.shadowColor = UIColor.systemOrange.cgColor
         cours.layer.shadowOffset = CGSize(width: 1, height: 5)
         cours.layer.cornerRadius = 10
         cours.layer.shadowRadius = 8
@@ -177,10 +177,11 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
         cours.setAttributedTitle(str, for: .normal)
         let icon = UIImage(named: "scolarite")?.resized(newSize: CGSize(width: 40, height: 40))
         cours.addRightImage(image: icon!, offset: 30)
-        cours.backgroundColor = #colorLiteral(red: 0.1521916687, green: 0.6835762858, blue: 0.376893878, alpha: 1)
-        cours.layer.borderColor = #colorLiteral(red: 0.1521916687, green: 0.6835762858, blue: 0.376893878, alpha: 1).cgColor
+//        cours.backgroundColor = #colorLiteral(red: 0.1521916687, green: 0.6835762858, blue: 0.376893878, alpha: 1)
+        cours.backgroundColor = .systemGreen
+        cours.layer.borderColor = UIColor.systemGreen.cgColor
         cours.layer.shadowOpacity = 0.3
-        cours.layer.shadowColor = #colorLiteral(red: 0.1521916687, green: 0.6835762858, blue: 0.376893878, alpha: 1)
+        cours.layer.shadowColor = UIColor.systemGreen.cgColor
         cours.layer.shadowOffset = CGSize(width: 1, height: 5)
         cours.layer.cornerRadius = 10
         cours.layer.shadowRadius = 8
@@ -220,10 +221,11 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
         cours.setAttributedTitle(str, for: .normal)
         let icon = UIImage(named: "info")?.resized(newSize: CGSize(width: 40, height: 40))
         cours.addRightImage(image: icon!, offset: 30)
-        cours.backgroundColor = #colorLiteral(red: 1, green: 0.231372549, blue: 0.1882352941, alpha: 1)
-        cours.layer.borderColor = #colorLiteral(red: 0.9990773797, green: 0.2295021415, blue: 0.1888831556, alpha: 1).cgColor
+//        cours.backgroundColor = #colorLiteral(red: 1, green: 0.231372549, blue: 0.1882352941, alpha: 1)
+        cours.backgroundColor = .systemRed
+        cours.layer.borderColor = UIColor.systemRed.cgColor
         cours.layer.shadowOpacity = 0.3
-        cours.layer.shadowColor = #colorLiteral(red: 1, green: 0.231372549, blue: 0.1882352941, alpha: 1)
+        cours.layer.shadowColor = UIColor.systemRed.cgColor
         cours.layer.shadowOffset = CGSize(width: 1, height: 5)
         cours.layer.cornerRadius = 10
         cours.layer.shadowRadius = 8
@@ -263,10 +265,11 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
         cours.setAttributedTitle(str, for: .normal)
         let icon = UIImage(named: "bus")?.resized(newSize: CGSize(width: 40, height: 40))
         cours.addRightImage(image: icon!, offset: 30)
-        cours.backgroundColor = #colorLiteral(red: 0.3450980392, green: 0.337254902, blue: 0.8392156863, alpha: 1)
-        cours.layer.borderColor = #colorLiteral(red: 0.3460007906, green: 0.3354875743, blue: 0.8400039077, alpha: 1).cgColor
+//        cours.backgroundColor = #colorLiteral(red: 0.3450980392, green: 0.337254902, blue: 0.8392156863, alpha: 1)
+        cours.backgroundColor = .systemPurple
+        cours.layer.borderColor = UIColor.systemPurple.cgColor
         cours.layer.shadowOpacity = 0.3
-        cours.layer.shadowColor = #colorLiteral(red: 0.3450980392, green: 0.337254902, blue: 0.8392156863, alpha: 1)
+        cours.layer.shadowColor = UIColor.systemPurple.cgColor
         cours.layer.shadowOffset = CGSize(width: 1, height: 5)
         cours.layer.cornerRadius = 10
         cours.layer.shadowRadius = 8
@@ -306,10 +309,11 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
         cours.setAttributedTitle(str, for: .normal)
         let icon = UIImage(named: "biblio")?.resized(newSize: CGSize(width: 40, height: 40))
         cours.addRightImage(image: icon!, offset: 30)
-        cours.backgroundColor = #colorLiteral(red: 0.7098039216, green: 0.2392156863, blue: 0, alpha: 1)
-        cours.layer.borderColor = #colorLiteral(red: 0.7098039216, green: 0.2392156863, blue: 0, alpha: 1).cgColor
+//        cours.backgroundColor = #colorLiteral(red: 0.7098039216, green: 0.2392156863, blue: 0, alpha: 1)
+        cours.backgroundColor = .systemBlue
+        cours.layer.borderColor = UIColor.systemBlue.cgColor
         cours.layer.shadowOpacity = 0.3
-        cours.layer.shadowColor = #colorLiteral(red: 0.7098039216, green: 0.2392156863, blue: 0, alpha: 1)
+        cours.layer.shadowColor = UIColor.systemBlue.cgColor
         cours.layer.shadowOffset = CGSize(width: 1, height: 5)
         cours.layer.cornerRadius = 10
         cours.layer.shadowRadius = 8
@@ -326,7 +330,12 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
     let scrollView: UIScrollView = {
         let view = UIScrollView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor.white
+        if #available(iOS 13.0, *) {
+            view.backgroundColor = UIColor.systemBackground
+        } else {
+            // Fallback on earlier versions
+            view.backgroundColor = UIColor.white
+        }
         
         return view
     }()
@@ -397,18 +406,41 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
     
 
     func setupTabBar() {
-        view.backgroundColor = UIColor.white
-        navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Accueil"
+        if #available(iOS 13.0, *) {
+            view.backgroundColor = UIColor.systemBackground
+        } else {
+            // Fallback on earlier versions
+            view.backgroundColor = UIColor.white
+        }
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
         self.navigationController?.navigationBar.isHidden = false
-        self.navigationController?.navigationBar.barTintColor = .lightText
+        if #available(iOS 13.0, *) {
+            self.navigationController?.navigationBar.barTintColor = .systemBackground
+             navigationController?.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.label]
+        } else {
+            // Fallback on earlier versions
+            self.navigationController?.navigationBar.barTintColor = .lightText
+            navigationController?.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.black]
+        }
         self.setNeedsStatusBarAppearanceUpdate()
         self.navigationItem.largeTitleDisplayMode = .automatic
         self.navigationController?.navigationBar.barStyle = .default
         self.tabBarController?.tabBar.isHidden = false
         navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.backgroundColor = .white
+        navigationController?.navigationBar.isTranslucent = true
+        if #available(iOS 13.0, *) {
+            navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor : UIColor.label]
+        } else {
+            navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor : UIColor.black]
+        }
+        if #available(iOS 13.0, *) {
+            navigationController?.navigationBar.backgroundColor = .systemBackground
+        } else {
+            // Fallback on earlier versions
+            navigationController?.navigationBar.backgroundColor = .white
+        }
     }
     
     private func setupUI() {
@@ -464,7 +496,11 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        if #available(iOS 13, *) {
+            return .darkContent
+        } else {
+            return .default
+        }
     }
     
     func setupLayout() {
@@ -586,6 +622,7 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
                     
                     let vc = AWSViewController()
                     vc.configuration = configuration
+                    vc.modalPresentationStyle = .fullScreen
                     self.present(vc, animated: true)
                     
                 }

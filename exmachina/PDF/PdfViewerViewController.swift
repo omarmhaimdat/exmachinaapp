@@ -29,18 +29,52 @@ class PdfViewerViewController: UIViewController {
     }
     
     func setupTabBar() {
-        view.backgroundColor = UIColor.white
         if let name = fileName {
             navigationItem.title = "\(name)"
         }
+        if #available(iOS 13.0, *) {
+            view.backgroundColor = UIColor.systemBackground
+        } else {
+            // Fallback on earlier versions
+            view.backgroundColor = UIColor.white
+        }
         navigationController?.navigationBar.prefersLargeTitles = true
+        
         self.navigationController?.navigationBar.isHidden = false
-        self.navigationController?.navigationBar.barTintColor = .lightText
+        if #available(iOS 13.0, *) {
+            self.navigationController?.navigationBar.barTintColor = .systemBackground
+             navigationController?.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.label]
+        } else {
+            // Fallback on earlier versions
+            self.navigationController?.navigationBar.barTintColor = .lightText
+            navigationController?.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.black]
+        }
         self.setNeedsStatusBarAppearanceUpdate()
         self.navigationItem.largeTitleDisplayMode = .automatic
         self.navigationController?.navigationBar.barStyle = .default
-        self.tabBarController?.tabBar.isHidden = true
+        self.tabBarController?.tabBar.isHidden = false
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        if #available(iOS 13.0, *) {
+            navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor : UIColor.label]
+        } else {
+            navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor : UIColor.black]
+        }
+        if #available(iOS 13.0, *) {
+            navigationController?.navigationBar.backgroundColor = .systemBackground
+        } else {
+            // Fallback on earlier versions
+            navigationController?.navigationBar.backgroundColor = .white
+        }
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareBarButtonItemClicked(_:)))
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if #available(iOS 13, *) {
+            return .darkContent
+        } else {
+            return .default
+        }
     }
     
     func setupLayout() {
@@ -50,6 +84,12 @@ class PdfViewerViewController: UIViewController {
         pdfView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         pdfView.heightAnchor.constraint(equalToConstant: view.frame.height).isActive = true
         pdfView.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
+        if #available(iOS 13.0, *) {
+            pdfView.backgroundColor = .systemBackground
+        } else {
+            // Fallback on earlier versions
+            pdfView.backgroundColor = .white
+        }
         
     }
     

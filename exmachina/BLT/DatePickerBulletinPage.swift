@@ -23,6 +23,13 @@ class DatePickerBLTNItem: BLTNPageItem {
     
     override func makeViewsUnderDescription(with interfaceBuilder: BLTNInterfaceBuilder) -> [UIView]? {
         datePicker.datePickerMode = .date
+        if #available(iOS 13.0, *) {
+            datePicker.tintColor = .systemYellow
+//            datePicker.backgroundColor = UIColor(r: 0, g: 0, b: 0, a: 0.3)
+        } else {
+            // Fallback on earlier versions
+            datePicker.tintColor = #colorLiteral(red: 0.8352941176, green: 0.7568627451, blue: 0, alpha: 1)
+        }
         return [datePicker]
     }
     

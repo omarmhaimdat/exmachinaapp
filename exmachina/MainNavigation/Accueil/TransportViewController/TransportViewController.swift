@@ -18,7 +18,12 @@ class TransportViewController: UIViewController {
     let scrollView: UIScrollView = {
         let view = UIScrollView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor.white
+        if #available(iOS 13.0, *) {
+            view.backgroundColor = UIColor.systemBackground
+        } else {
+            // Fallback on earlier versions
+            view.backgroundColor = UIColor.white
+        }
         
         return view
     }()
@@ -43,10 +48,10 @@ class TransportViewController: UIViewController {
         str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(9, 21))
         str.setLineSpacing(8)
         cours.setAttributedTitle(str, for: .normal)
-        cours.backgroundColor = #colorLiteral(red: 0.462745098, green: 0.4549019608, blue: 0.8666666667, alpha: 1)
-        cours.layer.borderColor = #colorLiteral(red: 0.462745098, green: 0.4549019608, blue: 0.8666666667, alpha: 1).cgColor
+        cours.backgroundColor = #colorLiteral(red: 0.768627451, green: 0.4117647059, blue: 0.9529411765, alpha: 1)
+        cours.layer.borderColor = #colorLiteral(red: 0.768627451, green: 0.4117647059, blue: 0.9529411765, alpha: 1).cgColor
         cours.layer.shadowOpacity = 0.3
-        cours.layer.shadowColor = #colorLiteral(red: 0.462745098, green: 0.4549019608, blue: 0.8666666667, alpha: 1).cgColor
+        cours.layer.shadowColor = #colorLiteral(red: 0.768627451, green: 0.4117647059, blue: 0.9529411765, alpha: 1).cgColor
         cours.layer.shadowOffset = CGSize(width: 1, height: 5)
         cours.layer.cornerRadius = 10
         cours.layer.shadowRadius = 8
@@ -72,10 +77,10 @@ class TransportViewController: UIViewController {
         str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(8, 21))
         str.setLineSpacing(8)
         cours.setAttributedTitle(str, for: .normal)
-        cours.backgroundColor = #colorLiteral(red: 0.5803921569, green: 0.5764705882, blue: 0.8941176471, alpha: 1)
-        cours.layer.borderColor = #colorLiteral(red: 0.5803921569, green: 0.5764705882, blue: 0.8941176471, alpha: 1).cgColor
+        cours.backgroundColor = #colorLiteral(red: 0.8156862745, green: 0.5294117647, blue: 0.9607843137, alpha: 1)
+        cours.layer.borderColor = #colorLiteral(red: 0.8156862745, green: 0.5294117647, blue: 0.9607843137, alpha: 1).cgColor
         cours.layer.shadowOpacity = 0.3
-        cours.layer.shadowColor = #colorLiteral(red: 0.5803921569, green: 0.5764705882, blue: 0.8941176471, alpha: 1).cgColor
+        cours.layer.shadowColor = #colorLiteral(red: 0.8156862745, green: 0.5294117647, blue: 0.9607843137, alpha: 1).cgColor
         cours.layer.shadowOffset = CGSize(width: 1, height: 5)
         cours.layer.cornerRadius = 10
         cours.layer.shadowRadius = 8
@@ -101,15 +106,41 @@ class TransportViewController: UIViewController {
     }
     
     func setupTabBar() {
-        view.backgroundColor = UIColor.white
-        navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.title = "Transport"
+        if #available(iOS 13.0, *) {
+            view.backgroundColor = UIColor.systemBackground
+        } else {
+            // Fallback on earlier versions
+            view.backgroundColor = UIColor.white
+        }
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
         self.navigationController?.navigationBar.isHidden = false
-        self.navigationController?.navigationBar.barTintColor = .lightText
+        if #available(iOS 13.0, *) {
+            self.navigationController?.navigationBar.barTintColor = .systemBackground
+             navigationController?.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.label]
+        } else {
+            // Fallback on earlier versions
+            self.navigationController?.navigationBar.barTintColor = .lightText
+            navigationController?.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.black]
+        }
         self.setNeedsStatusBarAppearanceUpdate()
         self.navigationItem.largeTitleDisplayMode = .automatic
         self.navigationController?.navigationBar.barStyle = .default
         self.tabBarController?.tabBar.isHidden = false
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        if #available(iOS 13.0, *) {
+            navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor : UIColor.label]
+        } else {
+            navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor : UIColor.black]
+        }
+        if #available(iOS 13.0, *) {
+            navigationController?.navigationBar.backgroundColor = .systemBackground
+        } else {
+            // Fallback on earlier versions
+            navigationController?.navigationBar.backgroundColor = .white
+        }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

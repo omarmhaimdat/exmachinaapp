@@ -24,7 +24,14 @@ class NumberPickerBLTNItem: BLTNPageItem {
      */
     
     override func makeViewsUnderDescription(with interfaceBuilder: BLTNInterfaceBuilder) -> [UIView]? {
-        numberPicker.tintColor = #colorLiteral(red: 0.8352941176, green: 0.7568627451, blue: 0, alpha: 1)
+        
+        if #available(iOS 13.0, *) {
+            numberPicker.tintColor = .systemYellow
+//            numberPicker.backgroundColor = UIColor(r: 0, g: 0, b: 0, a: 0.3)
+        } else {
+            // Fallback on earlier versions
+            numberPicker.tintColor = #colorLiteral(red: 0.8352941176, green: 0.7568627451, blue: 0, alpha: 1)
+        }
         numberPicker.dataSource = self
         numberPicker.delegate = self
         return [numberPicker]

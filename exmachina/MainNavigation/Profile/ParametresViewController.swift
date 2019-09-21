@@ -22,7 +22,12 @@ class ParametresViewController: UIViewController {
     let scrollView: UIScrollView = {
         let view = UIScrollView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor.white
+        if #available(iOS 13.0, *) {
+            view.backgroundColor = UIColor.systemBackground
+        } else {
+            // Fallback on earlier versions
+            view.backgroundColor = UIColor.white
+        }
         
         return view
     }()
@@ -46,15 +51,35 @@ class ParametresViewController: UIViewController {
         case 1136:
             str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir", size: 12)!, range: NSMakeRange(0, 36))
             str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir", size: 12)!, range: NSMakeRange(37, 28))
-            str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.black, range: NSMakeRange(0, 36))
-            str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.black, range: NSMakeRange(37, 28))
+            if #available(iOS 13.0, *) {
+                str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.label, range: NSMakeRange(0, 36))
+            } else {
+                // Fallback on earlier versions
+                str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.black, range: NSMakeRange(0, 36))
+            }
+            if #available(iOS 13.0, *) {
+                str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.label, range: NSMakeRange(37, 28))
+            } else {
+                // Fallback on earlier versions
+                str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.black, range: NSMakeRange(37, 28))
+            }
             str.setLineSpacing(8)
             cours.contentEdgeInsets = UIEdgeInsets(top: 0, left: -15, bottom: 0, right: 20)
         default:
             str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir", size: 14)!, range: NSMakeRange(0, 36))
             str.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir", size: 14)!, range: NSMakeRange(37, 28))
-            str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.black, range: NSMakeRange(0, 36))
-            str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.black, range: NSMakeRange(37, 28))
+            if #available(iOS 13.0, *) {
+                str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.label, range: NSMakeRange(0, 36))
+            } else {
+                // Fallback on earlier versions
+                str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.black, range: NSMakeRange(0, 36))
+            }
+            if #available(iOS 13.0, *) {
+                str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.label, range: NSMakeRange(37, 28))
+            } else {
+                // Fallback on earlier versions
+                str.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.black, range: NSMakeRange(37, 28))
+            }
             str.setLineSpacing(8)
             cours.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 16)
             cours.titleEdgeInsets.left = 35
@@ -64,7 +89,12 @@ class ParametresViewController: UIViewController {
         cours.setAttributedTitle(str, for: .normal)
         let icon = UIImage(named: "privacy")?.resized(newSize: CGSize(width: 35, height: 35))
         cours.setImage( icon, for: .normal)
-        cours.backgroundColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)
+        if #available(iOS 13.0, *) {
+            cours.backgroundColor = .tertiarySystemBackground
+        } else {
+            // Fallback on earlier versions
+            cours.backgroundColor = .white
+        }
         cours.layer.borderColor = #colorLiteral(red: 0.8352941176, green: 0.7568627451, blue: 0, alpha: 1).cgColor
         cours.layer.shadowOpacity = 0.3
         cours.layer.shadowColor = #colorLiteral(red: 0.8341107965, green: 0.7586194277, blue: 0, alpha: 1)
@@ -111,7 +141,12 @@ class ParametresViewController: UIViewController {
         btn.addTarget(self, action: #selector(buttonToDelete), for: .touchUpInside)
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.setTitle("Supprimer mon compte", for: .normal)
-        btn.backgroundColor = .white
+        if #available(iOS 13.0, *) {
+            btn.backgroundColor = .tertiarySystemBackground
+        } else {
+            // Fallback on earlier versions
+            btn.backgroundColor = .white
+        }
         btn.layer.borderColor = #colorLiteral(red: 0.7803921569, green: 0.1176470588, blue: 0.1137254902, alpha: 1)
         btn.layer.shadowOpacity = 0.3
         btn.layer.shadowColor = #colorLiteral(red: 0.7803921569, green: 0.1176470588, blue: 0.1137254902, alpha: 1)
@@ -121,7 +156,12 @@ class ParametresViewController: UIViewController {
         btn.layer.masksToBounds = true
         btn.clipsToBounds = false
         btn.contentHorizontalAlignment = .left
-        btn.setTitleColor(.black, for: .normal)
+        if #available(iOS 13.0, *) {
+            btn.setTitleColor(.label, for: .normal)
+        } else {
+            // Fallback on earlier versions
+            btn.setTitleColor(.black, for: .normal)
+        }
         let icon = UIImage(named: "delete")?.resized(newSize: CGSize(width: 25, height: 25))
         btn.setImage( icon, for: .normal)
         btn.imageEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 10)
@@ -143,14 +183,41 @@ class ParametresViewController: UIViewController {
     }
     
     func setupTabBar() {
-        view.backgroundColor = UIColor.white
-        navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Paramètres"
+        if #available(iOS 13.0, *) {
+            view.backgroundColor = UIColor.systemBackground
+        } else {
+            // Fallback on earlier versions
+            view.backgroundColor = UIColor.white
+        }
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
         self.navigationController?.navigationBar.isHidden = false
-        self.navigationController?.navigationBar.barTintColor = .lightText
+        if #available(iOS 13.0, *) {
+            self.navigationController?.navigationBar.barTintColor = .systemBackground
+             navigationController?.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.label]
+        } else {
+            // Fallback on earlier versions
+            self.navigationController?.navigationBar.barTintColor = .lightText
+            navigationController?.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.black]
+        }
         self.setNeedsStatusBarAppearanceUpdate()
+        self.navigationItem.largeTitleDisplayMode = .automatic
         self.navigationController?.navigationBar.barStyle = .default
         self.tabBarController?.tabBar.isHidden = false
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        if #available(iOS 13.0, *) {
+            navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor : UIColor.label]
+        } else {
+            navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor : UIColor.black]
+        }
+        if #available(iOS 13.0, *) {
+            navigationController?.navigationBar.backgroundColor = .systemBackground
+        } else {
+            // Fallback on earlier versions
+            navigationController?.navigationBar.backgroundColor = .white
+        }
     }
     
     func setupScrollView() {

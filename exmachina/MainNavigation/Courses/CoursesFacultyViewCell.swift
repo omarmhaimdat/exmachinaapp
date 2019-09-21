@@ -69,6 +69,7 @@ class CoursesFacultyViewCell: UICollectionViewCell {
         listDescriptionLabel.anchor(top: listNameLabel.bottomAnchor, left: safeLeftAnchor, bottom: nil, right: safeRightAnchor, paddingTop: 20, paddingLeft: 40, paddingBottom: 0, paddingRight: 30)
         editButton.anchor(top: safeTopAnchor, left: nil, bottom: nil, right: safeRightAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 36, height: 36)
         
+        
     }
     
     // MARK: Methods

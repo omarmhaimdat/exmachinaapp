@@ -49,14 +49,41 @@ class ChoisirFilieresViewController: UIViewController {
     }
     
     func setupTabBar() {
-        view.backgroundColor = UIColor.white
-        navigationController?.navigationBar.prefersLargeTitles = false
         navigationItem.title = "Choisir la filière"
+        if #available(iOS 13.0, *) {
+            view.backgroundColor = UIColor.systemBackground
+        } else {
+            // Fallback on earlier versions
+            view.backgroundColor = UIColor.white
+        }
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
         self.navigationController?.navigationBar.isHidden = false
-        self.navigationController?.navigationBar.barTintColor = .lightText
+        if #available(iOS 13.0, *) {
+            self.navigationController?.navigationBar.barTintColor = .systemBackground
+             navigationController?.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.label]
+        } else {
+            // Fallback on earlier versions
+            self.navigationController?.navigationBar.barTintColor = .lightText
+            navigationController?.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.black]
+        }
         self.setNeedsStatusBarAppearanceUpdate()
+        self.navigationItem.largeTitleDisplayMode = .automatic
         self.navigationController?.navigationBar.barStyle = .default
         self.tabBarController?.tabBar.isHidden = false
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        if #available(iOS 13.0, *) {
+            navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor : UIColor.label]
+        } else {
+            navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor : UIColor.black]
+        }
+        if #available(iOS 13.0, *) {
+            navigationController?.navigationBar.backgroundColor = .systemBackground
+        } else {
+            // Fallback on earlier versions
+            navigationController?.navigationBar.backgroundColor = .white
+        }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -79,6 +106,12 @@ class ChoisirFilieresViewController: UIViewController {
     fileprivate func setupCollection() {
         
         self.view.addSubview(newCollection)
+        if #available(iOS 13.0, *) {
+            newCollection.backgroundColor = UIColor.systemBackground
+        } else {
+            // Fallback on earlier versions
+            newCollection.backgroundColor = UIColor.white
+        }
         
         newCollection.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         newCollection.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
@@ -90,7 +123,6 @@ class ChoisirFilieresViewController: UIViewController {
     }
     
     fileprivate func setupCollectionView() {
-        newCollection.backgroundColor = .white
         newCollection.register(CoursesFacultyViewCell.self, forCellWithReuseIdentifier: cellId)
         newCollection.alwaysBounceVertical = true
         newCollection.delegate = self

@@ -22,14 +22,26 @@ class FcgScolariteViewController: UIViewController, MFMailComposeViewControllerD
     let scrollView: UIScrollView = {
         let view = UIScrollView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor.white
+        if #available(iOS 13.0, *) {
+            view.backgroundColor = UIColor.systemBackground
+        } else {
+            // Fallback on earlier versions
+            view.backgroundColor = UIColor.white
+        }
         
         return view
     }()
     
     lazy var bulletinAttestationDeScolarite: BLTNItemManager = {
         let rootItem: BLTNItem = nomAttestationDeScolarite()
-        return BLTNItemManager(rootItem: rootItem)
+        let manager = BLTNItemManager(rootItem: rootItem)
+        if #available(iOS 13.0, *) {
+            manager.backgroundColor = .systemBackground
+        } else {
+            // Fallback on earlier versions
+            manager.backgroundColor = .white
+        }
+        return manager
     }()
     
     let responsable: BtnPleinLarge = {
@@ -124,6 +136,18 @@ class FcgScolariteViewController: UIViewController, MFMailComposeViewControllerD
         blt.descriptionText = "Veuillez entrer votre nom et prénom"
         blt.actionButtonTitle = "Suivant"
         blt.appearance.actionButtonColor = #colorLiteral(red: 0.8352941176, green: 0.7568627451, blue: 0, alpha: 1)
+        if #available(iOS 13.0, *) {
+            blt.appearance.titleTextColor = .label
+        } else {
+            // Fallback on earlier versions
+             blt.appearance.titleTextColor = #colorLiteral(red: 0.568627451, green: 0.5647058824, blue: 0.5725490196, alpha: 1)
+        }
+        if #available(iOS 13.0, *) {
+            blt.appearance.descriptionTextColor = .secondaryLabel
+        } else {
+            // Fallback on earlier versions
+            blt.appearance.descriptionTextColor = .black
+        }
         let bltItem: BLTNItem = self.cinAttestationDeScolarite()
         blt.next = bltItem
         blt.actionHandler = { (item: BLTNActionItem) in
@@ -143,6 +167,18 @@ class FcgScolariteViewController: UIViewController, MFMailComposeViewControllerD
         blt.descriptionText = "Numéro de carte d'identité"
         blt.actionButtonTitle = "Suivant"
         blt.appearance.actionButtonColor = #colorLiteral(red: 0.8352941176, green: 0.7568627451, blue: 0, alpha: 1)
+        if #available(iOS 13.0, *) {
+            blt.appearance.titleTextColor = .label
+        } else {
+            // Fallback on earlier versions
+             blt.appearance.titleTextColor = #colorLiteral(red: 0.568627451, green: 0.5647058824, blue: 0.5725490196, alpha: 1)
+        }
+        if #available(iOS 13.0, *) {
+            blt.appearance.descriptionTextColor = .secondaryLabel
+        } else {
+            // Fallback on earlier versions
+            blt.appearance.descriptionTextColor = .black
+        }
         let bltItem: BLTNItem = self.dateAttestationDeScolarite()
         blt.next = bltItem
         blt.actionHandler = { (item: BLTNActionItem) in
@@ -168,6 +204,18 @@ class FcgScolariteViewController: UIViewController, MFMailComposeViewControllerD
         blt.descriptionText = "Veuillez saisir la date de naissance"
         blt.actionButtonTitle = "Suivant"
         blt.appearance.actionButtonColor = #colorLiteral(red: 0.8352941176, green: 0.7568627451, blue: 0, alpha: 1)
+        if #available(iOS 13.0, *) {
+            blt.appearance.titleTextColor = .label
+        } else {
+            // Fallback on earlier versions
+             blt.appearance.titleTextColor = #colorLiteral(red: 0.568627451, green: 0.5647058824, blue: 0.5725490196, alpha: 1)
+        }
+        if #available(iOS 13.0, *) {
+            blt.appearance.descriptionTextColor = .secondaryLabel
+        } else {
+            // Fallback on earlier versions
+            blt.appearance.descriptionTextColor = .black
+        }
         let bltItem: BLTNItem = self.numberAttestationDeScolarite()
         blt.next = bltItem
         blt.actionHandler = { (item: BLTNActionItem) in
@@ -191,7 +239,18 @@ class FcgScolariteViewController: UIViewController, MFMailComposeViewControllerD
         blt.descriptionText = "Nombre d'exemplaire"
         blt.actionButtonTitle = "Envoyer"
         blt.appearance.actionButtonColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
-        
+        if #available(iOS 13.0, *) {
+            blt.appearance.titleTextColor = .label
+        } else {
+            // Fallback on earlier versions
+             blt.appearance.titleTextColor = #colorLiteral(red: 0.568627451, green: 0.5647058824, blue: 0.5725490196, alpha: 1)
+        }
+        if #available(iOS 13.0, *) {
+            blt.appearance.descriptionTextColor = .secondaryLabel
+        } else {
+            // Fallback on earlier versions
+            blt.appearance.descriptionTextColor = .black
+        }
         blt.actionHandler = { (item: BLTNActionItem) in
             self.demande.nombreExemplaire = "\(blt.selected)"
             
@@ -287,15 +346,41 @@ class FcgScolariteViewController: UIViewController, MFMailComposeViewControllerD
     }
     
     func setupTabBar() {
-        view.backgroundColor = UIColor.white
-        navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.title = "FCG"
+        if #available(iOS 13.0, *) {
+            view.backgroundColor = UIColor.systemBackground
+        } else {
+            // Fallback on earlier versions
+            view.backgroundColor = UIColor.white
+        }
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
         self.navigationController?.navigationBar.isHidden = false
-        self.navigationController?.navigationBar.barTintColor = .lightText
+        if #available(iOS 13.0, *) {
+            self.navigationController?.navigationBar.barTintColor = .systemBackground
+             navigationController?.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.label]
+        } else {
+            // Fallback on earlier versions
+            self.navigationController?.navigationBar.barTintColor = .lightText
+            navigationController?.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.black]
+        }
         self.setNeedsStatusBarAppearanceUpdate()
         self.navigationItem.largeTitleDisplayMode = .automatic
         self.navigationController?.navigationBar.barStyle = .default
         self.tabBarController?.tabBar.isHidden = false
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        if #available(iOS 13.0, *) {
+            navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor : UIColor.label]
+        } else {
+            navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor : UIColor.black]
+        }
+        if #available(iOS 13.0, *) {
+            navigationController?.navigationBar.backgroundColor = .systemBackground
+        } else {
+            // Fallback on earlier versions
+            navigationController?.navigationBar.backgroundColor = .white
+        }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

@@ -26,7 +26,12 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
     let scrollView: UIScrollView = {
         let view = UIScrollView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor.white
+        if #available(iOS 13.0, *) {
+            view.backgroundColor = UIColor.systemBackground
+        } else {
+            // Fallback on earlier versions
+            view.backgroundColor = UIColor.white
+        }
         
         return view
     }()
@@ -71,7 +76,12 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
         feedback.addTarget(self, action: #selector(buttonToFeedback(sender:)), for: .touchUpInside)
         feedback.translatesAutoresizingMaskIntoConstraints = false
         feedback.setTitle("Feedback", for: .normal)
-        feedback.backgroundColor = .white
+        if #available(iOS 13.0, *) {
+            feedback.backgroundColor = .tertiarySystemBackground
+        } else {
+            // Fallback on earlier versions
+            feedback.backgroundColor = .white
+        }
         feedback.layer.borderColor = UIColor(named: "exmachina")?.cgColor
         feedback.layer.shadowOpacity = 0.3
         feedback.layer.shadowColor = #colorLiteral(red: 0.8341107965, green: 0.7586194277, blue: 0, alpha: 1)
@@ -81,7 +91,12 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
         feedback.layer.masksToBounds = true
         feedback.clipsToBounds = false
         feedback.contentHorizontalAlignment = .left
-        feedback.setTitleColor(.black, for: .normal)
+        if #available(iOS 13.0, *) {
+            feedback.setTitleColor(.label, for: .normal)
+        } else {
+            // Fallback on earlier versions
+            feedback.setTitleColor(.black, for: .normal)
+        }
         let icon = UIImage(named: "feedback")?.resized(newSize: CGSize(width: 25, height: 25))
         feedback.setImage( icon, for: .normal)
         feedback.imageEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 10)
@@ -152,8 +167,18 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
         //        feedback.addTarget(self, action: #selector(buttonToSignOutView(sender:)), for: .touchUpInside)
         profileEdit.translatesAutoresizingMaskIntoConstraints = false
         profileEdit.setTitle("\(Auth.auth().currentUser?.displayName ?? "Anonyme")", for: .normal)
-        profileEdit.backgroundColor = .white
-        profileEdit.layer.borderColor = UIColor.white.cgColor
+        if #available(iOS 13.0, *) {
+            profileEdit.backgroundColor = .tertiarySystemBackground
+        } else {
+            // Fallback on earlier versions
+            profileEdit.backgroundColor = .white
+        }
+        if #available(iOS 13.0, *) {
+            profileEdit.layer.borderColor = UIColor.clear.cgColor
+        } else {
+            // Fallback on earlier versions
+            profileEdit.layer.borderColor = UIColor.white.cgColor
+        }
         profileEdit.layer.shadowOpacity = 0.3
         profileEdit.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1).cgColor
         profileEdit.layer.shadowOffset = CGSize(width: 1, height: 2)
@@ -162,7 +187,12 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
         profileEdit.layer.masksToBounds = true
         profileEdit.clipsToBounds = false
         profileEdit.contentHorizontalAlignment = .left
-        profileEdit.setTitleColor(.black, for: .normal)
+        if #available(iOS 13.0, *) {
+            profileEdit.setTitleColor(.label, for: .normal)
+        } else {
+            // Fallback on earlier versions
+            profileEdit.setTitleColor(.black, for: .normal)
+        }
         let icon = UIImage(named: "profile_edit")?.resized(newSize: CGSize(width: 25, height: 25))
         profileEdit.setImage( icon, for: .normal)
         profileEdit.imageEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 10)
@@ -178,7 +208,12 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
         changerDeFiliere.addTarget(self, action: #selector(buttonToChangerDeFiliere), for: .touchUpInside)
         changerDeFiliere.translatesAutoresizingMaskIntoConstraints = false
         changerDeFiliere.setTitle("Changer de filière", for: .normal)
-        changerDeFiliere.backgroundColor = .white
+        if #available(iOS 13.0, *) {
+            changerDeFiliere.backgroundColor = .tertiarySystemBackground
+        } else {
+            // Fallback on earlier versions
+            changerDeFiliere.backgroundColor = .white
+        }
         changerDeFiliere.layer.borderColor = UIColor(named: "exmachina")?.cgColor
         changerDeFiliere.layer.shadowOpacity = 0.3
         changerDeFiliere.layer.shadowColor = #colorLiteral(red: 0.8341107965, green: 0.7586194277, blue: 0, alpha: 1)
@@ -188,7 +223,12 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
         changerDeFiliere.layer.masksToBounds = true
         changerDeFiliere.clipsToBounds = false
         changerDeFiliere.contentHorizontalAlignment = .left
-        changerDeFiliere.setTitleColor(.black, for: .normal)
+        if #available(iOS 13.0, *) {
+            changerDeFiliere.setTitleColor(.label, for: .normal)
+        } else {
+            // Fallback on earlier versions
+            changerDeFiliere.setTitleColor(.black, for: .normal)
+        }
         let icon = UIImage(named: "edit")?.resized(newSize: CGSize(width: 25, height: 25))
         changerDeFiliere.setImage( icon, for: .normal)
         changerDeFiliere.imageEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 10)
@@ -204,7 +244,12 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
         infos.addTarget(self, action: #selector(buttonToInstagram), for: .touchUpInside)
         infos.translatesAutoresizingMaskIntoConstraints = false
         infos.setTitle("Instagram", for: .normal)
-        infos.backgroundColor = .white
+        if #available(iOS 13.0, *) {
+            infos.backgroundColor = .tertiarySystemBackground
+        } else {
+            // Fallback on earlier versions
+            infos.backgroundColor = .white
+        }
         infos.layer.borderColor = UIColor.black.cgColor
         infos.layer.shadowOpacity = 0.3
         infos.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1).cgColor
@@ -214,7 +259,12 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
         infos.layer.masksToBounds = true
         infos.clipsToBounds = false
         infos.contentHorizontalAlignment = .left
-        infos.setTitleColor(.black, for: .normal)
+        if #available(iOS 13.0, *) {
+            infos.setTitleColor(.label, for: .normal)
+        } else {
+            // Fallback on earlier versions
+            infos.setTitleColor(.black, for: .normal)
+        }
         let icon = UIImage(named: "instagram")?.resized(newSize: CGSize(width: 25, height: 25))
         infos.setImage( icon, for: .normal)
         infos.imageEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 10)
@@ -230,7 +280,12 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
         infos.addTarget(self, action: #selector(buttonToFacebook), for: .touchUpInside)
         infos.translatesAutoresizingMaskIntoConstraints = false
         infos.setTitle("Facebook", for: .normal)
-        infos.backgroundColor = .white
+        if #available(iOS 13.0, *) {
+            infos.backgroundColor = .tertiarySystemBackground
+        } else {
+            // Fallback on earlier versions
+            infos.backgroundColor = .white
+        }
         infos.layer.borderColor = UIColor(red: 24/255, green: 119/255, blue: 242/255, alpha:1.0).cgColor
         infos.layer.shadowOpacity = 0.3
         infos.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1).cgColor
@@ -327,17 +382,43 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
     }
     
     func setupTabBar() {
-        view.backgroundColor = UIColor.white
-        navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Profil"
-        self.navigationController?.navigationBar.isHidden = false
-        self.navigationController?.navigationBar.barTintColor = .lightText
-        self.setNeedsStatusBarAppearanceUpdate()
-//        self.navigationItem.largeTitleDisplayMode = .automatic
-        self.navigationController?.navigationBar.barStyle = .default
-        self.tabBarController?.tabBar.isHidden = false
         let addButton: UIBarButtonItem = UIBarButtonItem(title: "Fermer", style: .done, target: self, action: #selector(buttonToDismiss))
         self.navigationItem.rightBarButtonItem = addButton
+        if #available(iOS 13.0, *) {
+            view.backgroundColor = UIColor.systemBackground
+        } else {
+            // Fallback on earlier versions
+            view.backgroundColor = UIColor.white
+        }
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
+        self.navigationController?.navigationBar.isHidden = false
+        if #available(iOS 13.0, *) {
+            self.navigationController?.navigationBar.barTintColor = .systemBackground
+             navigationController?.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.label]
+        } else {
+            // Fallback on earlier versions
+            self.navigationController?.navigationBar.barTintColor = .lightText
+            navigationController?.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.black]
+        }
+        self.setNeedsStatusBarAppearanceUpdate()
+        self.navigationItem.largeTitleDisplayMode = .automatic
+        self.navigationController?.navigationBar.barStyle = .default
+        self.tabBarController?.tabBar.isHidden = false
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        if #available(iOS 13.0, *) {
+            navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor : UIColor.label]
+        } else {
+            navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor : UIColor.black]
+        }
+        if #available(iOS 13.0, *) {
+            navigationController?.navigationBar.backgroundColor = .systemBackground
+        } else {
+            // Fallback on earlier versions
+            navigationController?.navigationBar.backgroundColor = .white
+        }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

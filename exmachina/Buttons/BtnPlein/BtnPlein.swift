@@ -24,7 +24,7 @@ class BtnPlein: Button {
         super.init(frame: frame)
         layer.borderWidth = 6/UIScreen.main.nativeScale
         layer.backgroundColor = UIColor(red:0.24, green:0.51, blue:1.00, alpha:1.0).cgColor
-        setTitleColor(.white, for: .normal)
+        setTitleColor( .white, for: .normal)
         
         layer.borderColor = UIColor(red:0.24, green:0.51, blue:1.00, alpha:1.0).cgColor
         layer.cornerRadius = 5

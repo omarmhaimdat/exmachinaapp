@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import AppleWelcomeScreen
 
 class WelcomeViewController: UIViewController {
     
