@@ -632,21 +632,23 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
     
     @objc func buttonToChangerDeFiliere() {
         
-        let controller = ChoisirFiliereViewController()
-        controller.user = self.user
-        controller.filieres = self.filieres
-        controller.semestres = self.semestres
-        let index2 = self.semestres.firstIndex(where: { (item) -> Bool in
-            item.sid == self.user.semestre.sid
-        })
-
-        controller.index2 = index2
-        let index = self.filieres.firstIndex(where: { (item) -> Bool in
-            item.fid == self.user.filiere.fid
-        })
-        controller.index = index
+        let controller = ChoisirFaculteViewController()
+        let navController = UINavigationController(rootViewController: controller)
+//        controller.user = self.user
+//        controller.filieres = self.filieres
+//        controller.semestres = self.semestres
+//        let index2 = self.semestres.firstIndex(where: { (item) -> Bool in
+//            item.sid == self.user.semestre.sid
+//        })
+//
+//        controller.index2 = index2
+//        let index = self.filieres.firstIndex(where: { (item) -> Bool in
+//            item.fid == self.user.filiere.fid
+//        })
+//        controller.index = index
         
-        self.navigationController?.pushViewController(controller, animated: true)
+//        self.navigationController?.pushViewController(controller, animated: true)
+        self.present(navController, animated: true, completion: nil)
     }
     
     @objc func buttonToInstagram() {

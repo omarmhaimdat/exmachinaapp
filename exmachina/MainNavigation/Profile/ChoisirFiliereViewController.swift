@@ -28,7 +28,12 @@ class ChoisirFiliereViewController: UIViewController {
     let faculteLabel: UILabel = {
         let label = UILabel()
         label.text = "Faculté"
-        label.textColor = UIColor.black
+        if #available(iOS 13.0, *) {
+            label.textColor = .label
+        } else {
+            // Fallback on earlier versions
+            label.textColor = UIColor.black
+        }
         label.font = UIFont(name: "Avenir-Heavy", size: 24)
         label.textAlignment = .center
         label.numberOfLines = 1
@@ -60,7 +65,12 @@ class ChoisirFiliereViewController: UIViewController {
     let filiereLabel: UILabel = {
         let label = UILabel()
         label.text = "Filière"
-        label.textColor = UIColor.black
+        if #available(iOS 13.0, *) {
+            label.textColor = .label
+        } else {
+            // Fallback on earlier versions
+            label.textColor = UIColor.black
+        }
         label.font = UIFont(name: "Avenir-Heavy", size: 24)
         label.textAlignment = .center
         label.numberOfLines = 1
@@ -93,7 +103,12 @@ class ChoisirFiliereViewController: UIViewController {
     let semestreLabel: UILabel = {
         let label = UILabel()
         label.text = "Semestre"
-        label.textColor = UIColor.black
+        if #available(iOS 13.0, *) {
+            label.textColor = .label
+        } else {
+            // Fallback on earlier versions
+            label.textColor = UIColor.black
+        }
         label.font = UIFont(name: "Avenir-Heavy", size: 24)
         label.textAlignment = .center
         label.numberOfLines = 1

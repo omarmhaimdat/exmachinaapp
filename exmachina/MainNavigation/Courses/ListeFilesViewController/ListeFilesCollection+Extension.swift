@@ -90,60 +90,48 @@ extension ListeFilesViewController: UICollectionViewDataSource, UICollectionView
             if !self.favoris.contains(where: {$0.url == self.files[sender.tag].url}) {
                 ref.child(id).updateChildValues(["matiere": self.files[sender.tag].matiere, "titre": self.files[sender.tag].titre, "url": self.files[sender.tag].url, "fid": id, "timestamp" : Date().toMillis() * -1])
                 
+                let generator = UISelectionFeedbackGenerator()
                 let minEdge = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
-                var themeImage: EKPopUpMessage.ThemeImage?
-                var attributes = EKAttributes()
-                attributes.hapticFeedbackType = .success
-                attributes.entryBackground = .color(color: UIColor(named: "exmachina")!)
+                var attributes = EKAttributes.topFloat
+                attributes.entryBackground = .gradient(gradient: .init(colors: [#colorLiteral(red: 0.8345173001, green: 0.7508397102, blue: 0, alpha: 1), #colorLiteral(red: 0.8345173001, green: 0.7508397102, blue: 0, alpha: 1)], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
                 attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.7, duration: 0.7)))
                 attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
                 attributes.statusBar = .dark
                 attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .jolt)
-                attributes.positionConstraints.maxSize = .init(width: .constant(value: minEdge - 30), height: .intrinsic)
-                attributes.position = .bottom
-                attributes.displayDuration = 3
-                attributes.roundCorners = .all(radius: 15)
-                
-                if let image = UIImage(named: "ok_black") {
-                    themeImage = .init(image: .init(image: image, size: CGSize(width: 50, height: 50), contentMode: .scaleAspectFit))
-                }
-                
-                let title = EKProperty.LabelContent(text: "Confirmation", style: .init(font: UIFont(name: "Avenir", size: 24)!, color: .black, alignment: .center))
-                let description = EKProperty.LabelContent(text: "Le fichier a été ajouter dans la liste des favoris", style: .init(font: UIFont(name: "Avenir", size: 16)!, color: .black, alignment: .center))
-                let button = EKProperty.ButtonContent(label: .init(text: "Ok", style: .init(font: UIFont(name: "Avenir", size: 16)!, color: UIColor(named: "exmachina")!)), backgroundColor: .black, highlightedBackgroundColor: UIColor(named: "exmachina")!)
-                let message = EKPopUpMessage(themeImage: themeImage, title: title, description: description, button: button) {
-                    SwiftEntryKit.dismiss()
-                }
-                
-                let contentView = EKPopUpMessageView(with: message)
+                attributes.positionConstraints.maxSize = .init(width: .constant(value: minEdge), height: .intrinsic)
+                attributes.position = .top
+                attributes.displayDuration = 2
+                attributes.hapticFeedbackType = .success
+                attributes.statusBar = .light
+                generator.selectionChanged()
+                let title = EKProperty.LabelContent(text: "Confirmation", style: EKProperty.LabelStyle(font: UIFont(name: "Avenir-Heavy", size: 22)!, color: UIColor.black))
+                let image = EKProperty.ImageContent(image: #imageLiteral(resourceName: "ok_black"), size: CGSize(width: 45, height: 45))
+                let description = EKProperty.LabelContent(text: "Le fichier a été ajouter dans la liste des favoris", style: EKProperty.LabelStyle(font: UIFont(name: "Avenir", size: 14)!, color: .black))
+                let simpleMessage =  EKSimpleMessage(image: image, title: title, description: description)
+                let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
+                let contentView = EKNotificationMessageView(with: notificationMessage)
                 SwiftEntryKit.display(entry: contentView, using: attributes)
             } else {
+                let generator = UISelectionFeedbackGenerator()
                 let minEdge = min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height)
-                var themeImage: EKPopUpMessage.ThemeImage?
-                var attributes = EKAttributes()
-                attributes.hapticFeedbackType = .warning
-                attributes.entryBackground = .color(color: .black)
+                var attributes = EKAttributes.topFloat
+                attributes.entryBackground = .gradient(gradient: .init(colors: [#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
                 attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.7, duration: 0.7)))
                 attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
                 attributes.statusBar = .dark
                 attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .jolt)
-                attributes.positionConstraints.maxSize = .init(width: .constant(value: minEdge - 30), height: .intrinsic)
-                attributes.position = .bottom
-                attributes.displayDuration = 3
-                attributes.roundCorners = .all(radius: 15)
-                
-                if let image = UIImage(named: "error_exmachina") {
-                    themeImage = .init(image: .init(image: image, size: CGSize(width: 50, height: 50), contentMode: .scaleAspectFit))
-                }
-                
-                let title = EKProperty.LabelContent(text: "Warning", style: .init(font: UIFont(name: "Avenir", size: 24)!, color: UIColor(named: "exmachina")!, alignment: .center))
-                let description = EKProperty.LabelContent(text: "Le fichier est déjà dans la liste des favoris", style: .init(font: UIFont(name: "Avenir", size: 16)!, color: UIColor(named: "exmachina")!, alignment: .center))
-                let button = EKProperty.ButtonContent(label: .init(text: "Ok", style: .init(font: UIFont(name: "Avenir", size: 16)!, color: .black)), backgroundColor: UIColor(named: "exmachina")!, highlightedBackgroundColor: .black)
-                let message = EKPopUpMessage(themeImage: themeImage, title: title, description: description, button: button) {
-                    SwiftEntryKit.dismiss()
-                }
-                
-                let contentView = EKPopUpMessageView(with: message)
+                attributes.positionConstraints.maxSize = .init(width: .constant(value: minEdge), height: .intrinsic)
+                attributes.position = .top
+                attributes.displayDuration = 2
+                attributes.hapticFeedbackType = .warning
+                attributes.statusBar = .light
+                generator.selectionChanged()
+                let title = EKProperty.LabelContent(text: "Warning", style: EKProperty.LabelStyle(font: UIFont(name: "Avenir-Heavy", size: 22)!, color: #colorLiteral(red: 0.8345173001, green: 0.7508397102, blue: 0, alpha: 1)))
+                let image = EKProperty.ImageContent(image: #imageLiteral(resourceName: "error_exmachina"), size: CGSize(width: 45, height: 45))
+                let description = EKProperty.LabelContent(text: "Le fichier est déjà dans la liste des favoris", style: EKProperty.LabelStyle(font: UIFont(name: "Avenir", size: 14)!, color: #colorLiteral(red: 0.8345173001, green: 0.7508397102, blue: 0, alpha: 1)))
+                let simpleMessage =  EKSimpleMessage(image: image, title: title, description: description)
+                let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
+                let contentView = EKNotificationMessageView(with: notificationMessage)
                 SwiftEntryKit.display(entry: contentView, using: attributes)
             }
             

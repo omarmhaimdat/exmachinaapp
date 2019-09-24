@@ -52,8 +52,8 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
         var iv = CachedImageView()
         iv.backgroundColor = #colorLiteral(red: 0.8380756974, green: 0.7628322244, blue: 0, alpha: 1)
         iv.contentMode = .scaleAspectFill
-        iv.layer.borderWidth = 0
-        iv.layer.borderColor = UIColor.gray.cgColor
+        iv.layer.borderWidth = 1
+        iv.layer.borderColor = #colorLiteral(red: 0.8380756974, green: 0.7628322244, blue: 0, alpha: 1)
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.layer.cornerRadius = profileImageViewHeight / 2
         var photoProfile: String = Auth.auth().currentUser?.photoURL?.absoluteString ?? "Profile"
@@ -68,7 +68,12 @@ class AccueilViewController: UIViewController, UIScrollViewDelegate {
                 print("Autre \(userInfo.providerID)")
             }
         }
-        iv.loadImage(urlString: photoProfile)
+        if Auth.auth().currentUser!.isAnonymous {
+            iv.image = #imageLiteral(resourceName: "profile")
+        } else {
+            iv.loadImage(urlString: photoProfile)
+        }
+        
         iv.clipsToBounds = true
         iv.isUserInteractionEnabled = true
         let singleTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(singleTapping(_:)))
