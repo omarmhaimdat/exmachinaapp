@@ -14,6 +14,8 @@ import GoogleSignIn
 import FBSDKLoginKit
 import SwiftWebVC
 import SwiftEntryKit
+import FBSDKCoreKit
+import FacebookCore
 
 class ParametresViewController: UIViewController {
     

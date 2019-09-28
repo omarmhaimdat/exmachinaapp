@@ -15,7 +15,7 @@ target 'exmachina' do
   pod 'Crashlytics', '~> 3.13.4'
   pod 'Firebase/Analytics'
 #  pod 'Firebase/Performance'
-  pod 'GoogleSignIn'
+  pod 'GoogleSignIn', '~> 5.0'
   pod 'FBSDKCoreKit', :inhibit_warnings => true
   pod 'FBSDKShareKit', :inhibit_warnings => true
   pod 'FBSDKLoginKit', :inhibit_warnings => true
@@ -28,6 +28,9 @@ target 'exmachina' do
   pod 'SPStorkController'
   pod 'ReachabilitySwift', :inhibit_warnings => true
   pod 'SnapKit', '~> 5.0.0'
+  pod 'FacebookCore'
+  pod 'FacebookLogin'
+  pod 'SPAlert'
 
   target 'exmachinaTests' do
     inherit! :search_paths

@@ -686,8 +686,8 @@
 				6CD154A8229F499C00DEA4D3 /* Resources */,
 				6CF5E8662325613D0013323E /* Run Script */,
 				1EBF34C114DA84E132F4676A /* [CP] Embed Pods Frameworks */,
-				319159DF01C2110003425416 /* [CP] Copy Pods Resources */,
 				6CF031DD2337F721002DA710 /* ShellScript */,
+				A74BD8A4946AB909CCE52908 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -830,23 +830,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-exmachina/Pods-exmachina-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		319159DF01C2110003425416 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-exmachina/Pods-exmachina-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-exmachina/Pods-exmachina-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-exmachina/Pods-exmachina-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		422F808FAF168B1138EF1F06 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -943,6 +926,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A74BD8A4946AB909CCE52908 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-exmachina/Pods-exmachina-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-exmachina/Pods-exmachina-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-exmachina/Pods-exmachina-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EB66720C73037B021BF1FF51 /* [CP] Check Pods Manifest.lock */ = {
@@ -1225,7 +1225,7 @@
 				CODE_SIGN_ENTITLEMENTS = exmachina/exmachina.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = KF6724J2G9;
 				INFOPLIST_FILE = exmachina/Info.plist;
@@ -1234,7 +1234,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = exmachina.exmachinaapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1252,7 +1252,7 @@
 				CODE_SIGN_ENTITLEMENTS = exmachina/exmachina.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = KF6724J2G9;
 				INFOPLIST_FILE = exmachina/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1260,7 +1260,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = exmachina.exmachinaapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

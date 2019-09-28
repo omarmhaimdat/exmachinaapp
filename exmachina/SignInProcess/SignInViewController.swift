@@ -18,7 +18,7 @@ import FBSDKLoginKit
 import Reachability
 import SwiftEntryKit
 
-class SignInViewController: UIViewController, GIDSignInUIDelegate, LoginButtonDelegate {
+class SignInViewController: UIViewController, LoginButtonDelegate, GIDSignInDelegate {
     
     private let reachability = Reachability(hostname: "www.ex-machina.ma")
     
@@ -276,7 +276,9 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate, LoginButtonDe
         view.addSubview(btnCGU)
         view.addSubview(textCredit)
         
-        GIDSignIn.sharedInstance().uiDelegate = self
+//        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance()?.presentingViewController = self
+        GIDSignIn.sharedInstance()?.delegate = self
         
 //        Auth.auth().addStateDidChangeListener() { auth, user in
 //            if user != nil && !Auth.auth().currentUser!.isAnonymous {
@@ -541,6 +543,7 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate, LoginButtonDe
                 self.hud.textLabel.text = "Annulée !"
                 self.hud.dismiss(afterDelay: 1, animated: true)
                 print("l'utilisateur a annulé son inscription avec facebook")
+                print(err.debugDescription)
                 return
             } else {
                 self.hud.textLabel.text = "Succès !"

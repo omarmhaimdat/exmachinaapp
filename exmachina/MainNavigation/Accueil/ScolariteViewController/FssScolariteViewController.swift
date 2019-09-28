@@ -11,6 +11,7 @@ import BLTNBoard
 import FirebaseAuth
 import MessageUI
 import SwiftEntryKit
+import SPAlert
 
 class FssScolariteViewController: UIViewController, MFMailComposeViewControllerDelegate {
     
@@ -468,11 +469,17 @@ class FssScolariteViewController: UIViewController, MFMailComposeViewControllerD
             self.present(mail, animated: true)
         } else {
             // show failure alert
+            SPAlert.present(message: "Vous devez avoir le client de messagerie intégré de iOS")
         }
     }
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true)
+        if error != nil {
+            SPAlert.present(title: "Erreur lors de l'envoi", image: UIImage(named: "cross")!)
+        } else {
+            SPAlert.present(title: "Email envoyé", preset: .done)
+        }
     }
     
     @objc func buttonToResponsable(_ sender: BtnPleinLarge) {
