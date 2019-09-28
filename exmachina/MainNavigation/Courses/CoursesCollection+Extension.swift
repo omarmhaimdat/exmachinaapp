@@ -24,7 +24,6 @@ extension CoursesViewController: UICollectionViewDataSource, UICollectionViewDel
         cell.editButton.isHidden = true
         cell.listNameLabel.text = self.filieres[indexPath.item].fid
         cell.listDescriptionLabel.text = self.filieres[indexPath.item].titre
-//        cell.contentView.setGradientBackgroundColor(colorOne: self.filieres[indexPath.item].colorOne, colorTow: self.filieres[indexPath.item].colorTwo)
         cell.contentView.backgroundColor = self.filieres[indexPath.item].colorTwo
         
         return cell
