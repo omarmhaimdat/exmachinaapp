@@ -174,6 +174,47 @@ class ParametresViewController: UIViewController {
         return btn
     }()
     
+    let versionNumber: BtnPleinLarge = {
+        let profileEdit = BtnPleinLarge()
+        //        feedback.addTarget(self, action: #selector(buttonToSignOutView(sender:)), for: .touchUpInside)
+        profileEdit.translatesAutoresizingMaskIntoConstraints = false
+        profileEdit.setTitle("", for: .normal)
+        if #available(iOS 13.0, *) {
+            profileEdit.backgroundColor = .tertiarySystemBackground
+        } else {
+            // Fallback on earlier versions
+            profileEdit.backgroundColor = .white
+        }
+        if #available(iOS 13.0, *) {
+            profileEdit.layer.borderColor = UIColor.clear.cgColor
+        } else {
+            // Fallback on earlier versions
+            profileEdit.layer.borderColor = UIColor.white.cgColor
+        }
+        profileEdit.layer.shadowOpacity = 0.3
+        profileEdit.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1).cgColor
+        profileEdit.layer.shadowOffset = CGSize(width: 1, height: 2)
+        profileEdit.layer.cornerRadius = 14
+        profileEdit.layer.shadowRadius = 5
+        profileEdit.layer.masksToBounds = true
+        profileEdit.clipsToBounds = false
+        profileEdit.contentHorizontalAlignment = .left
+        if #available(iOS 13.0, *) {
+            profileEdit.setTitleColor(.label, for: .normal)
+        } else {
+            // Fallback on earlier versions
+            profileEdit.setTitleColor(.black, for: .normal)
+        }
+        let icon = UIImage(named: "infos")?.resized(newSize: CGSize(width: 25, height: 25))
+        profileEdit.setImage( icon, for: .normal)
+        profileEdit.imageEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 10)
+        profileEdit.layoutIfNeeded()
+        profileEdit.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 16)
+        profileEdit.titleEdgeInsets.left = 35
+        
+        return profileEdit
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTabBar()
@@ -181,7 +222,10 @@ class ParametresViewController: UIViewController {
         contentView.addSubview(buttonDeconnecte)
         contentView.addSubview(deleteAccount)
         contentView.addSubview(CGU_privacy)
+        contentView.addSubview(versionNumber)
         setupLayout()
+        let version = self.getVersionNumber()
+        versionNumber.setTitle("Version:  \(version)", for: .normal)
     }
     
     func setupTabBar() {
@@ -260,10 +304,15 @@ class ParametresViewController: UIViewController {
             deleteAccount.heightAnchor.constraint(equalToConstant: 60).isActive = true
             
             buttonDeconnecte.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-            buttonDeconnecte.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -60).isActive = true
             buttonDeconnecte.topAnchor.constraint(equalTo: deleteAccount.bottomAnchor, constant: 60).isActive = true
             buttonDeconnecte.widthAnchor.constraint(equalToConstant: view.frame.width - 40).isActive = true
             buttonDeconnecte.heightAnchor.constraint(equalToConstant: 60).isActive = true
+            
+            versionNumber.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+            versionNumber.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -60).isActive = true
+            versionNumber.topAnchor.constraint(equalTo: buttonDeconnecte.bottomAnchor, constant: 60).isActive = true
+            versionNumber.widthAnchor.constraint(equalToConstant: view.frame.width - 40).isActive = true
+            versionNumber.heightAnchor.constraint(equalToConstant: 60).isActive = true
         }
         
         if UIDevice().userInterfaceIdiom == .pad {
@@ -279,11 +328,23 @@ class ParametresViewController: UIViewController {
             deleteAccount.heightAnchor.constraint(equalToConstant: 80).isActive = true
             
             buttonDeconnecte.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-            buttonDeconnecte.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -60).isActive = true
             buttonDeconnecte.topAnchor.constraint(equalTo: deleteAccount.bottomAnchor, constant: 80).isActive = true
             buttonDeconnecte.widthAnchor.constraint(equalToConstant: view.frame.width - 80).isActive = true
             buttonDeconnecte.heightAnchor.constraint(equalToConstant: 80).isActive = true
+            
+            versionNumber.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+            versionNumber.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -60).isActive = true
+            versionNumber.topAnchor.constraint(equalTo: buttonDeconnecte.bottomAnchor, constant: 80).isActive = true
+            versionNumber.widthAnchor.constraint(equalToConstant: view.frame.width - 80).isActive = true
+            versionNumber.heightAnchor.constraint(equalToConstant: 80).isActive = true
         }
+    }
+    
+    func getVersionNumber() -> String {
+        let dict = Bundle.main.infoDictionary!
+        let version = dict["CFBundleShortVersionString"] as! String
+        
+        return version
     }
     
     

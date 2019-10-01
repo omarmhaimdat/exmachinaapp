@@ -390,9 +390,29 @@ class SignInViewController: UIViewController, LoginButtonDelegate, GIDSignInDele
         if UIDevice().userInterfaceIdiom == .phone {
             
             switch UIScreen.main.nativeBounds.height {
-            case 1136:
+            case 1334:
                 anonymousSignInButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
                 anonymousSignInButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -view.frame.height/3.8).isActive = true
+                anonymousSignInButton.widthAnchor.constraint(equalToConstant: view.frame.width - 32).isActive = true
+                anonymousSignInButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+                
+                googleSignInButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+                googleSignInButton.bottomAnchor.constraint(equalTo: anonymousSignInButton.bottomAnchor, constant: -60).isActive = true
+                googleSignInButton.widthAnchor.constraint(equalToConstant: view.frame.width - 32).isActive = true
+                googleSignInButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+                
+                facebookSignInButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+                facebookSignInButton.bottomAnchor.constraint(equalTo: googleSignInButton.bottomAnchor, constant: -60).isActive = true
+                facebookSignInButton.widthAnchor.constraint(equalToConstant: view.frame.width - 32).isActive = true
+                facebookSignInButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+                
+                textCredit.topAnchor.constraint(equalTo: btnCGU.bottomAnchor, constant: screenHeight/16).isActive = true
+                textCredit.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
+                textCredit.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
+                
+            case 1136:
+                anonymousSignInButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+                anonymousSignInButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -view.frame.height/4.8).isActive = true
                 anonymousSignInButton.widthAnchor.constraint(equalToConstant: view.frame.width - 32).isActive = true
                 anonymousSignInButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
                 
