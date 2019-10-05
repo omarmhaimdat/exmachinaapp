@@ -44,6 +44,7 @@ extension SemestreViewController: UICollectionViewDataSource, UICollectionViewDe
         let semestre: Semestre
         semestre = self.semestres[indexPath.item]
         let controller = ListeMatieresViewController()
+        controller.faculte = self.faculte
         controller.filiere = filiere
         controller.semestre = semestre
         self.navigationController?.pushViewController(controller, animated: true)

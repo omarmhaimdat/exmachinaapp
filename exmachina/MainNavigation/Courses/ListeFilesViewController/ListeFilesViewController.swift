@@ -19,6 +19,7 @@ class ListeFilesViewController: UIViewController {
     var files = [File]()
     var favoris = [File]()
     var filiere = Filiere()
+    var faculte = Faculte()
     var semestre = Semestre()
     var matiere = Matiere()
     var pdfURL: URL!
@@ -161,7 +162,7 @@ class ListeFilesViewController: UIViewController {
         print(self.filiere.fid)
         print(self.semestre.sid)
         print(self.matiere.mid)
-        let ref = Database.database().reference().child("faculte").child("liste").child("ING").child("liste").child(self.filiere.fid).child("liste").child(self.semestre.sid).child("liste").child(self.matiere.mid).child("liste")
+        let ref = Database.database().reference().child("faculte").child("liste").child("\(self.faculte.facId)").child("liste").child(self.filiere.fid).child("liste").child(self.semestre.sid).child("liste").child(self.matiere.mid).child("liste")
         self.files.removeAll()
         ref.observe(DataEventType.childAdded, with: { (snapshot) in
             

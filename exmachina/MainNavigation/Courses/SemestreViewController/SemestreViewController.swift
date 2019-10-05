@@ -15,6 +15,7 @@ class SemestreViewController: UIViewController {
     let cellId = "cellId"
     var matieres = [Matiere]()
     var semestres = [Semestre]()
+    var faculte = Faculte()
     var filiere = Filiere()
     
     let newCollection: UICollectionView = {
@@ -123,7 +124,7 @@ class SemestreViewController: UIViewController {
         
         let ref = Database.database().reference()
         self.semestres.removeAll()
-        ref.child("faculte").child("liste").child("ING").child("liste").child(self.filiere.fid).child("liste").observe(DataEventType.childAdded, with: { (snapshot) in
+        ref.child("faculte").child("liste").child("\(self.faculte.facId)").child("liste").child(self.filiere.fid).child("liste").observe(DataEventType.childAdded, with: { (snapshot) in
             
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 

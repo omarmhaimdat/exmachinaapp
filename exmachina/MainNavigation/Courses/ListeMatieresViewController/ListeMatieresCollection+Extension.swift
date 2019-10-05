@@ -46,6 +46,7 @@ extension ListeMatieresViewController: UICollectionViewDataSource, UICollectionV
         let matiere: Matiere
         matiere = self.matieres[indexPath.item]
         let controller = ListeFilesViewController()
+        controller.faculte = self.faculte
         controller.filiere = filiere
         controller.semestre = semestre
         controller.matiere = matiere

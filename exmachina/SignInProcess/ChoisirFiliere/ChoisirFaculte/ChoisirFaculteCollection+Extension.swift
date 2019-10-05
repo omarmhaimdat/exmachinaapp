@@ -57,8 +57,8 @@ extension ChoisirFaculteViewController: UICollectionViewDataSource, UICollection
             controller.filieres = self.filieresFCG
         }
         controller.faculte = faculte
-        let ref = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid)
-        ref.updateChildValues(["faculte": faculte.facId])
+//        let ref = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid)
+//        ref.updateChildValues(["faculte": faculte.facId])
         self.navigationController?.pushViewController(controller, animated: true)
         
     }

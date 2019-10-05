@@ -45,8 +45,8 @@ extension ChoisirSemestreViewController: UICollectionViewDataSource, UICollectio
         controller.faculte = self.faculte
         controller.filiere = self.filiere
         controller.semestre = semestre
-        let ref = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid)
-        ref.updateChildValues(["semestre": semestre.sid])
+//        let ref = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid)
+//        ref.updateChildValues(["semestre": semestre.sid])
         self.navigationController?.pushViewController(controller, animated: true)
     }
     

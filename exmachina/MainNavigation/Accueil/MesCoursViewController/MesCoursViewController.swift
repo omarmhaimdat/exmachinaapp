@@ -215,8 +215,8 @@ class MesCoursViewController: UIViewController {
                     themeImage = .init(image: .init(image: image, size: CGSize(width: 50, height: 50), contentMode: .scaleAspectFit))
                 }
                 
-                let title = EKProperty.LabelContent(text: "Erreur", style: .init(font: UIFont(name: "Avenir", size: 24)!, color: UIColor(named: "exmachina")!, alignment: .center))
-                let description = EKProperty.LabelContent(text: "Assurez-vous que le choix de la filière est correct", style: .init(font: UIFont(name: "Avenir", size: 16)!, color: UIColor(named: "exmachina")!, alignment: .center))
+                let title = EKProperty.LabelContent(text: "Pas de contenu", style: .init(font: UIFont(name: "Avenir", size: 24)!, color: UIColor(named: "exmachina")!, alignment: .center))
+                let description = EKProperty.LabelContent(text: "Cours indisponibles", style: .init(font: UIFont(name: "Avenir", size: 16)!, color: UIColor(named: "exmachina")!, alignment: .center))
                 let button = EKProperty.ButtonContent(label: .init(text: "Ok", style: .init(font: UIFont(name: "Avenir", size: 16)!, color: .black)), backgroundColor: UIColor(named: "exmachina")!, highlightedBackgroundColor: .black)
                 let message = EKPopUpMessage(themeImage: themeImage, title: title, description: description, button: button) {
                     SwiftEntryKit.dismiss()

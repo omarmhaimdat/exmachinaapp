@@ -1,16 +1,14 @@
 //
-//  ChoisirFiliereCollection+Extension.swift
+//  FilieresCollection+Extension.swift
 //  exmachina
 //
-//  Created by M'haimdat omar on 14-08-2019.
+//  Created by M'haimdat omar on 05-10-2019.
 //  Copyright © 2019 M'haimdat omar. All rights reserved.
 //
 
 import UIKit
-import FirebaseAuth
-import FirebaseDatabase
 
-extension ChoisirFilieresViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension FiliereViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -27,6 +25,7 @@ extension ChoisirFilieresViewController: UICollectionViewDataSource, UICollectio
         cell.listNameLabel.text = self.filieres[indexPath.item].fid
         cell.listDescriptionLabel.text = self.filieres[indexPath.item].titre
         cell.contentView.backgroundColor = self.filieres[indexPath.item].colorTwo
+        
         return cell
     }
     
@@ -39,17 +38,36 @@ extension ChoisirFilieresViewController: UICollectionViewDataSource, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        let faculte: Faculte
         let filiere: Filiere
-        faculte = self.faculte
-        filiere = self.filieres[indexPath.row]
-        let controller = ChoisirSemestreViewController()
-        controller.faculte = faculte
+        filiere = filieres[indexPath.row]
+        let controller = SemestreViewController()
         controller.filiere = filiere
-//        let ref = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid)
-//        ref.updateChildValues(["filiere": filiere.fid])
+        controller.faculte = self.faculte
         self.navigationController?.pushViewController(controller, animated: true)
     }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        if UIDevice.current.orientation.isLandscape,
+            let layout = self.newCollection.collectionViewLayout as? UICollectionViewFlowLayout {
+            let width = self.view.frame.width - 40
+            layout.itemSize = CGSize(width: width - 16, height: 180)
+            layout.invalidateLayout()
+            print("Landscrape")
+        } else if UIDevice.current.orientation.isPortrait,
+            let layout = self.newCollection.collectionViewLayout as? UICollectionViewFlowLayout {
+            let width = self.view.frame.width - 40
+            layout.itemSize = CGSize(width: width - 16, height: 180)
+            layout.invalidateLayout()
+            print("Portrait")
+        }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        newCollection.collectionViewLayout.invalidateLayout()
+        newCollection.layoutIfNeeded()
+    }
+
     
 }

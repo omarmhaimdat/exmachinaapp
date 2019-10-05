@@ -168,6 +168,9 @@ class ConfirmationViewController: UIViewController {
     
     @objc func buttonToConfirm() {
         let ref = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid)
+        ref.updateChildValues(["filiere": filiere.fid])
+        ref.updateChildValues(["faculte": faculte.facId])
+        ref.updateChildValues(["semestre": semestre.sid])
         ref.updateChildValues(["ajoutFiliere": true])
         
         dismiss(animated: true, completion: nil)

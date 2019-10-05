@@ -15,16 +15,23 @@ extension CoursesViewController: UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.filieres.count
+        return self.facultes.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! CoursesFacultyViewCell
         
         cell.editButton.isHidden = true
-        cell.listNameLabel.text = self.filieres[indexPath.item].fid
-        cell.listDescriptionLabel.text = self.filieres[indexPath.item].titre
-        cell.contentView.backgroundColor = self.filieres[indexPath.item].colorTwo
+        cell.listNameLabel.text = self.facultes[indexPath.item].facId
+        cell.listDescriptionLabel.text = self.facultes[indexPath.item].titre
+        
+        if self.facultes[indexPath.item].facId == "ING" {
+            cell.contentView.backgroundColor = #colorLiteral(red: 0.3731170297, green: 0.283844918, blue: 0.6121758819, alpha: 1)
+        } else if self.facultes[indexPath.item].facId == "FSS" {
+            cell.contentView.backgroundColor = #colorLiteral(red: 0.4980392157, green: 0.6980392157, blue: 0.3843137255, alpha: 1)
+        } else {
+            cell.contentView.backgroundColor = #colorLiteral(red: 0.9294117647, green: 0.3450980392, blue: 0.2862745098, alpha: 1)
+        }
         
         return cell
     }
@@ -38,10 +45,10 @@ extension CoursesViewController: UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let filiere: Filiere
-        filiere = filieres[indexPath.row]
-        let controller = SemestreViewController()
-        controller.filiere = filiere
+        let faculte: Faculte
+        faculte = facultes[indexPath.row]
+        let controller = FiliereViewController()
+        controller.faculte = faculte
         self.navigationController?.pushViewController(controller, animated: true)
     }
     

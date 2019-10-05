@@ -10,6 +10,8 @@
 		18F9C1DE6E1962306E1657F8 /* Pods_exmachinaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFB17870D0E5D36EFAE2270A /* Pods_exmachinaUITests.framework */; };
 		6C17F86C22A1DE280046FD7D /* PdfViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C17F86B22A1DE280046FD7D /* PdfViewerViewController.swift */; };
 		6C20142B2336457700DF7FE0 /* AppleWelcomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20142A2336457700DF7FE0 /* AppleWelcomeScreen.swift */; };
+		6C204BA22348E03B0098E43F /* FilieresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C204BA12348E03B0098E43F /* FilieresViewController.swift */; };
+		6C204BA42348E0CF0098E43F /* FilieresCollection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C204BA32348E0CF0098E43F /* FilieresCollection+Extension.swift */; };
 		6C224BB822A9999B0011F70D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C224BB722A9999B0011F70D /* User.swift */; };
 		6C22DFA022A9A1A400D56293 /* exmachinaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD154C2229F499E00DEA4D3 /* exmachinaTests.swift */; };
 		6C3665BB22FD826D000E4EA6 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3665BA22FD826D000E4EA6 /* String+Extension.swift */; };
@@ -120,6 +122,8 @@
 		63E1B483AD2EF649AC3D1FA0 /* Pods-exmachinaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exmachinaUITests.release.xcconfig"; path = "Target Support Files/Pods-exmachinaUITests/Pods-exmachinaUITests.release.xcconfig"; sourceTree = "<group>"; };
 		6C17F86B22A1DE280046FD7D /* PdfViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PdfViewerViewController.swift; sourceTree = "<group>"; };
 		6C20142A2336457700DF7FE0 /* AppleWelcomeScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleWelcomeScreen.swift; sourceTree = "<group>"; };
+		6C204BA12348E03B0098E43F /* FilieresViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilieresViewController.swift; sourceTree = "<group>"; };
+		6C204BA32348E0CF0098E43F /* FilieresCollection+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FilieresCollection+Extension.swift"; sourceTree = "<group>"; };
 		6C224BB722A9999B0011F70D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		6C3665BA22FD826D000E4EA6 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		6C3665BC22FD94BA000E4EA6 /* MesCoursViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MesCoursViewController.swift; sourceTree = "<group>"; };
@@ -281,6 +285,15 @@
 				6C20142A2336457700DF7FE0 /* AppleWelcomeScreen.swift */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		6C204BA02348DFFB0098E43F /* FilieresViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6C204BA12348E03B0098E43F /* FilieresViewController.swift */,
+				6C204BA32348E0CF0098E43F /* FilieresCollection+Extension.swift */,
+			);
+			path = FilieresViewController;
 			sourceTree = "<group>";
 		};
 		6C224BB622A9998A0011F70D /* Models */ = {
@@ -532,6 +545,7 @@
 		6CD1550322A0B01300DEA4D3 /* Courses */ = {
 			isa = PBXGroup;
 			children = (
+				6C204BA02348DFFB0098E43F /* FilieresViewController */,
 				6CD1552122A1947D00DEA4D3 /* ListeFilesViewController */,
 				6CD1551B22A1906800DEA4D3 /* ListeMatieresViewController */,
 				6CD1551622A18CF000DEA4D3 /* SemestreViewController */,
@@ -994,6 +1008,7 @@
 				6C42E6C222A83DE50017CF57 /* UIViewController+Extension.swift in Sources */,
 				6CA356CC22A9A49F00ECD409 /* ChoisirFiliereViewController.swift in Sources */,
 				6C17F86C22A1DE280046FD7D /* PdfViewerViewController.swift in Sources */,
+				6C204BA42348E0CF0098E43F /* FilieresCollection+Extension.swift in Sources */,
 				6CD154F2229F859B00DEA4D3 /* OfflineViewController.swift in Sources */,
 				6C51408922CFC5730065E086 /* TransportViewController.swift in Sources */,
 				6CD1551D22A1909B00DEA4D3 /* ListeMatieresViewController.swift in Sources */,
@@ -1041,6 +1056,7 @@
 				6CF487152304AB940031A956 /* ConfirmationViewController.swift in Sources */,
 				6C20142B2336457700DF7FE0 /* AppleWelcomeScreen.swift in Sources */,
 				6C51407A22CE5EA30065E086 /* DatePickerBulletinPage.swift in Sources */,
+				6C204BA22348E03B0098E43F /* FilieresViewController.swift in Sources */,
 				6CD1551122A1674800DEA4D3 /* Matiere.swift in Sources */,
 				6C51408022CFB2AC0065E086 /* BilbliothequeViewController.swift in Sources */,
 				6C51407222CE4B2E0065E086 /* NomTextFieldBulletinPage.swift in Sources */,

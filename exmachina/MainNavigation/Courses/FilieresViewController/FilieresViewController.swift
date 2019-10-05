@@ -1,8 +1,8 @@
 //
-//  CoursesViewController.swift
+//  FilieresViewController.swift
 //  exmachina
 //
-//  Created by M'haimdat omar on 30-05-2019.
+//  Created by M'haimdat omar on 05-10-2019.
 //  Copyright © 2019 M'haimdat omar. All rights reserved.
 //
 
@@ -33,51 +33,14 @@ private struct Const {
     static let NavBarHeightLargeState: CGFloat = 96.5
 }
 
-class CoursesViewController: UIViewController {
+class FiliereViewController: UIViewController {
     
     private let reachability = Reachability(hostname: "www.ex-machina.ma")
     
     let cellId = "cellId"
     var matieres = [Matiere]()
-    var facultes = [Faculte]()
-    
-    lazy var imageView: CachedImageView = {
-        let profileImageViewHeight: CGFloat = 56
-        var iv = CachedImageView()
-        iv.backgroundColor = #colorLiteral(red: 0.8380756974, green: 0.7628322244, blue: 0, alpha: 1)
-        iv.contentMode = .scaleAspectFill
-        iv.layer.borderWidth = 1
-        iv.layer.borderColor = #colorLiteral(red: 0.8380756974, green: 0.7628322244, blue: 0, alpha: 1)
-        iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.layer.cornerRadius = profileImageViewHeight / 2
-        var photoProfile: String = Auth.auth().currentUser?.photoURL?.absoluteString ?? "Profile"
-        let photoProvider = Auth.auth().currentUser?.providerData
-        print(photoProfile)
-        for userInfo in photoProvider! {
-            switch userInfo.providerID {
-            case "facebook.com":
-                photoProfile = photoProfile + "?height=500"
-                print(photoProfile)
-            case "google.com":
-                photoProfile = photoProfile.replacingOccurrences(of: "/s96-c/photo.jpg", with: "/s400-c/photo.jpg")
-                print(photoProfile)
-            default:
-                print("Autre \(userInfo.providerID)")
-            }
-        }
-        if Auth.auth().currentUser!.isAnonymous {
-            iv.image = #imageLiteral(resourceName: "profile")
-        } else {
-            iv.loadImage(urlString: photoProfile)
-        }
-        iv.clipsToBounds = true
-        iv.isUserInteractionEnabled = true
-        let singleTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(singleTapping(_:)))
-        singleTap.numberOfTapsRequired = 1
-        iv.addGestureRecognizer(singleTap)
-
-        return iv
-    }()
+    var filieres = [Filiere]()
+    var faculte = Faculte()
     
     let newCollection: UICollectionView = {
         
@@ -108,13 +71,11 @@ class CoursesViewController: UIViewController {
         setupCollectionView()
         setupLoadingControl()
         activityIndicatorView.startAnimating()
-        setupUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupTabBar()
-        setupUI()
         NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(note:)), name: .reachabilityChanged, object: reachability)
         do{
             try reachability?.startNotifier()
@@ -127,18 +88,16 @@ class CoursesViewController: UIViewController {
         super.viewDidAppear(animated)
         setupTabBar()
         getFilieres()
-        setupUI()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        imageView.removeFromSuperview()
         reachability?.stopNotifier()
         NotificationCenter.default.removeObserver(self, name: .reachabilityChanged, object: reachability)
     }
     
     func setupTabBar() {
-        navigationItem.title = "Courses"
+        navigationItem.title = "\(self.faculte.titre)"
         if #available(iOS 13.0, *) {
             view.backgroundColor = UIColor.systemBackground
         } else {
@@ -175,58 +134,6 @@ class CoursesViewController: UIViewController {
         }
     }
     
-    private func setupUI() {
-        // Initial setup for image for Large NavBar state since the the screen always has Large NavBar once it gets opened
-        guard let navigationBar = self.navigationController?.navigationBar else { return }
-        navigationBar.addSubview(imageView)
-        imageView.layer.cornerRadius = Const.ImageSizeForLargeState / 2
-        imageView.clipsToBounds = true
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            imageView.rightAnchor.constraint(equalTo: navigationBar.rightAnchor,
-                                             constant: -Const.ImageRightMargin),
-            imageView.bottomAnchor.constraint(equalTo: navigationBar.bottomAnchor,
-                                              constant: -Const.ImageBottomMarginForLargeState),
-            imageView.heightAnchor.constraint(equalToConstant: Const.ImageSizeForLargeState),
-            imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor)
-            ])
-    }
-    
-    private func moveAndResizeImage(for height: CGFloat) {
-        let coeff: CGFloat = {
-            let delta = height - Const.NavBarHeightSmallState
-            let heightDifferenceBetweenStates = (Const.NavBarHeightLargeState - Const.NavBarHeightSmallState)
-            return delta / heightDifferenceBetweenStates
-        }()
-        
-        let factor = Const.ImageSizeForSmallState / Const.ImageSizeForLargeState
-        
-        let scale: CGFloat = {
-            let sizeAddendumFactor = coeff * (1.0 - factor)
-            return min(1.0, sizeAddendumFactor + factor)
-        }()
-        
-        // Value of difference between icons for large and small states
-        let sizeDiff = Const.ImageSizeForLargeState * (1.0 - factor) // 8.0
-        
-        let yTranslation: CGFloat = {
-            /// This value = 14. It equals to difference of 12 and 6 (bottom margin for large and small states). Also it adds 8.0 (size difference when the image gets smaller size)
-            let maxYTranslation = Const.ImageBottomMarginForLargeState - Const.ImageBottomMarginForSmallState + sizeDiff
-            return max(0, min(maxYTranslation, (maxYTranslation - coeff * (Const.ImageBottomMarginForSmallState + sizeDiff))))
-        }()
-        
-        let xTranslation = max(0, sizeDiff - coeff * sizeDiff)
-        
-        imageView.transform = CGAffineTransform.identity
-            .scaledBy(x: scale, y: scale)
-            .translatedBy(x: xTranslation, y: yTranslation)
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        guard let height = navigationController?.navigationBar.frame.height else { return }
-        moveAndResizeImage(for: height)
-    }
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -261,12 +168,6 @@ class CoursesViewController: UIViewController {
         newCollection.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
         newCollection.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         
-//        if #available(iOS 10.0, *) {
-//            newCollection.refreshControl = refreshControl
-//        } else {
-//            newCollection.addSubview(refreshControl)
-//        }
-        
         refreshControl.addTarget(self, action: #selector(refreshCardsData(_:)), for: .valueChanged)
         
     }
@@ -289,16 +190,18 @@ class CoursesViewController: UIViewController {
     func getFilieres() {
         
         let ref = Database.database().reference()
-        self.facultes.removeAll()
-        ref.child("faculte").child("liste").observe(DataEventType.childAdded, with: { (snapshot) in
+        self.filieres.removeAll()
+        ref.child("faculte").child("liste").child("\(self.faculte.facId)").child("liste").observe(DataEventType.childAdded, with: { (snapshot) in
             
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 
-                var faculte = Faculte()
-                faculte.titre = dictionary["titre"] as? String ?? ""
-                faculte.facId = dictionary["facId"] as? String ?? ""
+                var filiere = Filiere()
+                filiere.titre = dictionary["titre"] as? String ?? ""
+                filiere.fid = dictionary["fid"] as? String ?? ""
+                filiere.colorOne = UIColor(hexString: (dictionary["colorOne"] as? String ?? "#d5c100"))
+                filiere.colorTwo = UIColor(hexString: (dictionary["colorTwo"] as? String ?? "#d5c100"))
 
-                self.facultes.append(faculte)
+                self.filieres.append(filiere)
                 DispatchQueue.main.async(execute: {
                     self.newCollection.reloadData()
                     self.activityIndicatorView.stopAnimating()
@@ -362,3 +265,4 @@ class CoursesViewController: UIViewController {
     }
     
 }
+
